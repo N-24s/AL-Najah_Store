@@ -1,4 +1,5 @@
 
+import 'package:al_najah_store/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,7 @@ class App extends StatelessWidget{
 return  const GetMaterialApp(
   debugShowCheckedModeBanner: false,
   themeMode: ThemeMode.system,
+  home: SplashScreen(),
  
 
 ); 

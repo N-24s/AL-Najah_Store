@@ -7,9 +7,15 @@ class NColors {
   // static const Color primaryColor=Color.fromARGB(255, 95, 252, 103);
   //  static const Color primaryColor=Color.fromARGB(255, 93, 192, 80);
    static const Color primaryColor=Color(0xff3050a0);
+   static const Color primaryColor2=Color(0xff31458a);
 
-    static const Color secondaryColor=Colors.black;
-  static const Color accent=Color(0xFFb0c7ff);
+   static const Color secondaryColor=Colors.black;
+   static const Color accent=Color(0xFFb0c7ff);
+
+    // Orange Color
+    static const Color orangeColor=Color(0xffdc7c32);
+    static const Color secondaryOrangeColor=Color(0xffd1632b);
+
 
   //Gradient Colors
       static const  Gradient linerGradient=LinearGradient(
