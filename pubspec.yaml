@@ -39,6 +39,10 @@ dependencies:
   iconsax: ^0.0.8
   another_flutter_splash_screen: ^1.2.1
   flutter_onboarding_slider: ^1.0.11
+  url_launcher: ^6.3.0
+  intl: ^0.19.0
+  dio: ^5.7.0
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
