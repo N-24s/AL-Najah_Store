@@ -80,8 +80,7 @@ LoginVm controller =LoginVm();
            const SizedBox(height: NSizes.spaceBtwItems,),
         
             SizedBox(width: double.infinity, child: OutlinedButton(onPressed: (){
-                            storageHelper.removeAll();
-                            print("RRR");
+                            
 
             }, child: const Text(NTexts.createAccount))),
         // ()=> Get.to(const SignupScreen())

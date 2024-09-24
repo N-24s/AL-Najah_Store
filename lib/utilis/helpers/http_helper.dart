@@ -10,7 +10,7 @@ HttpHelpers._();
     }
     return httpHelpers!;
 
-  }
+  }  
     Dio dio=Dio();
      Future<Response> getRequest({required String url})async{
     return await dio.get(url);
@@ -18,9 +18,7 @@ HttpHelpers._();
   Future<Response> postRequest({required String url,required dynamic data,Options? options})async{
     return await dio.post(url,data: data,options: options);
   }
-    // login({required String url}){
-    //   dio.post(url,data: {"username":"emilys","password":"emilyspass"});
-    // }
+    
 
 
 }

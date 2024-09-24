@@ -2,10 +2,12 @@ import 'dart:ffi';
 import 'dart:io';
 
 import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
-import 'package:al_najah_store/models/login/user.dart';
+import 'package:al_najah_store/models/authentication/login/user.dart';
+import 'package:al_najah_store/navigation_menu.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
+import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/popups/full_screen_loader.dart';
 import 'package:al_najah_store/view_model_vm/authentication/login/user_vm.dart';
 import 'package:al_najah_store/views/authentication/splash/splash.dart';
@@ -72,13 +74,6 @@ try{
   
 
 
-
-                
-
-
-  
-
-
   // Register user in the Firebase Authentication & Save user data in the firebase
    
   // Show Authentication  user data in the FireStore
@@ -110,7 +105,9 @@ checkLoging({required String x}){
       title: x,
       message: x,
       );
-      Get.to(()=>const SplashScreen());
+      StorageHelper storageHelper=StorageHelper.instance;
+
+      Get.toNamed('/nav');
  
       }else{
           NLoaders.errorSnackBar(
