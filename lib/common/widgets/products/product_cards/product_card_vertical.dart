@@ -10,9 +10,12 @@ import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/favorite_controller.dart';
+import 'package:al_najah_store/views/Shop/product_details/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 
 class NProductCardVertical extends StatelessWidget {
@@ -27,13 +30,17 @@ class NProductCardVertical extends StatelessWidget {
     final String? brand=product.brand;
     final String price=product.price.toString();
      final String discountPercentage=product.discountPercentage.toString();
+         final favoritesProvider = Provider.of<FavoritesProvider>(context);
+
+
     
+
 
     
         //Container with side paddings, color, radius and shados
     return GestureDetector(
       
-      onTap: (){},
+      onTap: ()=>Get.to(()=> const ProductDetail(),arguments: product),
       child: Container(
         
         width: 180,
@@ -71,11 +78,20 @@ class NProductCardVertical extends StatelessWidget {
           ),
         ),
 
-        // Favourite Icon Button
-        const Positioned(
-          top: 0,
-          right: 0,
-          child: NCircularIcon(icon: Iconsax.heart5, color: Colors.red,))
+          // Favourite Icon Button
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        favoritesProvider.toggleFavorite(product);                       },
+                      child:  NCircularIcon(
+                          icon: product.isFavorited ? Iconsax.heart5 : Iconsax.heart, // Change icon based on favorite state
+                          color: product.isFavorited ? Colors.red : Colors.grey,
+                  
+                      ),
+                    ),
+                  )
       ],
         ),
       ),

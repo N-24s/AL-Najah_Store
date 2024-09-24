@@ -36,6 +36,7 @@ mainAxisSize: MainAxisSize.min,      children: [
             maxLines: maxLines,
             textAlign: textAlign,
             brandTextSize: brandTextSize,
+            
           
             ),
         ),

@@ -59,6 +59,7 @@ class Product {
     Meta meta;
     List<String> images;
     String thumbnail;
+    bool isFavorited;
 
     Product({
         required this.id,
@@ -83,6 +84,7 @@ class Product {
         required this.meta,
         required this.images,
         required this.thumbnail,
+        this.isFavorited=false,
     });
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(

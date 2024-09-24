@@ -8,6 +8,7 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/views/authentication/login/login.dart';
+import 'package:al_najah_store/views/personailization/settings/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -32,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                   NAppBar(title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: NColors.white),),),
 
                 //User Profile card
-                 NUserProfileTile(title: storageHelper.readKey('f_name')+" " +storageHelper.readKey("l_name"),subTitle: storageHelper.readKey('email'),image: NImages.logo,onPressed: (){}),
+                 NUserProfileTile(title: storageHelper.readKey('f_name')+" " +storageHelper.readKey("l_name"),subTitle: storageHelper.readKey('email'),image: NImages.logo,onPressed: ()=>Get.to(const ProfileScreen())),
                      const SizedBox(height: NSizes.spaceBtwSections,),
 
                 ],

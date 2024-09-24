@@ -6,6 +6,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/favorite_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/shop/home/widgets/home_appbar.dart';
 import 'package:al_najah_store/views/shop/home/widgets/home_categories.dart';
@@ -13,6 +14,7 @@ import 'package:al_najah_store/views/shop/home/widgets/promo_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -105,7 +107,13 @@ Obx(() {
 
          return NGridLayout(
                         itemCount: productVm.products.length, 
-                        itemBuilder: (_ , index ) => NProductCardVertical(product: productVm.products[index]));
+                        itemBuilder: (_ , index ) => 
+                                          NProductCardVertical(product: productVm.products[index])
+                      
+);
+
+                        
+                    
                     
             
           

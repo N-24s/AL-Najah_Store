@@ -1,6 +1,8 @@
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/views/Shop/favourite/favourite.dart';
 import 'package:al_najah_store/views/Shop/home/home.dart';
+import 'package:al_najah_store/views/Shop/store/store.dart';
 import 'package:al_najah_store/views/authentication/login/login.dart';
 import 'package:al_najah_store/views/authentication/onboarding/onboarding.dart';
 import 'package:al_najah_store/views/personailization/settings/settings.dart';
@@ -44,5 +46,5 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController  extends GetxController{
   final Rx<int> selectedIndex=0.obs;
-  final screens=[ const LoginScreen(), HomeScreen(),const LoginScreen(),const SettingsScreen()];
+  final screens=[ HomeScreen(), const StoreScreen(),const FavouriteScreen(),const SettingsScreen()];
 }
