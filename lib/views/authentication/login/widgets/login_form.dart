@@ -73,8 +73,11 @@ LoginVm controller =LoginVm();
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: ()=>controller.login(),
-               child: const Text(NTexts.signIn)),
+                onPressed: (){
+                  controller.login();},
+                  
+               child:controller.isLoading.value?const CircularProgressIndicator():const Text(NTexts.signIn)
+               ),
             ),
           
            const SizedBox(height: NSizes.spaceBtwItems,),

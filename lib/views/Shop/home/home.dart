@@ -84,7 +84,7 @@ final ProductVM productVm=Get.put(ProductVM());
           return Center(child: Text(productVm.errorMessage.value));
         }
 
-         return   NPromoSlider(banners: [productVm.products[1].images[0]],);
+         return   NPromoSlider(banners: [],);
 
           
         

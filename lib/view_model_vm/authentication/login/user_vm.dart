@@ -28,7 +28,7 @@ class UserVm {
   
    catch(e){
      return "Admin for support";
-   };
+   }
   }
 
 

@@ -29,6 +29,7 @@ UserVm uvm=UserVm();
 // Variables 
 final hidePassword=true.obs;
 final privacyPolicy=true.obs;
+final isLoading=false.obs;
 final rememberMe=true.obs;
 final email=TextEditingController();
 final password=TextEditingController();
@@ -47,7 +48,7 @@ try{
   // Start Loading
   //Replace logo to animation
    NFullScreenLoader.openLoadingDialog("We are processing your information...", NImages.logo);
-
+ 
   //Check Internet Connectivity 
   // final  isConnected=await NetworkManager.instance.isConnectedh;
   // !isConnected
@@ -107,7 +108,7 @@ checkLoging({required String x}){
       );
       StorageHelper storageHelper=StorageHelper.instance;
 
-      Get.toNamed('/nav');
+      Get.offNamed('/nav');
  
       }else{
           NLoaders.errorSnackBar(
