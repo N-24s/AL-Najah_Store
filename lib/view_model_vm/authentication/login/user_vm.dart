@@ -14,8 +14,15 @@ class UserVm {
    try{
      HttpHelpers http=HttpHelpers.instance;
 
-     Response res=await http.postRequest(url: HttpUrls.LOGIN_URL, data:user.authData() );
-       User u=User.fromJson(res.data);
+     Response res=await http.postRequest(url: HttpUrls.LOGIN_URL, data:user.authData(),options: Options(
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept':'application/json',
+        },
+      ), );
+       User u=User.fromJson(res.data['data']);
+       print(u.email);
+
        saveUser(u);
        return "Success";
        
@@ -27,7 +34,7 @@ class UserVm {
    }
   
    catch(e){
-     return "Admin for support";
+     return "Admin for support$e";
    }
   }
 
@@ -36,10 +43,18 @@ class UserVm {
   saveUser(User u){
 
     StorageHelper storageHelper=StorageHelper.instance;
-    storageHelper.writeKey("f_name", u.firstName!);
-    storageHelper.writeKey("l_name", u.lastName!);
-    storageHelper.writeKey("image", u.image!);
-    storageHelper.writeKey("accessToken", u.accessToken!);
+    storageHelper.writeKey("name", u.name!);
+    // storageHelper.writeKey("bio", u.bio);
+    storageHelper.writeKey("accessToken", u.token!);
     storageHelper.writeKey("email", u.email!);
+    // storageHelper.writeKey("avatar", u.avatar);
+    // storageHelper.writeKey("city", u.city);
+    // storageHelper.writeKey("phone", u.phone);
+    storageHelper.writeKey("role", u.role!);
+
+
+
+
+
   }
 }

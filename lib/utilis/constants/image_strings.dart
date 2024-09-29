@@ -14,7 +14,10 @@ class NImages {
     static const String OnBoardingImage2 = 'assets/images/on_boarding_images/del1.gif';
     static const String OnBoardingImage3 = 'assets/images/on_boarding_images/dv.gif';
 
-  // Products Images
+  // Banner Images
+    static const String  Banner_1 = 'assets/images/brand_images/banner-1.jpg';
+    static const String Banner_2 = 'assets/images/brand_images/banner-2.jpg';
+    static const String Banner_3 = 'assets/images/brand_images/banner-3.jpg';
 
  
  

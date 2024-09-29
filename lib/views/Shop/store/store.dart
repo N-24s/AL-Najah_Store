@@ -4,22 +4,37 @@ import 'package:al_najah_store/common/widgets/brands/brand_card.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
 import 'package:al_najah_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
+import 'package:al_najah_store/models/shop/category.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
 import 'package:al_najah_store/views/Shop/store/category_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
 class StoreScreen extends StatelessWidget {
-  const StoreScreen({super.key});
+  
+     final List<Tab> myTabs = List.generate(3, (index) {
+    return Tab(text: 'Tab ${index + 1}');
+  });
+   StoreScreen({super.key});
+
+  
 
   @override
   Widget build(BuildContext context) {
+             final categoryVm = Get.find<CategoryVM>(); 
+             return Scaffold(
+              body: 
+ Obx(() {
+        if (categoryVm.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
     return DefaultTabController(
-      length: 6,
+      length: categoryVm.categories.length,
       child: Scaffold(
       
         //AppBar
@@ -74,39 +89,30 @@ class StoreScreen extends StatelessWidget {
                  ),
       
                  //Tab
-                 bottom: const NTabBar( 
-                   tabs:[
-                    Tab(child: Text("Computers"),),
-                    Tab(child: Text("Mobiles"),),
-                    Tab(child: Text("Tablets"),),
-                      Tab(child: Text("Computers"),),
-                    Tab(child: Text("Mobiles"),),
-                    Tab(child: Text("Tablets"),),
-               
-                  ] 
+                 bottom:  NTabBar( 
+                   tabs: categoryVm.categories.map((category) => Tab(text: category.name)).toList(),
                  )
             ),
       
           ];
         },
         //Body
-         body: const TabBarView(
-          children: [
-           
-          NCategoryTab(),
-           NCategoryTab(),
-            NCategoryTab(),
-             NCategoryTab(),
-              NCategoryTab(),
-               NCategoryTab(),
+         body:  TabBarView(
+          children:  categoryVm.categories.map((category) {
+                return NCategoryTab(categoryId: category.id);
+              }).toList(),
+          
+       
             
-          ],
+        
 
 
          )),
       ),
     );
+  }),
+             );
+             
+
   }
-}
-
-
+  }

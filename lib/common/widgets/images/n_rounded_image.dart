@@ -14,7 +14,7 @@ class NRoundedImage extends StatelessWidget {
     this.border,  
     this.backgroundColor=NColors.light, 
     this.fit=BoxFit.contain, this.padding,  
-    this.isNetworkImage=true, 
+    this.isNetworkImage=false, 
     this.onPressed,  
     this.borderRadius=NSizes.md,
   });

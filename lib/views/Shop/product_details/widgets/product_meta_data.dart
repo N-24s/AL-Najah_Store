@@ -18,10 +18,10 @@ Product product;
   @override
   Widget build(BuildContext context) {
     final String discountPercentage=product.discountPercentage.toString();
-    final String name=product.title;
+    final String name=product.name;
     // final String discountedPrice=product..toString();
     final String price=product.price.toString();
-    final String? brand=product.brand;
+    final String? brand=product.brand.name;
     final darkMode=NHelperFunctions.isDarkMode(context);
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -10,6 +10,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class NPromoSlider extends StatelessWidget {
   const NPromoSlider({
@@ -28,7 +29,7 @@ class NPromoSlider extends StatelessWidget {
             viewportFraction: 1,
             onPageChanged: (index, _) => controller.updatePageIndicator(index),
           ),
-          items: banners.map((url) => NRoundedImage(imageUrl: url, isNetworkImage: true)).toList(),
+          items: banners.map((url) => NRoundedImage(imageUrl: url, isNetworkImage: false)).toList(),
         ),
         
         const SizedBox(height: NSizes.spaceBtwItems,),
@@ -37,12 +38,12 @@ class NPromoSlider extends StatelessWidget {
           () =>   Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              for (int i = 0; i <2; i++)
+              for (int i = 0; i <banners.length; i++)
                 NCircularContainer(
                   margin: EdgeInsets.only(right: 10,),
                   width: 20,
                   height: 4,
-                  backgroundColor: controller.carouselCurrentIndex.value == 2 ? NColors.primaryColor : NColors.grey,
+                  backgroundColor: controller.carouselCurrentIndex.value == i ? NColors.primaryColor : NColors.grey,
                 ),
             ],
           ),

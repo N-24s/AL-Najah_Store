@@ -2,7 +2,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/favorite_controller.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/bottom_add_cart_widget.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_attributes.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_detail_image_slider.dart';
@@ -25,9 +25,9 @@ class ProductDetail extends StatelessWidget {
 
     final dark=NHelperFunctions.isDarkMode(context);
     final  String description= product.description;
-    final  String reviews= product.reviews.length.toString();
+    // final  String reviews= product.reviews.length.toString();
     return  Scaffold(
-      bottomNavigationBar: NBottomAddCart(),
+      bottomNavigationBar: NBottomAddCart(product: product,),
       body: SingleChildScrollView(
         child: Column(
           //Product Images Silder
@@ -43,7 +43,7 @@ class ProductDetail extends StatelessWidget {
               child: Column(
                 children: [
               //Rating & Share Button
-                   NRatingAndShare(rating: product.rating.toString(),reviews: product.reviews.length.toString(),),
+                  //  NRatingAndShare(rating: product.rating.toString(),reviews: product.reviews.length.toString(),),
               // Price Title, Brand
                NProductMetaData(product: product,),
                 
@@ -74,7 +74,7 @@ class ProductDetail extends StatelessWidget {
                   //Reviews
                   Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
-                     NSectionHeading(title: "Reviews($reviews)",showActionButton: true,onPressed:(){} ,),
+                    //  NSectionHeading(title: "Reviews($reviews)",showActionButton: true,onPressed:(){} ,),
 
                     // const Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

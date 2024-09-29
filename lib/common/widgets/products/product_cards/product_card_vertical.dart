@@ -10,7 +10,7 @@ import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/favorite_controller.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
 import 'package:al_najah_store/views/Shop/product_details/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,12 +25,12 @@ class NProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark=NHelperFunctions.isDarkMode(context);
-    final String image= product.images[0];
-    final String name=product.title;
-    final String? brand=product.brand;
+    final String image= product.image;
+    final String name=product.name;
+    final String? brand=product.brand.name;
     final String price=product.price.toString();
      final String discountPercentage=product.discountPercentage.toString();
-         final favoritesProvider = Provider.of<FavoritesProvider>(context);
+         final favoritesProvider = Provider.of<FavoritesVM>(context);
 
 
     
@@ -65,7 +65,7 @@ class NProductCardVertical extends StatelessWidget {
           width: 130,
            child: SizedBox(
             
-            child: NRoundedImage(imageUrl: image,applyImageRadius: true)),
+            child: NRoundedImage(imageUrl: image,applyImageRadius: true, isNetworkImage: true,)),
          ),  
       // Sale Tag
         Positioned(

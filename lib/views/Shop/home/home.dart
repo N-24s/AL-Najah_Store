@@ -6,7 +6,9 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/favorite_controller.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/shop/home/widgets/home_appbar.dart';
 import 'package:al_najah_store/views/shop/home/widgets/home_categories.dart';
@@ -14,15 +16,15 @@ import 'package:al_najah_store/views/shop/home/widgets/promo_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:provider/provider.dart';
 
 
 class HomeScreen extends StatelessWidget {
 final ProductVM productVm=Get.put(ProductVM());
+final ProductPopularVm productPopularVm=Get.put(ProductPopularVm());
+
   @override
   Widget build(BuildContext context) {
- 
-   
+
 
     return Scaffold(
 
@@ -38,28 +40,28 @@ final ProductVM productVm=Get.put(ProductVM());
         child: Column(
           children: [
             //Header
-               NPrimaryHeaderContainer(
+               const NPrimaryHeaderContainer(
               child: Column(
                 children: [
                   //AppBar
-                  const NHomeAppBar(),
-                  const SizedBox( height: NSizes.spaceBtwSections,),
+                  NHomeAppBar(),
+                  SizedBox( height: NSizes.spaceBtwSections,),
 
                   //Searchbar
-                  const NSearchContainer(text: "Search in Store",icon: Iconsax.search_normal,),
-                  const SizedBox( height: NSizes.spaceBtwSections,),
+                  NSearchContainer(text: "Search in Store",icon: Iconsax.search_normal,),
+                  SizedBox( height: NSizes.spaceBtwSections,),
 
                   //Heading
 
-                  Padding(padding: const EdgeInsets.only(left: NSizes.defaultSpace),
+                  Padding(padding: EdgeInsets.only(left: NSizes.defaultSpace),
                   child: Column(
                     children: [
-                      const NSectionHeading(title: 'Popular Categories',showActionButton: false, textColor: NColors.white,),
-                   const SizedBox( height: NSizes.spaceBtwItems,),
+                      NSectionHeading(title: 'Popular Categories',showActionButton: false, textColor: NColors.white,),
+                   SizedBox( height: NSizes.spaceBtwItems,),
 
                   //Categories
-                  NHomeCategories(image:[NImages.logo,NImages.logo,NImages.logo]),
-                  const SizedBox( height: NSizes.spaceBtwSections,),
+                  NHomeCategories(),
+                  SizedBox( height: NSizes.spaceBtwSections,),
 
 
                     ],
@@ -81,10 +83,11 @@ final ProductVM productVm=Get.put(ProductVM());
         }
 
         if (productVm.errorMessage.isNotEmpty) {
-          return Center(child: Text(productVm.errorMessage.value));
+          return Center(child: Text("${productVm.errorMessage.value}"));
+
         }
 
-         return   NPromoSlider(banners: [],);
+         return    const NPromoSlider(banners: [NImages.Banner_1,NImages.Banner_2,NImages.Banner_3],);
 
           
         
@@ -106,24 +109,16 @@ Obx(() {
         }
 
          return NGridLayout(
-                        itemCount: productVm.products.length, 
+          
+                        itemCount: productPopularVm.productPopular.length, 
                         itemBuilder: (_ , index ) => 
-                                          NProductCardVertical(product: productVm.products[index])
+                                          NProductCardVertical(product: productPopularVm.productPopular[index])
                       
 );
 
-                        
-                    
-                    
-            
-          
-        
+
       }),
 
-                    
-                  
-                    
-                  
                    ],
                  ),
                ),

@@ -67,7 +67,7 @@ try{
       return;
   }
   
-     User user= User(username: email.text,password: password.text);
+     User user= User(email: email.text,password: password.text);
       uvm.login(user).then((x){
         checkLoging(x: x);
         });

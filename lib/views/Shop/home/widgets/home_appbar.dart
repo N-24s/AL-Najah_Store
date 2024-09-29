@@ -13,6 +13,7 @@ class NHomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NAppBar(
+      showBackArrow: false,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

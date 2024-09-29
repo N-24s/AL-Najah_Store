@@ -1,4 +1,6 @@
 
+import 'package:al_najah_store/test_app/view.dart';
+import 'package:al_najah_store/test_app/view3.dart';
 import 'package:al_najah_store/utilis/helpers/route_manager.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/theme/theme.dart';
@@ -16,6 +18,7 @@ return  GetMaterialApp(
   themeMode: ThemeMode.system,
   theme: NAppTheme.lightTheme,
   darkTheme: NAppTheme.darkTheme,
+  // home: View3(),
  initialRoute:storageHelper.readKey("accessToken")==null? '/splash':'/nav',
 getPages:RouteManager.generateRoute() ,
  

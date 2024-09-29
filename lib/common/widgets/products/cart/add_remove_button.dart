@@ -8,8 +8,9 @@ import 'package:iconsax/iconsax.dart';
 
 class NProductQuantityWithAddRemoveButtons extends StatelessWidget {
   const NProductQuantityWithAddRemoveButtons({
-    super.key,
+    super.key, required this.quantity,
   });
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ mainAxisSize: MainAxisSize.min,
           backgroundColor: NHelperFunctions.isDarkMode(context)? NColors.darkerGrey:NColors.light,
           ),
     const SizedBox(width: NSizes.spaceBtwItems,),
-    Text("2",style: Theme.of(context).textTheme.titleSmall,),
+    Text("$quantity",style: Theme.of(context).textTheme.titleSmall,),
     const SizedBox(width: NSizes.spaceBtwItems,),
       NCircularIcon(
           icon: Iconsax.add,
