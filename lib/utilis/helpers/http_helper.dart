@@ -12,8 +12,8 @@ HttpHelpers._();
 
   }  
     Dio dio=Dio();
-     Future<Response> getRequest({required String url})async{
-    return await dio.get(url);
+     Future<Response> getRequest({required String url,Options? options})async{
+    return await dio.get(url,options: options);
   }
   Future<Response> postRequest({required String url,required dynamic data,Options? options})async{
     return await dio.post(url,data: data,options: options);

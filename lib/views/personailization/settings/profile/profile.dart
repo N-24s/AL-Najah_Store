@@ -3,13 +3,18 @@ import 'package:al_najah_store/common/widgets/images/n_circular_image.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
+import 'package:al_najah_store/views/personailization/settings/profile/edit_profile.dart';
 import 'package:al_najah_store/views/personailization/settings/profile/widgets/profile_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+   ProfileScreen({super.key});
+       final ProfileVM profileVM = Get.put(ProfileVM());
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     NCircularImage(imageUrl: NImages.logo,width: 80,height: 80),
-                    TextButton(onPressed: (){}, child: Text("Change Profile Picture"))
+                    TextButton(onPressed: ()=>Get.to(()=>EditProfileScreen()), child: Text("Change Profile Picture"))
                   ],
                 ),
               ),
@@ -43,8 +48,8 @@ class ProfileScreen extends StatelessWidget {
               const NSectionHeading(title: "Profile Information", showActionButton: false),
                 const SizedBox(height: NSizes.spaceBtwItems),
 
-               NProfileMenu(title: "Name",value: "Nooh Saeed",onPressed: (){},),
-                NProfileMenu(title: "Username",value: "N_24s",onPressed: (){},),
+               NProfileMenu(title: "Name",value: profileVM.userProfile['name'],onPressed: (){},),
+                // NProfileMenu(title: "Username",value: "N_24s",onPressed: (){},),
 
               const SizedBox(height: NSizes.spaceBtwItems/2,),
               const Divider(),
@@ -54,11 +59,10 @@ class ProfileScreen extends StatelessWidget {
                 const NSectionHeading(title: "Personal Information", showActionButton: false),
                 const SizedBox(height: NSizes.spaceBtwItems),
 
-               NProfileMenu(title: "User ID",value: "12345",onPressed: (){},icon: Iconsax.copy,),
-                NProfileMenu(title: "E-Mail",value: "noohsaeed240@gmail.com",onPressed: (){},),
-               NProfileMenu(title: "Phone Number",value: "770-496-167",onPressed: (){},),
-                NProfileMenu(title: "Gender",value: "Male",onPressed: (){},),
-               NProfileMenu(title: "Date of Birth",value: "10 Oct, 2001",onPressed: (){},),
+               NProfileMenu(title: "User ID",value: profileVM.userProfile['id'].toString(),onPressed: (){},icon: Iconsax.copy,),
+                NProfileMenu(title: "E-Mail",value: profileVM.userProfile['email'],onPressed: (){},),
+               NProfileMenu(title: "Phone Number",value: profileVM.userProfile['phone'],onPressed: (){},),
+                NProfileMenu(title: "City",value: profileVM.userProfile['city'],onPressed: (){},),
 
                 const Divider(),
               const SizedBox(height: NSizes.spaceBtwItems),

@@ -1,10 +1,12 @@
 
 
+import 'package:al_najah_store/common/widgets/text_field/text_form_field.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/validators/validation.dart';
 import 'package:al_najah_store/view_model_vm/authentication/login/login_vm.dart';
+import 'package:al_najah_store/views/authentication/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -31,9 +33,10 @@ LoginVm controller =LoginVm();
           // Email
            NTextFormField(
             controller: controller.email,
-                  validator: (value) => NValidator.validateEmail(value),
-
-            labelText: NTexts.email,prefixIcon: Iconsax.direct_right,),
+            validator: (value) => NValidator.validateEmail(value),
+            labelText: NTexts.email,
+            prefixIcon: Iconsax.direct_right,
+            ),
 
           const SizedBox(height: NSizes.spaceBtwInputFieldss,),
         //Password
@@ -82,46 +85,12 @@ LoginVm controller =LoginVm();
           
            const SizedBox(height: NSizes.spaceBtwItems,),
         
-            SizedBox(width: double.infinity, child: OutlinedButton(onPressed: (){
-                            
-
-            }, child: const Text(NTexts.createAccount))),
-        // ()=> Get.to(const SignupScreen())
+            SizedBox(width: double.infinity, child: OutlinedButton(onPressed: ()=> Get.to(const SignupScreen()), 
+            child: const Text(NTexts.createAccount))),
         
         ],
                     ),
       ));
-  }
-}
-
-class NTextFormField extends StatelessWidget {
-  const NTextFormField({
-    super.key, 
-    this.prefixIcon, 
-    this.labelText, 
-    this.suffixIcon,  
-    this.controller, 
-    this.validator, 
-     this.obscureText=false, 
-     this.onPressedSuffixIcon,
-  });
- final IconData? prefixIcon;
-final  String? labelText;
-final IconButton? suffixIcon;
-final VoidCallback? onPressedSuffixIcon;
-final TextEditingController? controller;
-final  String? Function(String?)?  validator;
-final bool obscureText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText:obscureText,
-      controller: controller,
-      validator: validator ,
-      decoration:  InputDecoration(prefixIcon:Icon(prefixIcon),labelText: labelText,suffixIcon: suffixIcon),
-      
-    );
   }
 }
 

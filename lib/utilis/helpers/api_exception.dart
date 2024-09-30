@@ -8,22 +8,17 @@ class ApiException {
      case DioExceptionType.badResponse:{
      switch (error.response?.statusCode) {
           case 400:
-            print("Bad Request: ${error.response?.statusCode}");
-            break;
+         return "Bad Request: ${error.response?.statusCode}";
           case 401:
-            print("Unauthorized: ${error.response?.statusCode}");
-            break;
+            return"Unauthorized: ${error.response?.statusCode}";
           case 403:
-            print("Forbidden: ${error.response?.statusCode}");
-            break;
+          return "Forbidden: ${error.response?.statusCode}";
           case 404:
-            print("Not Found: ${error.response?.statusCode}");
-            break;
+          return "Not Found: ${error.response?.statusCode}";
           case 500:
-            print("Internal Server Error: ${error.response?.statusCode}");
-            break;
+            return "Internal Server Error: ${error.response?.statusCode}";
           default:
-            print("Unknown Error: ${error.response?.statusCode}");
+            return "Unknown Error: ${error.response?.statusCode}";
         }
      }
      case DioException.connectionTimeout:{

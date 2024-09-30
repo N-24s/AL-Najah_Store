@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 
+import 'package:get/get_connect/http/src/multipart/form_data.dart';
+
 Users usersFromJson(String str) => Users.fromJson(json.decode(str));
 
 String usersToJson(Users data) => json.encode(data.toJson());
@@ -34,13 +36,15 @@ class User {
     int? id;
     String? name;
     String? email;
-    dynamic? city;
-    dynamic? phone;
-    dynamic? avatar;
-    dynamic? bio;
+    dynamic city;
+    dynamic phone;
+    dynamic avatar;
+    dynamic bio;
     String? token;
     String? role;
     String? password;
+    String? password_confirmation;
+    
 
 
     User({
@@ -54,6 +58,7 @@ class User {
          this.token,
          this.role,
          this.password,
+         this.password_confirmation,
         
     });
 
@@ -67,7 +72,9 @@ class User {
         bio: json["bio"],
         token: json["token"],
         role: json["role"], 
-        password: json['password']
+        password: json['password'],
+        password_confirmation: json['password_confirmation']
+
     );
 
     Map<String, dynamic> toJson() => {
@@ -80,16 +87,28 @@ class User {
         "bio": bio,
         "token": token,
         "role": role,
-        'password':password
+        'password':password,
+        'password_confirmation':password_confirmation
     };
     
       Map<String,String> authData(){
     Map<String,String> loginInfo=Map();
     loginInfo["email"]=email!;
     loginInfo["password"]=password!;
-    print(password);
     return loginInfo;
   }
+
+  //    Map<String,String> registerData(){
+  //   Map<String,String> registerInfo=Map();
+  //   registerInfo["email"]=email!;
+  //   registerInfo["name"]=name!;
+  //   registerInfo["password"]=password!;
+  //   registerInfo["password_confirmation"]=password!;
+
+  //   return registerInfo;
+  // }
+
+
 }
 
 

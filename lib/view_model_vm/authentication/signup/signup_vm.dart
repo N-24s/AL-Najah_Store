@@ -16,10 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../utilis/constants/image_strings.dart';
 
-class LoginVm extends GetxController{
+class SignUpVm extends GetxController{
 UserVm uvm=UserVm();
 
   // static LoginVm get instance => Get.find();
@@ -28,20 +29,27 @@ UserVm uvm=UserVm();
 
 // Variables 
 final hidePassword=true.obs;
+final hidePasswordConfirmation=true.obs;
 final privacyPolicy=true.obs;
 final isLoading=false.obs;
 final rememberMe=true.obs;
+  var imagePath = ''.obs;  
+
 final email=TextEditingController();
+final name=TextEditingController();
 final password=TextEditingController();
+final password_confirmation=TextEditingController();
 
 
 
-GlobalKey<FormState> loginFormKey=GlobalKey<FormState>();
+
+
+GlobalKey<FormState> signUpFormKey=GlobalKey<FormState>();
 
 
 
-// Login
-Future<void> login()async{
+// SignUp
+Future<void> register()async{
 
 
 try{
@@ -55,11 +63,11 @@ try{
   // if(isConnected == false) return;
       
   //Form Validation
-  if(!loginFormKey.currentState!.validate()) return;
+  if(!signUpFormKey.currentState!.validate()) return;
   
 
   // Privacy Policy Check 
-  if(!rememberMe.value){
+  if(!privacyPolicy.value){
     NLoaders.warningSnackBar(
       title: "Accept Privacy Policy",
       message: "In order to create account, you must have to read accept the Privacy Policy & Terms of Use."
@@ -67,9 +75,10 @@ try{
       return;
   }
   
-     User user= User(email: email.text,password: password.text);
-      uvm.login(user).then((x){
-        checkLoging(x: x);
+     User user= User(email: email.text,password: password.text,name: name.text,password_confirmation: password_confirmation.text,avatar: imagePath.value);
+      print(user.avatar);
+      uvm.register(user).then((x){
+        checkRegister(x: x);
         });
            
   
@@ -92,7 +101,7 @@ NFullScreenLoader.stopLoading();
 
 }
 
-checkLoging({required String x}){
+checkRegister({required String x}){
    if(x=="Success"){
 
      NLoaders.successSnackBar(
@@ -106,10 +115,20 @@ checkLoging({required String x}){
       }else{
           NLoaders.errorSnackBar(
       title: "Error",
-      message: x.toString(),
+      message: x,
       );
       }
 }
+
+
+  Future<void> pickImage(ImageSource source) async {
+    ImagePicker _picker = ImagePicker();
+    XFile? image = await _picker.pickImage(source: source);
+
+    if (image != null) {
+      imagePath.value = image.path;
+    }
+  }
 
 
 

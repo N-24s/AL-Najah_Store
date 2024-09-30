@@ -15,7 +15,7 @@ class StorageHelper{
   readKey(String key){
   return box.read(key);
   }
-  writeKey(String key,String value){
+  writeKey(String key,dynamic value){
 box.write(key, value);
   }
   removeKey(String key){

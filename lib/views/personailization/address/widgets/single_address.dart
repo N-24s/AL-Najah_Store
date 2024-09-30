@@ -2,12 +2,17 @@ import 'package:al_najah_store/common/custom_shapes/containers/rounded_container
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:iconsax/iconsax.dart';
 
 
 class NSingleAddress extends StatelessWidget {
-  const NSingleAddress({super.key, required this.selectedAddress});
+   NSingleAddress({super.key, required this.selectedAddress});
+         final ProfileVM profileVM = Get.put(ProfileVM());
+
   final bool selectedAddress;
 
   @override
@@ -19,7 +24,7 @@ class NSingleAddress extends StatelessWidget {
       shawBorder: true,
       backgroundColor: selectedAddress?NColors.primaryColor.withOpacity(0.5):Colors.transparent,
       borderColor: selectedAddress?Colors.transparent:dark?NColors.darkerGrey:NColors.grey,
-      margin: EdgeInsets.only(bottom: NSizes.spaceBtwItems),
+      margin: const EdgeInsets.only(bottom: NSizes.spaceBtwItems),
       child: Stack(
         children: [
         Positioned(
@@ -34,22 +39,22 @@ class NSingleAddress extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Nooh Saeed",
+            profileVM.userProfile['name'],
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleLarge,
 
               ),
               const SizedBox(height: NSizes.sm/2),
-                const Text(
-              "770 496 167",
+                 Text(
+           profileVM.userProfile['phone'],
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
 
               ),
               const SizedBox(height: NSizes.sm/2),
-                   const Text(
-              "8997 yemen, hadrmout, mukalla ,Fuah   ",
+                    Text(
+              "Yemen, Hadrmout, ${profileVM.userProfile['city']}",
               softWrap: true,
 
               ),

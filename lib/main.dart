@@ -18,7 +18,7 @@ Future<void> main()async{
      MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FavoritesVM()),
-        ChangeNotifierProvider(create: (_) => CartProvider()),
+        // ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => vmPro()),
 
 

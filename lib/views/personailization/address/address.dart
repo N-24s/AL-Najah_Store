@@ -17,20 +17,19 @@ class UserAddressScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: ()=>Get.to(()=>const AddNewAddressScreen()),
         backgroundColor: NColors.primaryColor,
-        child: Icon(Iconsax.add,color: NColors.white,),
+        child: const Icon(Iconsax.add,color: NColors.white,),
         ),
         appBar: NAppBar(
           title: Text("Addresses",style: Theme.of(context).textTheme.headlineSmall),
           showBackArrow: true,
           ),
-          body: SingleChildScrollView(
+          body:  SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(NSizes.defaultSpace),
-              child: const Column(
+              child: Column(
                 children: [
 
        NSingleAddress(selectedAddress: true),
-        NSingleAddress(selectedAddress: false),
               ],
               ),
               ),

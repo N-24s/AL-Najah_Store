@@ -20,7 +20,7 @@ class RouteManager {
       }),
       GetPage(name: '/login', page: ()=>const LoginScreen()),
       GetPage(name: '/home', page: ()=> HomeScreen()),
-      GetPage(name: '/setting', page: ()=>const SettingsScreen()),
+      GetPage(name: '/setting', page: ()=> SettingsScreen()),
       GetPage(name: '/nav', page: ()=>const NavigationMenu()),
       
 

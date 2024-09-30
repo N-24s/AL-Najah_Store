@@ -19,6 +19,10 @@ class NImages {
     static const String Banner_2 = 'assets/images/brand_images/banner-2.jpg';
     static const String Banner_3 = 'assets/images/brand_images/banner-3.jpg';
 
+    // Profile Image
+    static const String Profile_image= 'assets/images/profile/profile_image.png';
+
+
  
  
 

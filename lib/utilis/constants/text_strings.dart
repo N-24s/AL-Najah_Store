@@ -32,10 +32,12 @@ class NTexts {
 
 
 // Authentication Form Test
-  static const String firstName = "First Name";
+  static const String Name = "Name";
   static const String lastName = "Last Name";
     static const String email = "E-Mail";
   static const String password = "Password";
+    static const String password_confirmation= "Password Confirmation";
+
     static const String newPassword = "New Password";
         static const String phoneNumber = "Phone Number";
     static const String userName = "UserName";
