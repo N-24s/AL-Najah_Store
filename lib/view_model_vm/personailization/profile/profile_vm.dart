@@ -45,6 +45,8 @@ StorageHelper storageHelper=StorageHelper.instance;
         },
         
       ), );
+
+      
                userProfile.value = response.data['user'];
                print(userProfile);
               return "Success";

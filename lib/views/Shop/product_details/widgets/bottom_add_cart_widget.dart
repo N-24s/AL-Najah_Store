@@ -1,4 +1,5 @@
 import 'package:al_najah_store/common/widgets/icons/n_circular_icon.dart';
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -79,8 +80,20 @@ class NBottomAddCart extends StatelessWidget {
           // Add to Cart Button
           ElevatedButton(
             onPressed: () {
-              cartController.addProductToCart(product,cartController.qty.value);
-              // cartController.qty=0.obs;
+            if (cartController.qty==0){
+           cartController.removeProductFromCart(product.id.toString());
+                ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Quantity Equal Zero : Remove From Cart!'),
+                  duration: Duration(seconds: 2),
+                ),
+                
+              );
+                
+            }
+            else if(cartController.qty>0){
+               cartController.addProductToCart(product,cartController.qty.value);
+           
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Added to cart!'),
@@ -88,6 +101,8 @@ class NBottomAddCart extends StatelessWidget {
                 ),
                 
               );
+            }
+             
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(NSizes.md),

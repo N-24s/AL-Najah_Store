@@ -31,7 +31,7 @@ class NBillingPaymentSection extends StatelessWidget {
               child: const Image(image: AssetImage(NImages.logo),fit: BoxFit.contain),
             ),
                 const SizedBox(height: NSizes.spaceBtwItems/2),
-                 Text("Paypal", style: Theme.of(context).textTheme.bodyLarge),
+                 Text("On Delivery", style: Theme.of(context).textTheme.bodyLarge),
 
        
             

@@ -35,10 +35,11 @@ class NSearchContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(NSizes.cardRadiusLg),
             border:showBorder? Border.all(color: NColors.grey):null,
           ),
-          child:  const TextField(
+          child:   TextField(
             
             decoration: InputDecoration(
-              labelText:"Search", 
+              labelText:text, 
+              prefixIcon: Icon(icon),
               
             
             ),

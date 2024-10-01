@@ -16,7 +16,6 @@ final Widget child;
             color: NColors.primaryColor,
             padding: const EdgeInsets.all(0),
             child:  SizedBox(
-// if[size.infinite : is not true in stack] error ouccured -> Read README.md file at[]
               child: Stack(
     children: [
 

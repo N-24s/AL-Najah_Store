@@ -1,22 +1,28 @@
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/models/shop/cart/cart_item.dart';
 import 'package:al_najah_store/models/shop/product.dart';
+import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CartController extends GetxController {
-  var items = <String, CartItem>{}.obs;  // Observable map for items
+  StorageHelper storageHelper=StorageHelper.instance;
+  var items = <String, CartItem>{}.obs;  
+  var itemCount=0.obs;
   final storage = GetStorage();
-  var qty = 0.obs;  // Observable quantity
+  var qty = 0.obs;  
 
   @override
   void onInit() {
     super.onInit();
-    loadCart();  // Load cart on initialization
+    loadCart(); 
+       itemCount.value= items.length;
+
   }
+
 
   // Map<String, CartItem> get items => _items;
 
-  int get itemCount => items.length;
 
   // Increment quantity
   void incrementQty() {
@@ -28,6 +34,7 @@ class CartController extends GetxController {
     if (qty > 0) {
       qty.value--;
     }
+    
   }
 
   // Add product to the cart

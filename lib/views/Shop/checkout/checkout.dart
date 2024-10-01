@@ -1,6 +1,5 @@
 import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
-import 'package:al_najah_store/common/widgets/products/cart/coupon_widget.dart';
 import 'package:al_najah_store/common/widgets/success_screen/success_screen.dart';
 import 'package:al_najah_store/navigation_menu.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
@@ -35,7 +34,7 @@ class CheckoutScreen extends StatelessWidget {
           const SizedBox(height: NSizes.spaceBtwSections),
 
           // Coupon TextField
-          const NCouponCode(),
+          // const NCouponCode(),
           const SizedBox(height: NSizes.spaceBtwSections),
 
           //Billing Section

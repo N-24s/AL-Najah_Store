@@ -26,7 +26,7 @@ class ProductByCategoryVm extends GetxController {
   void onInit() {
     super.onInit();
     fetchProductsByCategory(categoryId); 
-  }
+  }  
 
 
 

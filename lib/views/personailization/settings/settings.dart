@@ -3,7 +3,6 @@ import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/list_tile/setting_menu_tile.dart';
 import 'package:al_najah_store/common/widgets/list_tile/user_profile_tile.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
-import 'package:al_najah_store/test_app/profile.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -44,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
                   NAppBar(title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
 
                 //User Profile card
-                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: storageHelper.readKey("avatar")??NImages.Profile_image,onPressed: (){})),
+                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: NImages.Profile_image,onPressed: (){})),
                      const SizedBox(height: NSizes.spaceBtwSections,),
 
                 ],

@@ -1,10 +1,7 @@
 
-import 'package:al_najah_store/test_app/view.dart';
-import 'package:al_najah_store/test_app/view3.dart';
 import 'package:al_najah_store/utilis/helpers/route_manager.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/theme/theme.dart';
-import 'package:al_najah_store/views/authentication/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

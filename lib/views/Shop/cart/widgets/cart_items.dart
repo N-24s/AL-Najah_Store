@@ -22,6 +22,7 @@ class NCartItems extends StatelessWidget {
   Widget build(BuildContext context) {
         StorageHelper storageHelper =StorageHelper.instance;
         List<dynamic>? items= storageHelper.readKey("cart") ;
+        
 
     return items!=null?  ListView.separated(
       shrinkWrap: true,

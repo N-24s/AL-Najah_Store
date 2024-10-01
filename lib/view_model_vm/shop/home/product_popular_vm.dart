@@ -33,7 +33,7 @@ fetchProductsPopular();
       if (response.statusCode == 200) {
         
         var jsonData = response.data;
-           List<dynamic> productData = jsonData['Product'];
+           List<dynamic> productData = jsonData['data'];
         productPopular.value = productData
             .map((categoryJson) => Product.fromJson(categoryJson))
             .toList();
