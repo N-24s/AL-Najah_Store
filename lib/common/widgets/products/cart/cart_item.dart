@@ -14,10 +14,10 @@ import 'package:get/get.dart';
 
 class NCartItem extends StatelessWidget {
   const NCartItem({
-    super.key, required this.item,
+    super.key, required this.cartItem,
   });
- final Map<String,dynamic> item ;
- 
+
+final CartItem cartItem; 
  
  
   @override
@@ -31,7 +31,7 @@ class NCartItem extends StatelessWidget {
         //Image
         NRoundedImage(
           isNetworkImage: true,
-          imageUrl: item['imageUrl'],
+          imageUrl: cartItem.imageUrl?? '',
           width: 60,
           height: 60,
           padding: const EdgeInsets.all(NSizes.sm),
@@ -47,7 +47,7 @@ class NCartItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //  NBrandTitleWithVerifiedIcon(title: product.brand!,),
-                 Flexible(child: NProductTitleText(title:item["name"],maxLines: 1,)),
+                 Flexible(child: NProductTitleText(title:cartItem.name?? '',maxLines: 1,)),
             
                 //Attributes 
                 Text.rich(

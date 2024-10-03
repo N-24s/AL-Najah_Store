@@ -7,6 +7,7 @@ import 'package:al_najah_store/utilis/helpers/http_helper.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/helpers/upload_image.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -28,6 +29,7 @@ StorageHelper storageHelper=StorageHelper.instance;
     getProfile();  
   }
 
+  final storage = GetStorage();
 
   Future<String> getProfile()async{
    try{
@@ -72,7 +74,6 @@ StorageHelper storageHelper=StorageHelper.instance;
    }
   }
 
-  final storage = GetStorage();
 
   Future<void> updateProfile({
     required String city,
@@ -121,112 +122,6 @@ StorageHelper storageHelper=StorageHelper.instance;
   }
 
 
-  // // تحديث الملف الشخصي
-  // Future<void> updateProfile({
-  //   required String city,
-  //   required String phone,
-  //   required String bio,
-  //   required dynamic avatarFile, // ملف الصورة المرفقة
-  // }) async {
-  //   try {
-  //     // جلب التوكن المحفوظ
-  //    HttpHelpers http=HttpHelpers.instance;
-  //      String? token = storageHelper.readKey('accessToken');
-  //     if (token != null) {
-  //           FormData formData = FormData.fromMap({
-  //         'city': city,
-  //         'phone': phone,
-  //         'bio': bio,
-  //         'avatar': uploadImageToAPI(avatarFile),
-  //       });
-  //      Response response=await http.postRequest(url: HttpUrls.editProfile,data:formData ,options: Options(
-  //       headers: {
-  //         'Authorization' : 'Bearer $token',
-  //         'Content-Type': 'application/json',
-  //         'Accept':'application/json',
-  //       },
-        
-  //     ) );
-    
-
-
-    
-
-
-  //       if (response.statusCode == 200) {
-  //         // النجاح
-  //         Get.snackbar("Success", "Profile updated successfully!");
-  //       } else {
-  //         // خطأ في التحديث
-  //         Get.snackbar("Error", "Failed to update profile: ${response.statusMessage}");
-  //       }
-  //     } else {
-  //       Get.snackbar("Error", "Token not found, please login again.");
-  //     }
-  //   } catch (e) {
-  //     Get.snackbar("Error", "An error occurred: $e");
-  //   }
-  // }
-  //   Future<void> pickImage() async {
-  //   ImagePicker _picker = ImagePicker();
-  //   XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-  //   if (image != null) {
-  //     imagePath.value = image.path;
-  //   }
-  // }
-
-
-
-  // // تحديث الملف الشخصي
-  // Future<void> updateProfile({
-  //   required String city,
-  //   required String phone,
-  //   required String bio,
-  //   required File avatarFile, // ملف الصورة المرفقة
-  // }) async {
-  //   try {
-  //     // جلب التوكن المحفوظ
-  //     String? token = storage.read('accessToken');
-
-  //     if (token != null) {
-  //       Dio dio = Dio();
-
-  //       // إعداد الهيدر مع التوكن
-  //       dio.options.headers['Authorization'] = 'Bearer $token';
-  //       dio.options.headers['Accept'] = 'application/json';
-  //     dio.options.headers['Accept'] = 'application/json';
-
-
-  //       // إعداد البيانات المراد إرسالها
-  //       FormData formData = FormData.fromMap({
-  //         'city': city,
-  //         'phone': phone,
-  //         'bio': bio,
-  //         // تحميل الصورة
-  //         'avatar': await MultipartFile.fromFile(avatarFile.path, filename: 'avatar.jpg'),
-  //       });
-
-  //       // إرسال الطلب إلى API
-  //       Response response = await dio.post(
-  //         'https://store.actnow-ye.com/api/profile/update',
-  //         data: formData,
-  //       );
-
-  //       if (response.statusCode == 200) {
-  //         // النجاح
-  //         Get.snackbar("Success", "Profile updated successfully!");
-  //       } else {
-  //         // خطأ في التحديث
-  //         Get.snackbar("Error", "Failed to update profile: ${response.statusMessage}");
-  //       }
-  //     } else {
-  //       Get.snackbar("Error", "Token not found, please login again.");
-  //     }
-  //   } catch (e) {
-  //     Get.snackbar("Error", "An error occurred: $e");
-  //   }
-  // }
 
 
 }

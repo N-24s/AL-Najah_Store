@@ -5,6 +5,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.dart';
+import 'package:al_najah_store/views/Shop/all_products/all_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,8 +19,10 @@ class NCategoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(categoryId);
   //  final productByCategoryVm = Get.find<ProductByCategoryVm>(); 
-       final productByCategoryVm = ProductByCategoryVm.getinstance(categoryId.toString());
+       final productByCategoryVm = ProductByCategoryVm();
+       productByCategoryVm.fetchProductsByCategory(categoryId.toString());
 
   
 
@@ -41,7 +44,7 @@ class NCategoryTab extends StatelessWidget {
                         const SizedBox(height: NSizes.spaceBtwItems),
         
                       // Products
-                      NSectionHeading(title: 'You might like', onPressed: (){},),
+                      NSectionHeading(title: 'Product Popular', onPressed: ()=>Get.to(()=>const AllProductsScreen())),
                         const SizedBox(height: NSizes.spaceBtwItems),
                         Obx((){
                           if (productByCategoryVm.isLoading.value) {
@@ -58,6 +61,7 @@ class NCategoryTab extends StatelessWidget {
                             itemCount: productByCategoryVm.productByCategory.length, 
                             itemBuilder: (_,index)=> NProductCardVertical(product: productByCategoryVm.productByCategory[index],));
   }),
+                
                   const SizedBox(height: NSizes.spaceBtwSections),
 
         

@@ -1,89 +1,6 @@
-// import 'dart:io';
-// import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:image_picker/image_picker.dart'; // مكتبة لاختيار الصور
-
-// class EditProfileScreen extends StatelessWidget {
-//   final ProfileVM profileVM = Get.put(ProfileVM());
-//   late XFile imagePath;
-
-//   final TextEditingController cityController = TextEditingController();
-//   final TextEditingController phoneController = TextEditingController();
-//   final TextEditingController bioController = TextEditingController();
-  
-//   // File? avatarFile;  
-//   // Future<void> pickAvatar() async {
-//   //   final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-//   //   if (pickedFile != null) {
-//   //     avatarFile = File(pickedFile.path);
-//   //   }
-//   // }
-//    Future<void> pickImage() async {
-//     ImagePicker _picker = ImagePicker();
-//     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-//     if (image != null) {
-//      imagePath = image;
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Update Profile'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             TextField(
-//               controller: cityController,
-//               decoration: InputDecoration(labelText: 'City'),
-//             ),
-//             TextField(
-//               controller: phoneController,
-//               decoration: InputDecoration(labelText: 'Phone'),
-//             ),
-//             TextField(
-//               controller: bioController,
-//               decoration: InputDecoration(labelText: 'Bio'),
-//             ),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: pickImage, 
-//               child: Text('Pick Avatar'),
-//             ),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: () {
-//                 if (profileVM.imagePath.value != null) {
-//                   profileVM.updateProfile(
-//                     city: cityController.text,
-//                     phone: phoneController.text,
-//                     bio: bioController.text,
-//                     avatarFile:profileVM.imagePath.value,  // تأكد من أن الصورة ليست null
-//                   );
-//                 } else {
-//                   Get.snackbar("Error", "Please pick an avatar image");
-//                 }
-//               },
-//               child: Text('Update Profile'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-    
-
-// }
 import 'dart:io';
 import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/text_field/text_field.dart';
-import 'package:al_najah_store/common/widgets/text_field/text_form_field.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
@@ -93,7 +10,9 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart'; 
 
 class EditProfileScreen extends StatelessWidget {
-  final ProfileVM profileController = Get.put(ProfileVM());
+  // final ProfileVM profileVM = Get.put(ProfileVM());
+      final profileVM = Get.find<ProfileVM>();
+
 
   final TextEditingController cityController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -112,7 +31,7 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Profile'),
+        title: const Text('Update Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -176,7 +95,7 @@ class EditProfileScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (avatarFile != null) {
-                    profileController.updateProfile(
+                    profileVM.updateProfile(
                       city: cityController.text,
                       phone: phoneController.text,
                       bio: bioController.text,
@@ -195,3 +114,4 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 }
+

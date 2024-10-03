@@ -20,7 +20,7 @@ class NProductCardHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark=NHelperFunctions.isDarkMode(context);
     return Container(
-      width: 310,
+      width: 250,
       padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
         // boxShadow: [NShadowStyle.verticalProductShadow],
@@ -38,8 +38,8 @@ class NProductCardHorizontal extends StatelessWidget {
               children: [
                //Thumbnail image
                 const SizedBox(
-                  height: 120,
-                  width: 120,
+                  height: 100,
+                  width: 100,
                   child: NRoundedImage(
                     imageUrl: NImages.logo,
                     applyImageRadius: true,
@@ -68,7 +68,7 @@ class NProductCardHorizontal extends StatelessWidget {
         
         //Details
         SizedBox(
-          width: 172,
+          width: 132,
           child: Padding(
                 padding: const EdgeInsets.only(top:NSizes.sm,left:NSizes.sm,),
             child: Column(
@@ -76,7 +76,7 @@ class NProductCardHorizontal extends StatelessWidget {
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    NProductTitleText(title: "Green Nike Half Sleeves shirt",smallSize: true,),
+                    NProductTitleText(maxLines: 1,title: "Green Nike Half Sleeves shirt",smallSize: true,),
                     SizedBox(height: NSizes.spaceBtwItems/2,),
                     NBrandTitleWithVerifiedIcon(title: "Nike")
                   ],

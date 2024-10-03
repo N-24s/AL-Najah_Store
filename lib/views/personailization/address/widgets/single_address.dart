@@ -11,7 +11,9 @@ import 'package:iconsax/iconsax.dart';
 
 class NSingleAddress extends StatelessWidget {
    NSingleAddress({super.key, required this.selectedAddress});
-         final ProfileVM profileVM = Get.put(ProfileVM());
+        //  final ProfileVM profileVM = Get.put(ProfileVM());
+            final profileVM = Get.find<ProfileVM>();
+
 
   final bool selectedAddress;
 

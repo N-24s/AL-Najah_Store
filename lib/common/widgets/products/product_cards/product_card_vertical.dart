@@ -6,11 +6,14 @@ import 'package:al_najah_store/common/widgets/texts/n_brand_title_text.dart';
 import 'package:al_najah_store/common/widgets/texts/n_brand_title_text_with_verified_icon.dart';
 import 'package:al_najah_store/common/widgets/texts/n_price_text.dart';
 import 'package:al_najah_store/common/widgets/texts/product_title_text.dart';
+import 'package:al_najah_store/models/shop/cart/cart_item.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/Shop/product_details/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +23,8 @@ import 'package:provider/provider.dart';
 
 class NProductCardVertical extends StatelessWidget {
   final Product product;
-  const NProductCardVertical({super.key, required this.product});
+   NProductCardVertical({super.key, required this.product});
+        final productVm = Get.find<ProductVM>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +43,11 @@ class NProductCardVertical extends StatelessWidget {
     
         //Container with side paddings, color, radius and shados
     return GestureDetector(
-      
-      onTap: ()=>Get.to(()=> const ProductDetail(),arguments: product),
+      // onTap: ()=>Get.to(()=> const ProductDetail(),arguments: product),
+      onTap: () {
+                productVm.getProductDetails(product.id.toString());
+Get.to(()=> const ProductDetail(),arguments: product);
+      },
       child: Container(
         
         width: 180,
@@ -125,21 +132,9 @@ class NProductCardVertical extends StatelessWidget {
                                ),
                ),
               //Add to Cart Button
-                Expanded(
+                 Expanded(
                   flex: 1,
-                  child: Container(
-                   
-                    decoration: const BoxDecoration(
-                       color: NColors.secondaryOrangeColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(NSizes.cardRadiusMd),
-                        bottomRight: Radius.circular(NSizes.productImageRadius))
-                    ),
-                    child: const SizedBox(
-                      width: NSizes.iconLg*1.2,
-                      height: NSizes.iconLg*1.2,
-                      child: Center(child: Icon(Iconsax.add,color: NColors.dark,))),
-                  ),
+                  child: ProductCardAddToCartButton(product: product,),
                 ),
            
             ],
@@ -148,6 +143,41 @@ class NProductCardVertical extends StatelessWidget {
         ],
       ),
       ),
+    );
+  }
+}
+
+class ProductCardAddToCartButton extends StatelessWidget {
+  const ProductCardAddToCartButton({
+    super.key, required this.product,
+  });
+  final  Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    final cartController=CartController.instance;
+    return InkWell(
+      onTap: (){
+        final cartItem = cartController.convertToCartItem(product, 1);
+        cartController.addOneToCart(cartItem);
+      },
+      child: Obx((){
+         final productQuantityInCart=cartController.getProductQuantityInCart(product.id.toString());
+
+        return Container(
+          decoration:  BoxDecoration(
+             color:productQuantityInCart > 0? NColors.primaryColor:NColors.dark,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(NSizes.cardRadiusMd),
+              bottomRight: Radius.circular(NSizes.productImageRadius))
+          ),
+          child:  SizedBox(
+            width: NSizes.iconLg*1.2,
+            height: NSizes.iconLg*1.2,
+            child: Center(child: productQuantityInCart > 0 ? Text(productQuantityInCart.toString(), style:  Theme.of(context).textTheme.bodyLarge!.apply(color: NColors.white),) 
+            : const Icon(Iconsax.add,color: NColors.white,))),
+        );
+  }),
     );
   }
 }

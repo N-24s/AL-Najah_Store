@@ -10,14 +10,12 @@ import 'package:get/get.dart';
 
 
 class ProductByCategoryVm extends GetxController {
-    static ProductByCategoryVm getinstance(String categoryId) => Get.put<ProductByCategoryVm>(ProductByCategoryVm(categoryId)); 
+    // static ProductByCategoryVm getinstance(String categoryId) => Get.put<ProductByCategoryVm>(ProductByCategoryVm()); 
          var productByCategory = <Product>[].obs;
           var isLoading = false.obs; 
         var errorMessage = ''.obs;
-                    final String categoryId; 
 
 
-  ProductByCategoryVm(this.categoryId);
 
 
   
@@ -25,7 +23,7 @@ class ProductByCategoryVm extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchProductsByCategory(categoryId); 
+    // fetchProductsByCategory(categoryId.value.toString()); 
   }  
 
 
@@ -44,10 +42,8 @@ class ProductByCategoryVm extends GetxController {
         
         var jsonData = response.data;
            List<dynamic> productData = jsonData['data'];
-           print("LISSSSSSSSSSSSSSSSSS${productData}");
         productByCategory.value = productData.map((categoryJson) => Product.fromJson(categoryJson)).toList();
        
-print(productByCategory.length);
 
       }
     } on DioException catch (d) {

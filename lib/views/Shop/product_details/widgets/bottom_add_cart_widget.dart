@@ -4,6 +4,7 @@ import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_vm.dart'; // Cart Provider
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,15 +18,13 @@ class NBottomAddCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller= CartController.instance;
+  
+    controller.updateAlreadyAddedProductCount(product);
+    print(controller.productQuantityInCart.value.toString());
     final dark = NHelperFunctions.isDarkMode(context);
-    // final cartProvider = Provider.of<CartProvider>(context);
     
-    // print("3333333333333333_____${cartProvider.items.length}");
-    // final itemInCart = cartProvider.getProduct(product.id.toString());
-    final CartController cartController = Get.put(CartController());
-   final itemInCart= cartController.getProduct(product.id.toString());
-   if(itemInCart!=null)
-   cartController.qty.value=itemInCart.quantity;
+  
 
 
     return Container(
@@ -39,71 +38,46 @@ class NBottomAddCart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              // Decrement Quantity
-              NCircularIcon(
-                icon: Iconsax.minus,
-                backgroundColor: NColors.darkGrey,
-                height: 40,
-                width: 40,
-                color: const Color(0xFFFFFFFF),
-                onPressed: 
-       itemInCart != null && itemInCart.quantity > 1 
-                    ? () {
-                       cartController.decrementQty();                      }
-                    : null,
-              ),
-              const SizedBox(width: NSizes.spaceBtwItems),
-
-         
-                  Obx(
-                ()=> Text("${cartController.qty.value}",style: Theme.of(context).textTheme.titleSmall),),
-                
-                    
+          Obx(
+            ()=> Row(
+                children: [
+                  // Decrement Quantity
+                  NCircularIcon(
+                    icon: Iconsax.minus,
+                    backgroundColor: NColors.darkGrey,
+                    height: 40,
+                    width: 40,
+                    color: const Color(0xFFFFFFFF),
+                    onPressed:controller.productQuantityInCart.value > 0 
+      ? () => controller.productQuantityInCart.value -= 1
+      : null,
+                  
+                  ),
+                  const SizedBox(width: NSizes.spaceBtwItems),
               
-              const SizedBox(width: NSizes.spaceBtwItems),
-              // Increment Quantity
-              NCircularIcon(   
-                icon: Iconsax.add,
-                backgroundColor: NColors.black,
-                height: 40,
-                width: 40,
-                color: NColors.white,
-                onPressed: () {
-                  cartController.incrementQty();
-                  // cartProvider.addProductToCart(product,cartProvider.qty);
-                },
+                       Text(controller.productQuantityInCart.value.toString(),style: Theme.of(context).textTheme.titleSmall),
+                    
+                        
+                  
+                  const SizedBox(width: NSizes.spaceBtwItems),
+                  // Increment Quantity
+                  NCircularIcon(   
+                    icon: Iconsax.add,
+                    backgroundColor: NColors.black,
+                    height: 40,
+                    width: 40,
+                    color: NColors.white,
+                    onPressed: () => controller.productQuantityInCart.value +=1,
+                  ),
+                ],
               ),
-            ],
           ),
+          
           // Add to Cart Button
           ElevatedButton(
-            onPressed: () {
-            if (cartController.qty==0){
-           cartController.removeProductFromCart(product.id.toString());
-                ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Quantity Equal Zero : Remove From Cart!'),
-                  duration: Duration(seconds: 2),
-                ),
-                
-              );
-                
-            }
-            else if(cartController.qty>0){
-               cartController.addProductToCart(product,cartController.qty.value);
-           
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Added to cart!'),
-                  duration: Duration(seconds: 2),
-                ),
-                
-              );
-            }
-             
-            },
+             onPressed: controller.productQuantityInCart.value > 0
+      ? () => controller.addToCart(product)
+      : null,
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.all(NSizes.md),
               backgroundColor: NColors.black,

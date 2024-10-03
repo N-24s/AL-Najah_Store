@@ -13,7 +13,9 @@ import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatelessWidget {
    ProfileScreen({super.key});
-       final ProfileVM profileVM = Get.put(ProfileVM());
+      //  final ProfileVM profileVM = Get.put(ProfileVM());
+          final profileVM = Get.find<ProfileVM>();
+
 
 
   @override

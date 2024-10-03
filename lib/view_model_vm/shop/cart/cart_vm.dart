@@ -5,12 +5,12 @@ import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class CartController extends GetxController {
+class CartVm extends GetxController {
   StorageHelper storageHelper=StorageHelper.instance;
   var items = <String, CartItem>{}.obs;  
   var itemCount=0.obs;
   final storage = GetStorage();
-  var qty = 0.obs;  
+  var qty = 1.obs;  
 
   @override
   void onInit() {
@@ -65,6 +65,7 @@ class CartController extends GetxController {
           price: double.parse(product.price),
           quantity: qty,
         ),
+      
       );
     }
     saveCart();  // Save cart to storage

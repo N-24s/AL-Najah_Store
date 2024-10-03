@@ -17,11 +17,14 @@ class NHomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           Text(NTexts.homeAppbarTitle,style: Theme.of(context).textTheme.labelMedium!.apply(color: NColors.grey)),
           Text(NTexts.homrAppbarSubTitle,style: Theme.of(context).textTheme.headlineSmall!.apply(color: NColors.white))
     
         ],
       ),
+
+      
       actions: [
         NCartCounterIcon(onPressed: () {}, iconColor: NColors.white,),
       ],

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 
 class CategoryVM extends GetxController {
-    static CategoryVM get instance => Get.put<CategoryVM>(CategoryVM()); 
+    // static CategoryVM get instance => Get.put<CategoryVM>(CategoryVM()); 
 
 CategoryVM(){
 fetchCategories();

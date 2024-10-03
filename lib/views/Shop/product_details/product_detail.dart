@@ -1,8 +1,19 @@
+import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
+import 'package:al_najah_store/common/widgets/image_text_widget/vertical_image_text.dart';
+import 'package:al_najah_store/common/widgets/images/n_rounded_image.dart';
+import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
+import 'package:al_najah_store/common/widgets/products/product_cards/product_card_horizontal.dart';
+import 'package:al_najah_store/common/widgets/products/product_cards/product_card_rectangles.dart';
+import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/models/shop/product.dart';
+import 'package:al_najah_store/utilis/constants/colors.dart';
+import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/bottom_add_cart_widget.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_attributes.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_detail_image_slider.dart';
@@ -19,9 +30,17 @@ import 'package:readmore/readmore.dart';
 class ProductDetail extends StatelessWidget {
    const ProductDetail({super.key});
 
+
   @override
   Widget build(BuildContext context) {
-    Product product=ModalRoute.of(context)!.settings.arguments as Product;
+        Product product=ModalRoute.of(context)!.settings.arguments as Product;
+
+        final productVm = Get.find<ProductVM>();
+  
+
+
+  
+
 
     final dark=NHelperFunctions.isDarkMode(context);
     final  String description= product.description;
@@ -53,7 +72,9 @@ class ProductDetail extends StatelessWidget {
 
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: (){}, child: const Text("Checkout"))),
+                    child: ElevatedButton(onPressed: (){
+                              
+                    }, child: const Text("Checkout"))),
                   
                   const SizedBox(height: NSizes.spaceBtwSections),
                   
@@ -71,10 +92,43 @@ class ProductDetail extends StatelessWidget {
                     lessStyle: TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
                     ),
 
-                  //Reviews
+                  //Like Products
                   Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
-                    //  NSectionHeading(title: "Reviews($reviews)",showActionButton: true,onPressed:(){} ,),
+                    NSectionHeading(title: "Similar Products",showActionButton: true,onPressed:(){} ,),
+                        SizedBox(
+        height: 100,
+        child: ListView.separated(
+
+      separatorBuilder: (context, index) => const SizedBox(width: NSizes.spaceBtwItems,),  
+        scrollDirection:Axis.horizontal ,
+          shrinkWrap: true,
+          itemCount:5,
+          itemBuilder: (_,index)
+        {
+        return   NProductCardHorizontal();              
+               
+                 }),),
+    
+        
+  //                     // Products
+  //                       const SizedBox(height: NSizes.spaceBtwItems),
+  //                       Obx((){
+  //                         if (productByCategoryVm.isLoading.value) {
+  //         return const Center(child: CircularProgressIndicator());
+  //       }
+
+  //       if (productByCategoryVm.errorMessage.isNotEmpty) {
+  //         return Center(child: Text(productByCategoryVm.errorMessage.value));
+  //       }
+                          
+                          
+  //                  return       NGridLayout(
+                          
+  //                           itemCount: productByCategoryVm.productByCategory.length, 
+  //                           itemBuilder: (_,index)=> NProductCardVertical(product: productByCategoryVm.productByCategory[index],));
+  // }),
+                
 
                     // const Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

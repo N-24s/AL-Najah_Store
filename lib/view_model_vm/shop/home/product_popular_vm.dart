@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 
 class ProductPopularVm extends GetxController {
-    static ProductPopularVm get instance => Get.put<ProductPopularVm>(ProductPopularVm()); 
+    // static ProductPopularVm get instance => Get.put<ProductPopularVm>(ProductPopularVm()); 
 
 ProductPopularVm(){
 fetchProductsPopular();
@@ -33,7 +33,7 @@ fetchProductsPopular();
       if (response.statusCode == 200) {
         
         var jsonData = response.data;
-           List<dynamic> productData = jsonData['data'];
+           List<dynamic> productData = jsonData['Product'];
         productPopular.value = productData
             .map((categoryJson) => Product.fromJson(categoryJson))
             .toList();

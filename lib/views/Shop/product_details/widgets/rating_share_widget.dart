@@ -15,6 +15,7 @@ class NRatingAndShare extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+       
             //Rating 
         Row(
           children: [

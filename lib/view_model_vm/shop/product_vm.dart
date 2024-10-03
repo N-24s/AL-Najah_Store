@@ -12,6 +12,7 @@ class ProductVM extends GetxController {
 
   var products = <Product>[].obs;
   var top3Product = <Product>[].obs; 
+  List<Map<String,dynamic>>? productDetails;
   var isLoading = false.obs; 
   var errorMessage = ''.obs;
 
@@ -41,9 +42,35 @@ class ProductVM extends GetxController {
     }
   }
 
+  Future<void> getProductDetails(String product_id) async {
+    try {
+    
+      isLoading(true); 
+      errorMessage(''); 
+
+      HttpHelpers http = HttpHelpers.instance;
+      final response = await http.getRequest(url: HttpUrls.getProductDetails+'1');
+
+      if (response.statusCode == 200) {
+        var jsonData = response.data;
+ 
+        dynamic productData = Product.fromJson(jsonData['data']['similar_products']);
+        productDetails = productData; 
+        print("$productDetails");
+      }
+    } on DioException catch (d) {
+      ApiException.handleException(d); 
+    } catch (e) {
+      errorMessage('Error: $e'); 
+    } finally {
+      isLoading(false); 
+    }
+  }
+
+
+
   void top3Products() {
     top3Product.value = products.take(3).toList(); 
   }
 }
-
 

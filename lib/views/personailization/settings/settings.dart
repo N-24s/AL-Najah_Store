@@ -22,7 +22,9 @@ import '../../../utilis/theme/theme.dart';
 
 class SettingsScreen extends StatelessWidget {
    SettingsScreen({super.key});
-     final ProfileVM profileVM = Get.put(ProfileVM());
+    //  final ProfileVM profileVM = Get.put(ProfileVM());
+         final profileVM = Get.find<ProfileVM>();
+
 
 
   @override
@@ -59,7 +61,7 @@ class SettingsScreen extends StatelessWidget {
                   //Account Setting
                   const NSectionHeading(title: "Account Setting",showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
-                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city'], icon: Iconsax.safe_home,onTap: ()=>Get.to(()=>const UserAddressScreen()),),
+                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: ()=>Get.to(()=>const UserAddressScreen()),),
                  NSettingMenuTile(title: "My Cart", subTitle: "vnkl;mlk", icon: Iconsax.shopping_cart,onTap: ()=>Get.to(()=> const CartScreen())),
                  NSettingMenuTile(title: "My Orders", subTitle: "vnkl;mlk", icon: Iconsax.bag_tick,onTap: (){},),
                  NSettingMenuTile(title: "Notifiactions", subTitle: "vnkl;mlk", icon: Iconsax.notification,onTap: (){},),
