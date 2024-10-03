@@ -5,6 +5,8 @@ import 'package:al_najah_store/common/widgets/texts/n_brand_title_text.dart';
 import 'package:al_najah_store/common/widgets/texts/n_brand_title_text_with_verified_icon.dart';
 import 'package:al_najah_store/common/widgets/texts/n_price_text.dart';
 import 'package:al_najah_store/common/widgets/texts/product_title_text.dart';
+import 'package:al_najah_store/models/shop/product.dart';
+import 'package:al_najah_store/models/shop/product_dateils.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -14,10 +16,12 @@ import 'package:iconsax/iconsax.dart';
 
 
 class NProductCardHorizontal extends StatelessWidget {
-  const NProductCardHorizontal({super.key});
+  const NProductCardHorizontal({super.key, required this.similarProduct,});
+  final SimilarProduct similarProduct;
 
   @override
   Widget build(BuildContext context) {
+    
     final dark=NHelperFunctions.isDarkMode(context);
     return Container(
       width: 250,
@@ -72,21 +76,16 @@ class NProductCardHorizontal extends StatelessWidget {
           child: Padding(
                 padding: const EdgeInsets.only(top:NSizes.sm,left:NSizes.sm,),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    NProductTitleText(maxLines: 1,title: "Green Nike Half Sleeves shirt",smallSize: true,),
-                    SizedBox(height: NSizes.spaceBtwItems/2,),
-                    NBrandTitleWithVerifiedIcon(title: "Nike")
-                  ],
-                ),
-            const Spacer(),
+                const SizedBox(height: NSizes.xs,),
+                 NProductTitleText(maxLines: 1,title:similarProduct.name  ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   //Pricing
-                  const Flexible(child: NProductPriceText(price: "356")),
+                   Flexible(child: NProductPriceText(price: similarProduct.price)),
             
                   //Add to Cart
                        Container(

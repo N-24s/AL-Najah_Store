@@ -30,6 +30,7 @@ Future<void> main()async{
   Get.lazyPut<CartVm>(() => CartVm());
   Get.lazyPut<CategoryVM>(() => CategoryVM());
   Get.lazyPut<ProductVM>(() => ProductVM());
+
   Get.lazyPut<ProductPopularVm>(() => ProductPopularVm());
   Get.lazyPut<ProfileVM>(() => ProfileVM());
   // Get.lazyPut<ProductImageVM>(() => ProductImageVM());

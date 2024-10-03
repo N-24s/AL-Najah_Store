@@ -1,4 +1,5 @@
 import 'package:al_najah_store/models/shop/product.dart';
+import 'package:al_najah_store/models/shop/product_dateils.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
@@ -9,10 +10,15 @@ class ProductVM extends GetxController {
   ProductVM() {
     fetchProducts();
   }
-
+// varibles
+//All Products
   var products = <Product>[].obs;
-  var top3Product = <Product>[].obs; 
-  List<Map<String,dynamic>>? productDetails;
+
+  // Similar Product By ID
+  var similarProduct=<SimilarProduct>[].obs ;
+  //Product By Id
+  var producDetails=Product.empty().obs;
+
   var isLoading = false.obs; 
   var errorMessage = ''.obs;
 
@@ -31,7 +37,6 @@ class ProductVM extends GetxController {
         Products productData = Products.fromJson(jsonData);
 
         products.value = productData.data.data; 
-        top3Products(); 
       }
     } on DioException catch (d) {
       ApiException.handleException(d); 
@@ -49,14 +54,18 @@ class ProductVM extends GetxController {
       errorMessage(''); 
 
       HttpHelpers http = HttpHelpers.instance;
-      final response = await http.getRequest(url: HttpUrls.getProductDetails+'1');
+      final response = await http.getRequest(url: HttpUrls.getProductDetails+product_id);
 
       if (response.statusCode == 200) {
         var jsonData = response.data;
- 
-        dynamic productData = Product.fromJson(jsonData['data']['similar_products']);
-        productDetails = productData; 
-        print("$productDetails");
+                 Product product = Product.fromJson(jsonData['data']);
+                 List<SimilarProduct> similarProducts = (jsonData['data']['similar_products'] as List)
+    .map((item) => SimilarProduct.fromJson(item))
+    .toList();
+                 producDetails.value = product; 
+                  similarProduct.value = similarProducts; 
+       
+
       }
     } on DioException catch (d) {
       ApiException.handleException(d); 
@@ -69,8 +78,5 @@ class ProductVM extends GetxController {
 
 
 
-  void top3Products() {
-    top3Product.value = products.take(3).toList(); 
-  }
 }
 

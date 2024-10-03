@@ -22,7 +22,9 @@ import 'package:iconsax/iconsax.dart';
 
 
 class HomeScreen extends StatelessWidget {
-final ProductVM productVm=Get.put(ProductVM());
+// final ProductVM productVm=Get.put(ProductVM());
+final ProductVM productVm=Get.find<ProductVM>();
+
 // final ProductPopularVm productPopularVm=Get.put(ProductPopularVm());
     final productPopularVm = Get.find<ProductPopularVm>();
 

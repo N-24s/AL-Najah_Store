@@ -45,8 +45,13 @@ class NProductCardVertical extends StatelessWidget {
     return GestureDetector(
       // onTap: ()=>Get.to(()=> const ProductDetail(),arguments: product),
       onTap: () {
-                productVm.getProductDetails(product.id.toString());
-Get.to(()=> const ProductDetail(),arguments: product);
+
+productVm.getProductDetails(product.id.toString());
+
+Get.to(()=> const ProductDetail());
+
+
+
       },
       child: Container(
         

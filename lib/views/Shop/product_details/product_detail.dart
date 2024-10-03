@@ -33,7 +33,7 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        Product product=ModalRoute.of(context)!.settings.arguments as Product;
+        // Product product=ModalRoute.of(context)!.settings.arguments as Product;
 
         final productVm = Get.find<ProductVM>();
   
@@ -43,15 +43,49 @@ class ProductDetail extends StatelessWidget {
 
 
     final dark=NHelperFunctions.isDarkMode(context);
-    final  String description= product.description;
+    // final  String description= product.description;
     // final  String reviews= product.reviews.length.toString();
-    return  Scaffold(
-      bottomNavigationBar: NBottomAddCart(product: product,),
+    return Scaffold(
+      
+      bottomNavigationBar:       Obx(
+          (){
+          if (productVm.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (productVm.errorMessage.isNotEmpty) {
+          
+            return Center(child: Text(productVm.errorMessage.value));
+          }
+           return        NBottomAddCart(product: productVm.producDetails.value,);
+
+          
+                }
+                 
+                   
+        ),
       body: SingleChildScrollView(
         child: Column(
           //Product Images Silder
         children: [
-           NProductIamgeSlider(product: product),
+
+                Obx(
+          (){
+          if (productVm.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (productVm.errorMessage.isNotEmpty) {
+          
+            return Center(child: Text(productVm.errorMessage.value));
+          }
+           return             NProductIamgeSlider(product: productVm.producDetails.value);
+
+          
+                }
+                 
+                   
+        ),
 
           // Produtc Details
           Padding(
@@ -64,7 +98,23 @@ class ProductDetail extends StatelessWidget {
               //Rating & Share Button
                   //  NRatingAndShare(rating: product.rating.toString(),reviews: product.reviews.length.toString(),),
               // Price Title, Brand
-               NProductMetaData(product: product,),
+              Obx(
+          (){
+          if (productVm.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (productVm.errorMessage.isNotEmpty) {
+          
+            return Center(child: Text(productVm.errorMessage.value));
+          }
+           return  NProductMetaData(product: productVm.producDetails.value,);
+          
+                }
+                 
+                   
+        ),
+              
                 
                   const SizedBox(height: NSizes.spaceBtwSections),
 
@@ -79,38 +129,72 @@ class ProductDetail extends StatelessWidget {
                   const SizedBox(height: NSizes.spaceBtwSections),
                   
                   //Description
-
- const NSectionHeading(title: "Description",showActionButton: false,),
+                  const NSectionHeading(title: "Description",showActionButton: false,),
                    const SizedBox(height: NSizes.spaceBtwItems),
-            ReadMoreText(
-              description,
+
+Obx(
+          (){
+            
+          if (productVm.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (productVm.errorMessage.isNotEmpty) {
+          
+            return Center(child: Text(productVm.errorMessage.value));
+          }
+           return              ReadMoreText(
+              productVm.producDetails.value.description,
                     trimLines: 1,
                     trimCollapsedText: 'Show more',
                     trimMode: TrimMode.Line,
                     trimExpandedText: 'Less',
                     moreStyle: TextStyle(fontSize: 14,fontWeight:  FontWeight.w800),
                     lessStyle: TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
-                    ),
+                    );}
 
-                  //Like Products
+                
+                 
+                   ),
+
+                       //Like Products
                   Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
                     NSectionHeading(title: "Similar Products",showActionButton: true,onPressed:(){} ,),
-                        SizedBox(
+                          SizedBox(
         height: 100,
-        child: ListView.separated(
-
-      separatorBuilder: (context, index) => const SizedBox(width: NSizes.spaceBtwItems,),  
-        scrollDirection:Axis.horizontal ,
-          shrinkWrap: true,
-          itemCount:5,
-          itemBuilder: (_,index)
-        {
-        return   NProductCardHorizontal();              
-               
-                 }),),
+        child: Obx(
+          ()=> ListView.separated(
+          
+                separatorBuilder: (context, index) => const SizedBox(width: NSizes.spaceBtwItems,),  
+          scrollDirection:Axis.horizontal ,
+            shrinkWrap: true,
+            itemCount:productVm.similarProduct.length,
+            itemBuilder: (_,index)
+          {
+            
+          if (productVm.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          if (productVm.errorMessage.isNotEmpty) {
+          
+            return Center(child: Text(productVm.errorMessage.value));
+          }
+           return  NProductCardHorizontal(similarProduct: productVm.similarProduct[index]);
+                        
+          
+          
+                }
+                 
+                   ),
+        ),
+        ),
     
         
+          ]  ),),
+ 
+            
   //                     // Products
   //                       const SizedBox(height: NSizes.spaceBtwItems),
   //                       Obx((){
@@ -142,13 +226,13 @@ class ProductDetail extends StatelessWidget {
                 ],
               ),
             ),
-        ],
+        
 
 
 
-        ),
-      ),
-    );
+        );
+      
+    
   }
 }
 
