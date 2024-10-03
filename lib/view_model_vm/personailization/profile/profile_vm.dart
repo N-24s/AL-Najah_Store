@@ -1,24 +1,23 @@
 import 'dart:io';
 
+import 'package:al_najah_store/app.dart';
 import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
-import 'package:al_najah_store/utilis/helpers/upload_image.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:image_picker/image_picker.dart';
 
 
 
 
 class ProfileVM extends GetxController {
+  static ProfileVM get instance=>Get.find();
 
   var userProfile = {}.obs;  
   var imagePath=''.obs;

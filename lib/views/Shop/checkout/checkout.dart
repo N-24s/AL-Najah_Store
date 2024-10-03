@@ -7,6 +7,7 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
+import 'package:al_najah_store/views/Shop/checkout/widgets/billing_address_section.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_amount_section.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_payment_section.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class CheckoutScreen extends StatelessWidget {
                 NBillingPaymentSection(),
                 SizedBox(height: NSizes.spaceBtwItems),
                 //Address
+                NBillingAddressSection()
 
 
 

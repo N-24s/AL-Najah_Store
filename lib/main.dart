@@ -1,4 +1,5 @@
 import 'package:al_najah_store/app.dart';
+import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_vm.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 Future<void> main()async{
 
@@ -36,6 +38,8 @@ Future<void> main()async{
   // Get.lazyPut<ProductImageVM>(() => ProductImageVM());
   Get.put(ProductImageVM());
   Get.lazyPut<CartController>(()=>CartController());
+    Get.lazyPut<AddressVm>(()=>AddressVm());
+
 
 
 

@@ -41,7 +41,7 @@ class NSingleAddress extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-            profileVM.userProfile['name'],
+            profileVM.userProfile['name']??'null',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.titleLarge,
@@ -49,14 +49,14 @@ class NSingleAddress extends StatelessWidget {
               ),
               const SizedBox(height: NSizes.sm/2),
                  Text(
-           profileVM.userProfile['phone'],
+           profileVM.userProfile['phone']??'null',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
 
               ),
               const SizedBox(height: NSizes.sm/2),
                     Text(
-              "Yemen, Hadrmout, ${profileVM.userProfile['city']}",
+              "Yemen, Hadrmout, ${profileVM.userProfile['city']??'null'}",
               softWrap: true,
 
               ),
