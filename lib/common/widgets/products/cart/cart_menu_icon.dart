@@ -28,31 +28,32 @@ final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-      //  final itemInCart= cartController.items;
-      //  print("${itemInCart.length}LLLLLLLLLLLLLLLLLLL");
-
-    // List<dynamic> itemCart= storageHelper.readKey('cart');
-    // cartController.itemCount.value=itemCart.length;
+   
 
     final dark=NHelperFunctions.isDarkMode(context);
 
     
     return   Padding(
-      padding: const EdgeInsets.all(10),
-      child: Badge(child: Icon(Iconsax.shopping_bag),
-      label: Obx(
-        ()=> Text(
-          cartController.noOfCartItems.value.toString(),
-          style: Theme.of(context).textTheme.labelLarge!.apply(
-            color: counterBgColor?? (dark?NColors.black:NColors.white),
-            fontSizeFactor: 0.8,
-            
-          ),
-          ),
-      ),
-      
-      backgroundColor: counterBgColor?? (dark? NColors.white:NColors.black),
-      offset: const Offset(10, -8),
+      padding: const EdgeInsets.all(12),
+      child: InkWell(
+        onTap: onPressed,
+        child: Badge(
+          
+          child: Icon(Iconsax.shopping_bag),
+        label: Obx(
+          ()=> Text(
+            cartController.cartItems.length.toString(),
+            style: Theme.of(context).textTheme.labelLarge!.apply(
+              color: counterBgColor?? (dark?NColors.light:NColors.white),
+              fontSizeFactor: 0.8,
+              
+            ),
+            ),
+        ),
+        
+        backgroundColor: counterBgColor?? (dark? NColors.light:NColors.secondaryOrangeColor),
+        offset: const Offset(10, -8),
+        ),
       ),
     );
   }

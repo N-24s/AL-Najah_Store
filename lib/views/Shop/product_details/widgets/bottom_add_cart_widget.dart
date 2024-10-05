@@ -55,7 +55,7 @@ class NBottomAddCart extends StatelessWidget {
                   ),
                   const SizedBox(width: NSizes.spaceBtwItems),
               
-                       Text(controller.productQuantityInCart.value.toString(),style: Theme.of(context).textTheme.titleSmall),
+                       Text('${controller.productQuantityInCart.value}',style: Theme.of(context).textTheme.titleSmall),
                     
                         
                   
@@ -74,16 +74,18 @@ class NBottomAddCart extends StatelessWidget {
           ),
           
           // Add to Cart Button
-          ElevatedButton(
-             onPressed: controller.productQuantityInCart.value > 0
-      ? () => controller.addToCart(product)
-      : null,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.all(NSizes.md),
-              backgroundColor: NColors.black,
-              side: const BorderSide(color: NColors.black),
+          Obx(
+            ()=> ElevatedButton(
+               onPressed: controller.productQuantityInCart.value > 0
+                  ? () => controller.addToCart(product)
+                  : null,
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(NSizes.md),
+                backgroundColor: NColors.black,
+                side: const BorderSide(color: NColors.black),
+              ),
+              child: const Text("Add to Cart"),
             ),
-            child: const Text("Add to Cart"),
           )
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/validators/validation.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 
@@ -44,7 +45,7 @@ class AddNewAddressScreen extends StatelessWidget {
                   prefixIcon: Iconsax.building_31,
                   labelText: 'address'
                 ),
-                const SizedBox(width: NSizes.spaceBtwInputFieldss),
+                const SizedBox(height: NSizes.spaceBtwSections),
                   
                  SizedBox(width: double.infinity,child: ElevatedButton(
                   onPressed: (){

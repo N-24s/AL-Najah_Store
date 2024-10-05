@@ -2,7 +2,9 @@ import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
+import 'package:al_najah_store/views/Shop/cart/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class NHomeAppBar extends StatelessWidget {
@@ -26,7 +28,7 @@ class NHomeAppBar extends StatelessWidget {
 
       
       actions: [
-        NCartCounterIcon(onPressed: () {}, iconColor: NColors.white,),
+        NCartCounterIcon(onPressed: () =>Get.to(()=>const CartScreen()), iconColor: NColors.white,),
       ],
     );
   }

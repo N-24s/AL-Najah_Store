@@ -22,7 +22,6 @@ import '../../../utilis/theme/theme.dart';
 
 class SettingsScreen extends StatelessWidget {
    SettingsScreen({super.key});
-    //  final ProfileVM profileVM = Get.put(ProfileVM());
          final profileVM = Get.find<ProfileVM>();
 
 
@@ -30,7 +29,6 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-                //  ProfileVM profileVM = ProfileVM(); 
 
     StorageHelper storageHelper=StorageHelper.instance;
     return Scaffold(
@@ -42,10 +40,10 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   //AppBar
-                  NAppBar(title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
+                  NAppBar(showBackArrow: false,title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
 
                 //User Profile card
-                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: NImages.Profile_image,onPressed: (){})),
+                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: NImages.Profile_image,onPressed: ()=>Get.to(()=>ProfileScreen()))),
                      const SizedBox(height: NSizes.spaceBtwSections,),
 
                 ],
@@ -61,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
                   //Account Setting
                   const NSectionHeading(title: "Account Setting",showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
-                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: ()=>Get.to(()=>const UserAddressScreen()),),
+                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: ()=>Get.to(()=> UserAddressScreen()),),
                  NSettingMenuTile(title: "My Cart", subTitle: "vnkl;mlk", icon: Iconsax.shopping_cart,onTap: ()=>Get.to(()=> const CartScreen())),
                  NSettingMenuTile(title: "My Orders", subTitle: "vnkl;mlk", icon: Iconsax.bag_tick,onTap: (){},),
                  NSettingMenuTile(title: "Notifiactions", subTitle: "vnkl;mlk", icon: Iconsax.notification,onTap: (){},),

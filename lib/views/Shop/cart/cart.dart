@@ -28,7 +28,7 @@ final controller= CartController.instance;
               text: "Cart is Empty.",
               animation: NImages.logo,
               showAction: true,
-              actionText: " Let\'s fill it",
+              actionText: " Let\'s to Add",
               onActionPressed: ()=> Get.off(()=> const NavigationMenu()),
               );
             
@@ -36,7 +36,7 @@ final controller= CartController.instance;
               child: Padding(
               padding:EdgeInsets.all(NSizes.defaultSpace),
               
-              child: NCartItems(),
+              child: NCartItems(showAddRemoveButton: true,),
                
                 ),
             );}
@@ -45,7 +45,7 @@ final controller= CartController.instance;
 //Checkout Button
         bottomNavigationBar:controller.cartItems.isEmpty?const SizedBox(): Padding(
           padding: const EdgeInsets.all(NSizes.defaultSpace),
-          child: ElevatedButton(onPressed: ()=>Get.to(()=>const CheckoutScreen()), child:  Obx(()=>Text("Checkout \$${controller.totalCartPrice.value}"))),
+          child: ElevatedButton(onPressed: ()=>Get.to(()=> CheckoutScreen()), child:  Obx(()=>Text("Checkout \$${controller.totalCartPrice.value}"))),
         ),
     );
   }

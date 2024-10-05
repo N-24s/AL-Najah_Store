@@ -6,11 +6,8 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
+
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/Shop/all_products/all_products.dart';
 import 'package:al_najah_store/views/shop/home/widgets/home_appbar.dart';
@@ -22,10 +19,8 @@ import 'package:iconsax/iconsax.dart';
 
 
 class HomeScreen extends StatelessWidget {
-// final ProductVM productVm=Get.put(ProductVM());
 final ProductVM productVm=Get.find<ProductVM>();
 
-// final ProductPopularVm productPopularVm=Get.put(ProductPopularVm());
     final productPopularVm = Get.find<ProductPopularVm>();
 
   @override
@@ -34,19 +29,12 @@ final ProductVM productVm=Get.find<ProductVM>();
 
     return Scaffold(
 
-// appBar: NAppBar(
-//   title: const Text("Home"),
-//   actions: [
-//     IconButton(icon:Icon(Iconsax.shopping_cart), onPressed: () {
-//       Get.to(const CartScreen());
-//     },)
-//   ],
-// ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
             //Header
-               const NPrimaryHeaderContainer(
+                const NPrimaryHeaderContainer(
               child: Column(
                 children: [
                   //AppBar
@@ -54,7 +42,19 @@ final ProductVM productVm=Get.find<ProductVM>();
                   SizedBox( height: NSizes.spaceBtwSections,),
 
                   //Searchbar
-                  NSearchContainer(text: "Search in Store",icon: Iconsax.search_normal,),
+                  Column(
+                    children: [
+                      
+       NSearchContainer(
+          text: "Search in Store",
+          icon: Iconsax.search_normal,
+        
+        ),
+      
+              
+                    ],
+                  ),
+                  
                   SizedBox( height: NSizes.spaceBtwSections,),
 
                   //Heading
@@ -76,6 +76,7 @@ final ProductVM productVm=Get.find<ProductVM>();
                 ],
               ),
               ),
+        
             //Body
                Padding(
                  padding: const EdgeInsets.all(NSizes.defaultSpace),

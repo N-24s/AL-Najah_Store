@@ -7,9 +7,11 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 
 class NCartItem extends StatelessWidget {
@@ -22,6 +24,7 @@ final CartItem cartItem;
  
   @override
   Widget build(BuildContext context) {
+    final cartVM=CartController.instance;
    
    
 
@@ -42,22 +45,17 @@ final CartItem cartItem;
     
           //Title ,Price & Size
           Expanded(
-            child: Column(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //  NBrandTitleWithVerifiedIcon(title: product.brand!,),
                  Flexible(child: NProductTitleText(title:cartItem.name?? '',maxLines: 1,)),
-            
-                //Attributes 
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      // TextSpan(text: product.category.name,style: Theme.of(context).textTheme.bodySmall),
-                 
-                    ]
-                  )
-                ),
+               Flexible(child: IconButton(onPressed: ()=>cartVM.removeOneFromCart(cartItem),icon: Icon
+               (Icons.delete,color: Colors.redAccent,),)),
+
+          
               ],
             ),
           )

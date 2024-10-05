@@ -13,7 +13,6 @@ import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatelessWidget {
    ProfileScreen({super.key});
-      //  final ProfileVM profileVM = Get.put(ProfileVM());
           final profileVM = Get.find<ProfileVM>();
 
 
@@ -21,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NAppBar(
+      appBar: const NAppBar(
         showBackArrow: true,
         title: Text("Profile"),
       ),
@@ -50,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
               const NSectionHeading(title: "Profile Information", showActionButton: false),
                 const SizedBox(height: NSizes.spaceBtwItems),
 
-               NProfileMenu(title: "Name",value: profileVM.userProfile['name'],onPressed: (){},),
+               NProfileMenu(title: "Name",value: profileVM.userProfile['name']??'null',onPressed: (){},),
                 // NProfileMenu(title: "Username",value: "N_24s",onPressed: (){},),
 
               const SizedBox(height: NSizes.spaceBtwItems/2,),
@@ -61,10 +60,10 @@ class ProfileScreen extends StatelessWidget {
                 const NSectionHeading(title: "Personal Information", showActionButton: false),
                 const SizedBox(height: NSizes.spaceBtwItems),
 
-               NProfileMenu(title: "User ID",value: profileVM.userProfile['id'].toString(),onPressed: (){},icon: Iconsax.copy,),
-                NProfileMenu(title: "E-Mail",value: profileVM.userProfile['email'],onPressed: (){},),
-               NProfileMenu(title: "Phone Number",value: profileVM.userProfile['phone'],onPressed: (){},),
-                NProfileMenu(title: "City",value: profileVM.userProfile['city'],onPressed: (){},),
+               NProfileMenu(title: "User ID",value: profileVM.userProfile['id'].toString()??'null',onPressed: (){},icon: Iconsax.copy,),
+                NProfileMenu(title: "E-Mail",value: profileVM.userProfile['email']??'null',onPressed: (){},),
+               NProfileMenu(title: "Phone Number",value: profileVM.userProfile['phone']??'null',onPressed: (){},),
+                NProfileMenu(title: "City",value: profileVM.userProfile['city']??'null',onPressed: (){},),
 
                 const Divider(),
               const SizedBox(height: NSizes.spaceBtwItems),

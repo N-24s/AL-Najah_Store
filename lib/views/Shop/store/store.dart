@@ -1,4 +1,5 @@
 import 'package:al_najah_store/common/custom_shapes/containers/search_container.dart';
+import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/appbar/tabbar.dart';
 import 'package:al_najah_store/common/widgets/brands/brand_card.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
@@ -10,9 +11,11 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
+import 'package:al_najah_store/views/Shop/cart/cart.dart';
 import 'package:al_najah_store/views/Shop/store/category_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 
 class StoreScreen extends StatelessWidget {
@@ -38,11 +41,12 @@ class StoreScreen extends StatelessWidget {
       child: Scaffold(
       
         //AppBar
-        appBar: AppBar(
+        appBar: NAppBar(
+          showBackArrow: false,
           title:   Text("Store",style: Theme.of(context).textTheme.headlineMedium,),
       
           actions: [
-            NCartCounterIcon(onPressed: (){})
+            NCartCounterIcon(onPressed: ()=>Get.to(()=>const CartScreen()))
           ],
         ),
       
@@ -64,7 +68,10 @@ class StoreScreen extends StatelessWidget {
                   children: [
                     /// Search bar 
                      const SizedBox(height: NSizes.spaceBtwItems,),
-                    const NSearchContainer(text: '', showBorder:  true,showBackground: false, padding: EdgeInsets.zero,),
+                    const NSearchContainer(
+                                icon: Iconsax.search_normal,
+
+                      text: 'Search here', showBorder:  true,showBackground: false, padding: EdgeInsets.zero,),
                      const SizedBox(height: NSizes.spaceBtwSections,),
       
                      //Featured Brands

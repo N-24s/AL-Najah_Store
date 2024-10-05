@@ -6,6 +6,7 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_address_section.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_amount_section.dart';
@@ -15,10 +16,14 @@ import 'package:get/get.dart';
 
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key});
+   CheckoutScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+    final addressVM=AddressVm.instance;
+
+
     final dark=NHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: NAppBar(
@@ -43,21 +48,27 @@ class CheckoutScreen extends StatelessWidget {
             shawBorder: true,
             padding: const EdgeInsets.all(NSizes.md),
             backgroundColor:dark? NColors.black:NColors.white ,
-            child: const Column(
+            child: Column(
               children: [
                 //Pricing
-                NBillingAmountSection(),
-                SizedBox(height: NSizes.spaceBtwItems),
+                const NBillingAmountSection(),
+                const SizedBox(height: NSizes.spaceBtwItems),
 
                 //Divider
-                Divider(),
-              SizedBox(height: NSizes.spaceBtwItems),
+                const Divider(),
+              const SizedBox(height: NSizes.spaceBtwItems),
 
                 //Payment Methods
-                NBillingPaymentSection(),
-                SizedBox(height: NSizes.spaceBtwItems),
+                const NBillingPaymentSection(),
+                const SizedBox(height: NSizes.spaceBtwItems),
                 //Address
-                NBillingAddressSection()
+         
+
+                      NBillingAddressSection(),
+                  
+              
+        
+         
 
 
 

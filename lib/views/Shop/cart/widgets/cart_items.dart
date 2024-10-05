@@ -23,9 +23,7 @@ class NCartItems extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final cartController=CartController.instance;
-        // StorageHelper storageHelper =StorageHelper.instance;
-        // List<dynamic>? items= storageHelper.readKey("cart") ;
-        
+    
 
     return  Obx(
       ()=> ListView.separated(

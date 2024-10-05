@@ -1,16 +1,19 @@
 class Address {
   String name;
-  String city;
+  String address;
   String phone;
+  bool selectedAddress;
 
   Address.empty()
       : name = '',
-        city = '',
-        phone = '';
+        address = '',
+        phone = '',
+        selectedAddress=false;
 
   Address({
+    this.selectedAddress=false,
     required this.name,
-    required this.city,
+    required this.address,
     required this.phone,
   });
 
@@ -18,7 +21,7 @@ class Address {
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       name: json['name'],
-      city: json['city'],
+      address: json['address'],
       phone: json['phone'],
     );
   }
@@ -27,7 +30,7 @@ class Address {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'city': city,
+      'address': address,
       'phone': phone,
     };
   }

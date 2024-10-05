@@ -8,7 +8,7 @@ import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController{
-static CartController get instance=>Get.find();
+static CartController get instance=>Get.find<CartController>();
 
 // varible 
 
@@ -73,16 +73,11 @@ void removeOneFromCart(CartItem item){
      if (cartItems[index].quantity > 1) {
       cartItems[index].quantity -= 1;
     } else if (cartItems[index].quantity == 1) {
-      // عرض نافذة التأكيد عندما تكون الكمية 1
       removeFromCartDialog(index);
     }
-    // if(cartItems[index].quantity > 1){
-    // cartItems[index].quantity -=1;
-    // }
+
   }
-//   else{
-// cartItems[index].quantity == 1? removeFromCartDialog(index): cartItems.removeAt(index);
-//   }
+
   updateCart();
 }
 // Dailog 
@@ -93,9 +88,10 @@ Get.defaultDialog(
   onConfirm: (){
     //Remove the item from the cart
     cartItems.removeAt(index);
+     Get.back();
     updateCart();
-    NLoaders.errorSnackBar(title:'Remove' "Product remove from the Cart.");
-     ()=>  Get.back();
+    NLoaders.errorSnackBar(title:'Remove' "Product $index removed from the Cart.");
+  
   },
   
   onCancel: () => ()=>Get.back(),

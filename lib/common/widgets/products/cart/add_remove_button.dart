@@ -18,7 +18,7 @@ class NProductQuantityWithAddRemoveButtons extends StatelessWidget {
     return Row(
 mainAxisSize: MainAxisSize.min,      
       children: [
-    
+    //Remove
         NCircularIcon(
           icon: Iconsax.minus,
           width: 32,
@@ -29,8 +29,11 @@ mainAxisSize: MainAxisSize.min,
           onPressed: remove,
           ),
     const SizedBox(width: NSizes.spaceBtwItems,),
+    // Quantity
     Text(quantity.toString(),style: Theme.of(context).textTheme.titleSmall,),
     const SizedBox(width: NSizes.spaceBtwItems,),
+
+    //ADD 
       NCircularIcon(
           icon: Iconsax.add,
           width: 32,
