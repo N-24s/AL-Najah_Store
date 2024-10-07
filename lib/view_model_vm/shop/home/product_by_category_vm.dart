@@ -11,9 +11,12 @@ import 'package:get/get.dart';
 
 class ProductByCategoryVm extends GetxController {
     // static ProductByCategoryVm getinstance(String categoryId) => Get.put<ProductByCategoryVm>(ProductByCategoryVm()); 
+        
+        
          var productByCategory = <Product>[].obs;
           var isLoading = false.obs; 
         var errorMessage = ''.obs;
+       
 
 
 

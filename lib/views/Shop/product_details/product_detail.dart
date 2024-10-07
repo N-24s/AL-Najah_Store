@@ -37,7 +37,7 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
         // Product product=ModalRoute.of(context)!.settings.arguments as Product;
 
-        final productVm = Get.find<ProductVM>();
+        final productVm = ProductVM.instance;
       
   
 
@@ -97,23 +97,10 @@ class ProductDetail extends StatelessWidget {
               child: Column(
                 children: [
           
-          //     Obx(
-          // (){
-          // if (productVm.isLoading.value) {
-          //   return const Center(child: CircularProgressIndicator());
-          // }
-          
-          // if (productVm.errorMessage.isNotEmpty) {
-          
-          //   return Center(child: Text(productVm.errorMessage.value));
-          // }
-          //  return  
+         
            NProductMetaData(product: productVm.producDetails.value,),
           
-        //         }
-                 
-                   
-        // ),
+   
               
                 
                   const SizedBox(height: NSizes.spaceBtwSections),
@@ -130,18 +117,7 @@ class ProductDetail extends StatelessWidget {
                   const NSectionHeading(title: "Description",showActionButton: false,),
                    const SizedBox(height: NSizes.spaceBtwItems),
 
-// Obx(
-//           (){
-            
-//           if (productVm.isLoading.value) {
-//             return const Center(child: CircularProgressIndicator());
-//           }
-          
-//           if (productVm.errorMessage.isNotEmpty) {
-          
-//             return Center(child: Text(productVm.errorMessage.value));
-//           }
-//            return          
+       
                ReadMoreText(
               productVm.producDetails.value.description,
                     trimLines: 1,
@@ -151,12 +127,7 @@ class ProductDetail extends StatelessWidget {
                     moreStyle: TextStyle(fontSize: 14,fontWeight:  FontWeight.w800),
                     lessStyle: TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
                     ),
-                    // ;}
-
-                
-                 
-                  //  ),
-
+              
                        //Like Products
                   Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
@@ -164,8 +135,7 @@ class ProductDetail extends StatelessWidget {
                           SizedBox(
         height: 100,
         child: 
-        // Obx(
-        //   ()=>
+    
            ListView.separated(
           
                 separatorBuilder: (context, index) => const SizedBox(width: NSizes.spaceBtwItems,),  
@@ -175,14 +145,7 @@ class ProductDetail extends StatelessWidget {
             itemBuilder: (_,index)
           {
             
-          // if (productVm.isLoading.value) {
-          //   return const Center(child: CircularProgressIndicator());
-          // }
-          
-          // if (productVm.errorMessage.isNotEmpty) {
-          
-          //   return Center(child: Text(productVm.errorMessage.value));
-          // }
+      
            return 
             NProductCardHorizontal(similarProduct: productVm.similarProduct[index]);
                         
@@ -191,7 +154,6 @@ class ProductDetail extends StatelessWidget {
                 }
                  
                    ),
-        // ),
         ),
     
         

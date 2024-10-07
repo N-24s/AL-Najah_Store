@@ -2,6 +2,7 @@ import 'package:get_storage/get_storage.dart';
 
 class NLocalStorage {
 
+  
 //  late final GetStorage _storage ;
 
   GetStorage _storage =GetStorage();
@@ -52,7 +53,7 @@ Future<void> removeData<T>(String key)async{
   await _storage.remove(key);
 }
 
-Future<void> clearAll<T>(String key)async{
+Future<void> clearAll<T>()async{
   await _storage.erase();
 }
 

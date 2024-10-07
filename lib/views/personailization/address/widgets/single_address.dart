@@ -4,6 +4,7 @@ import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
+import 'package:al_najah_store/views/personailization/address/update_address.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
@@ -16,6 +17,7 @@ class NSingleAddress extends StatelessWidget {
 final Map<String,dynamic> address;
   final bool selectedAddress;
   final VoidCallback? onTap;
+  final a=AddressVm.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +44,23 @@ final Map<String,dynamic> address;
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-              address['name']??'null',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleLarge,
-      
-                ),
+              Row(
+                children: [
+                  Text(
+                  address['name']??'null',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge,
+                        
+                    ),
+                    IconButton(onPressed: ()async{
+                 await     a.deleteAddress('7');
+                    }, icon: Icon(Icons.delete)),
+                      IconButton(onPressed: (){
+                 Get.to(()=>UpdateAddressScreen());
+                    }, icon: Icon(Icons.edit)),
+                ],
+              ),
                 const SizedBox(height: NSizes.sm/2),
                    Text(
              address['phone']??'null',

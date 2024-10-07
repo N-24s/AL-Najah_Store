@@ -7,6 +7,7 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
+import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:al_najah_store/views/Shop/cart/cart.dart';
 import 'package:al_najah_store/views/authentication/login/login.dart';
@@ -30,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    StorageHelper storageHelper=StorageHelper.instance;
+    final localStorage=NLocalStorage.instance();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -43,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
                   NAppBar(showBackArrow: false,title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
 
                 //User Profile card
-                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: NImages.Profile_image,onPressed: ()=>Get.to(()=>ProfileScreen()))),
+                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: profileVM.userProfile['avater'],onPressed: ()=>Get.to(()=>ProfileScreen()))),
                      const SizedBox(height: NSizes.spaceBtwSections,),
 
                 ],
@@ -78,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
                   width: double.infinity,
 
                   child:OutlinedButton(onPressed: (){
-storageHelper.removeAll();
+localStorage.clearAll();
 Get.to(const LoginScreen());
 
                   }, child: const Text("Logout")) ,

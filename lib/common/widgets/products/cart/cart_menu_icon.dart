@@ -8,9 +8,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class NCartCounterIcon extends StatelessWidget {
-  StorageHelper storageHelper=StorageHelper.instance;
     // final cartController = Get.find<CartVm>();
-        final cartController = Get.find<CartController>();
+        final cartController = CartVM.instance;
 
 
 

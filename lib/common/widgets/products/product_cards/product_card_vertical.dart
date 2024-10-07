@@ -34,7 +34,7 @@ class NProductCardVertical extends StatelessWidget {
     final String? brand=product.brand.name;
     final String price=product.price.toString();
      final String discountPercentage=product.discountPercentage.toString();
-         final favoritesProvider = Provider.of<FavoritesVM>(context);
+         final favoritesVM = FavoritesVM.instance;
 
 
     
@@ -94,16 +94,22 @@ Get.to(()=> const ProductDetail());
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        favoritesProvider.toggleFavorite(product);                       },
-                      child:  NCircularIcon(
-                          icon: product.isFavorited ? Iconsax.heart5 : Iconsax.heart, // Change icon based on favorite state
-                          color: product.isFavorited ? Colors.red : Colors.grey,
-                  
-                      ),
-                    ),
+                    child: Obx(
+                      (){
+                                final isFavorited = favoritesVM.isProductFavorited(product);
+                        return GestureDetector(
+                        onTap: () {
+                          favoritesVM.toggleFavorite(product);           
+                                      },
+                        child:  NCircularIcon(
+                            icon: isFavorited ? Iconsax.heart5 : Iconsax.heart, // Change icon based on favorite state
+                            color:isFavorited ? Colors.red : Colors.grey,
+                                        
+                        ),
+                      );
+   } ),
                   )
+      
       ],
         ),
       ),
@@ -160,14 +166,14 @@ class ProductCardAddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController=CartController.instance;
+    final cartVM=CartVM.instance;
     return InkWell(
       onTap: (){
-        final cartItem = cartController.convertToCartItem(product, 1);
-        cartController.addOneToCart(cartItem);
+        final cartItem = cartVM.convertToCartItem(product, 1);
+        cartVM.addOneToCart(cartItem);
       },
       child: Obx((){
-         final productQuantityInCart=cartController.getProductQuantityInCart(product.id.toString());
+         final productQuantityInCart=cartVM.getProductQuantityInCart(product.id.toString());
 
         return Container(
           decoration:  BoxDecoration(

@@ -17,7 +17,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-final controller= CartController.instance;
+final controller= CartVM.instance;
 
     return  Scaffold(
 

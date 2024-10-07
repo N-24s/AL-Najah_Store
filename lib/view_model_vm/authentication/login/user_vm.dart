@@ -6,6 +6,7 @@ import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/helpers/upload_image.dart';
+import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:dio/dio.dart';
 
 class UserVm {
@@ -38,6 +39,9 @@ class UserVm {
      return "Admin for support$e";
    }
   }
+
+
+
 
 
    Future<String> register(User user)async{
@@ -83,15 +87,15 @@ class UserVm {
   saveUser(User u){
 
 try{
-      StorageHelper storageHelper=StorageHelper.instance;
-    storageHelper.writeKey("name", u.name!);
-    storageHelper.writeKey("accessToken", u.token!);
-    storageHelper.writeKey("email", u.email!);
-    storageHelper.writeKey("avatar", u.avatar);
-    storageHelper.writeKey("bio", u.bio??'null');
-    storageHelper.writeKey("city", u.city??'null');
-    storageHelper.writeKey("phone", u.phone??'null');
-    storageHelper.writeKey("role", u.role??'null');
+      final localStorage=NLocalStorage.instance();
+    localStorage.writeData("name", u.name!);
+    localStorage.writeData("accessToken", u.token!);
+    localStorage.writeData("email", u.email!);
+    localStorage.writeData("avatar", u.avatar);
+    localStorage.writeData("bio", u.bio??'null');
+    localStorage.writeData("city", u.city??'null');
+    localStorage.writeData("phone", u.phone??'null');
+    localStorage.writeData("role", u.role??'null');
 
 }catch (e){
   print( "Save Users in Loacl Storage $e");

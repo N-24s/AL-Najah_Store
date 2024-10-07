@@ -22,7 +22,7 @@ class NCartItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cartController=CartController.instance;
+    final cartController=CartVM.instance;
     
 
     return  Obx(

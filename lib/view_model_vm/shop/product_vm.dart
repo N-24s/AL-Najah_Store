@@ -1,3 +1,4 @@
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/models/shop/search_suggestion.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/models/shop/product_dateils.dart';
@@ -8,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 class ProductVM extends GetxController {
+  static ProductVM get instance=>Get.find<ProductVM>();
   ProductVM() {
     fetchProducts();
   }
@@ -19,34 +21,40 @@ class ProductVM extends GetxController {
   var similarProduct=<SimilarProduct>[].obs ;
   //Product By Id
   var producDetails=Product.empty().obs;
+  var currentPage = 1.obs;
 
   var isLoading = false.obs; 
   var errorMessage = ''.obs;
+   var filteredProducts = <ProductSuggestion>[].obs;
 
-  // Future<void> fetchProducts() async {
-  //   try {
-  //     isLoading(true); 
-  //     errorMessage(''); 
+  var searchQuery = ''.obs; 
 
-  //     HttpHelpers http = HttpHelpers.instance;
-  //     final response = await http.getRequest(url: HttpUrls.getAllProduct);
+//   Future<void> fetchProducts({String? page}) async {
+//     try {
+//       isLoading(true); 
+//       errorMessage(''); 
+// String p=page??'1';
+//       HttpHelpers http = HttpHelpers.instance;
+//       final response = await http.getRequest(url: HttpUrls.getAllProduct+'?page=$p');
 
-  //     if (response.statusCode == 200) {
-  //       var jsonData = response.data;
+//       if (response.statusCode == 200) {
+//         var jsonData = response.data;
 
  
-  //       Products productData = Products.fromJson(jsonData);
+//         Products productData = Products.fromJson(jsonData);
 
-  //       products.value = productData.data.data; 
-  //     }
-  //   } on DioException catch (d) {
-  //     ApiException.handleException(d); 
-  //   } catch (e) {
-  //     errorMessage('Error: $e'); 
-  //   } finally {
-  //     isLoading(false); 
-  //   }
-  // }
+//         products.value = productData.data.data; 
+//                 print("DDDDDDDDDDDDDDDDDD${products[9].name}");
+
+//       }
+//     } on DioException catch (d) {
+//       ApiException.handleException(d); 
+//     } catch (e) {
+//       errorMessage('Error: $e'); 
+//     } finally {
+//       isLoading(false); 
+//     }
+//   }
 
  
  
@@ -55,6 +63,7 @@ class ProductVM extends GetxController {
     
       isLoading(true); 
       errorMessage(''); 
+
 
       HttpHelpers http = HttpHelpers.instance;
       final response = await http.getRequest(url: HttpUrls.getProductDetails+product_id);
@@ -80,56 +89,56 @@ class ProductVM extends GetxController {
   }
 
 
+String? nextPageUrl;
+String? prevPageUrl;
 
+Future<void> fetchProducts({int? page}) async {
+  try {
+    isLoading(true); 
+    errorMessage(''); 
+    
+    int p = page ?? currentPage.value; 
 
+    HttpHelpers http = HttpHelpers.instance;
+    final response = await http.getRequest(url: HttpUrls.getAllProduct + '?page=${p.toString()}');
 
-  var filteredProducts = <ProductSuggestion>[].obs;
+    if (response.statusCode == 200) {
+      var jsonData = response.data;
 
-  var searchQuery = ''.obs; 
+      Products productData = Products.fromJson(jsonData);
+      products.value = productData.data.data; 
 
-  Future<void> fetchProducts() async {
-    try {
-      isLoading(true);
-      errorMessage('');
+      nextPageUrl = productData.data.nextPageUrl;
+      prevPageUrl = productData.data.prevPageUrl;
+      
+      print(" FFFFFFFFFFFFFFFFFFFFFFFfff${products[9].name}");
 
-      HttpHelpers http = HttpHelpers.instance;
-      final response = await http.getRequest(url: HttpUrls.getAllProduct);
-
-      if (response.statusCode == 200) {
-        var jsonData = response.data;
-        Products productData = Products.fromJson(jsonData);
-        products.value = productData.data.data;
-      //   filteredProducts.value =   products .where((product) => product.name.toLowerCase().contains(query.toLowerCase()))
-      // .map((product) {
-      //   // Assuming ProductSuggestion has an id property that corresponds to the product's id
-      //   return ProductSuggestion(id: product.id.toString(), name: product.name);
-      // }).toList();; 
-      }
-    } on DioException catch (d) {
-      ApiException.handleException(d);
-    } catch (e) {
-      errorMessage('Error: $e');
-    } finally {
-      isLoading(false);
+      currentPage.value = p;
     }
-  }
-
-  void searchProducts(String query) {
-    searchQuery.value = query; 
-    if (query.isEmpty) {
-      filteredProducts.value = []; 
-    } else {
-      // filteredProducts.value = products.where((product) => product.name.toLowerCase().contains(query.toLowerCase()))
-      // .map((product) {
-      //   // Assuming ProductSuggestion has an id property that corresponds to the product's id
-      //   return ProductSuggestion(id: product.id.toString(), name: product.name);
-      // }).toList();
-    }
+  } on DioException catch (d) {
+    ApiException.handleException(d); 
+  } catch (e) {
+    errorMessage('Error: $e'); 
+  } finally {
+    isLoading(false); 
   }
 }
 
+void fetchNextPage() {
+  if (nextPageUrl != null && currentPage.value<3 ) {
+    fetchProducts(page: currentPage.value + 1); 
+  } else {
+    NLoaders.customToast(message: "NO Next Page");
+  }
+}
 
+void fetchPreviousPage() {
+  if (prevPageUrl != null && currentPage.value > 1) {
+    fetchProducts(page: currentPage.value - 1); 
+  } else {
+NLoaders.customToast(message: "NO Previous Page") ;
+ }
+}
 
-
-
-
+ 
+}

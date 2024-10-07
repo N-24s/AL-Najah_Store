@@ -24,7 +24,7 @@ final CartItem cartItem;
  
   @override
   Widget build(BuildContext context) {
-    final cartVM=CartController.instance;
+    final cartVM=CartVM.instance;
    
    
 

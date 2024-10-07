@@ -64,7 +64,6 @@ Product product;
                   flex: 1,
                   child: Row(
                     children: [
-                      //replace image to icon casmeticsIcon
                       
                       Expanded(
                         flex: 1,

@@ -99,7 +99,6 @@ checkLoging({required String x}){
       title: x,
       message: x,
       );
-      StorageHelper storageHelper=StorageHelper.instance;
 
       Get.offNamed('/nav');
  

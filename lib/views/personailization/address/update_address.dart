@@ -9,15 +9,14 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 
-class AddNewAddressScreen extends StatelessWidget {
-   AddNewAddressScreen({super.key});
+class UpdateAddressScreen extends StatelessWidget {
+  UpdateAddressScreen({super.key});
   final addressVm=AddressVm.instance;
-
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: const NAppBar(title: Text("Add New Address"),),
+      appBar: const NAppBar(title: Text("Update Address"),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(NSizes.defaultSpace),
@@ -52,11 +51,8 @@ class AddNewAddressScreen extends StatelessWidget {
                  SizedBox(width: double.infinity,child: ElevatedButton(
                   onPressed: ()async{
                       if(!addressVm.addressFormKey.currentState!.validate()) return;
-                      Data a=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,createdAt:DateTime.now(),updatedAt: DateTime.now(),id: 1,latitude: '',longitude: '');
-                     await addressVm.addAddress(a);
-                     print("//////////////////////////////////////////////////////////////////////////////////////////////////");
-                    await addressVm.getAllAddress();
-
+                      Data a=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,id: 1,latitude: '',longitude: '');
+                     await addressVm.updateddress(a,'8');
 
                   }, 
                   child: const Text("Save")),)

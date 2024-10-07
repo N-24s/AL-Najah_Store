@@ -199,27 +199,32 @@ class Product {
 class Brand {
   int id;
   String name;
+  String? logo;
  
   
 
   Brand({
     required this.id,
     required this.name,
+     this.logo,
   });
     Brand.empty()
       : id = 0,
         name = '';
+
      
    
 
   factory Brand.fromJson(Map<String, dynamic> json) => Brand(
         id: json["id"],
-        name: json["name"],
+        name: json["name"], 
+        logo: json['logo'],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "logo":logo
       };
 }
 

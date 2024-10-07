@@ -1,4 +1,3 @@
-
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -7,6 +6,7 @@ import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
 
 
 class NSortableProducts extends StatelessWidget {
@@ -20,11 +20,14 @@ class NSortableProducts extends StatelessWidget {
                      final productByCategoryVm = ProductByCategoryVm();
 
 
+
     return Column(
       children: [
         //Dropdown
         DropdownButtonFormField(
-          decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
+          
+              decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
+              
           onChanged: (value) { 
        productByCategoryVm.fetchProductsByCategory(value!.id.toString());
           },
@@ -41,7 +44,7 @@ class NSortableProducts extends StatelessWidget {
         }
 
         if (productByCategoryVm.errorMessage.isNotEmpty) {
-          return Center(child: Text(productByCategoryVm.errorMessage.value));
+          return Center(child: Text("No Products"));
         }
                           
                           

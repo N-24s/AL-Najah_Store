@@ -1,6 +1,7 @@
 
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/helpers/images_helpers.dart';
 import 'package:flutter/material.dart';
 
 
@@ -45,8 +46,9 @@ class NRoundedImage extends StatelessWidget {
        ),
        child: ClipRRect(     
       borderRadius:applyImageRadius? BorderRadius.circular(borderRadius):BorderRadius.zero,
-      child:  Image(image:isNetworkImage?NetworkImage(imageUrl): AssetImage(imageUrl) as ImageProvider,fit:fit ,
-                      )
+      child:  ImageHandler(imageSource:imageUrl ,fit: fit!,)
+      // Image(image:isNetworkImage?NetworkImage(imageUrl): AssetImage(imageUrl) as ImageProvider,fit:fit ,
+      //                 )
                       ),
       ),
     );

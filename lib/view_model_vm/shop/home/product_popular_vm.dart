@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 
 class ProductPopularVm extends GetxController {
-    // static ProductPopularVm get instance => Get.put<ProductPopularVm>(ProductPopularVm()); 
+      HttpHelpers http = HttpHelpers.instance;
 
 ProductPopularVm(){
 fetchProductsPopular();
@@ -27,16 +27,20 @@ fetchProductsPopular();
       isLoading(true); 
       errorMessage(''); 
 
-      HttpHelpers http = HttpHelpers.instance;
       final response = await http.getRequest(url: HttpUrls.getProductPopular);
 
       if (response.statusCode == 200) {
         
         var jsonData = response.data;
-           List<dynamic> productData = jsonData['Product'];
+           List<dynamic> productData =  jsonData['data'];
+
         productPopular.value = productData
-            .map((categoryJson) => Product.fromJson(categoryJson))
+            .map((productJson) => Product.fromJson(productJson))
             .toList();
+                    print("ERRRRRRRRRRRRRRor${errorMessage.value}");
+
+
+            print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP${productPopular[0].name}");
           
   
 

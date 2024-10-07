@@ -20,8 +20,6 @@ class NLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // final controller=Get.put(LoginVm());
-    StorageHelper  storageHelper=StorageHelper.instance;
 
 LoginVm controller =LoginVm();
     return Form(

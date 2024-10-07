@@ -11,7 +11,7 @@ class NBillingAmountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController=CartController.instance;
+    final cartController=CartVM.instance;
     final subTotal=cartController.totalCartPrice.value;
     return  Column(
       children: [

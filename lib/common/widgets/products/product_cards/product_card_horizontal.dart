@@ -70,44 +70,46 @@ class NProductCardHorizontal extends StatelessWidget {
             ),
           ),
         
-        //Details
-        SizedBox(
-          width: 132,
-          child: Padding(
-                padding: const EdgeInsets.only(top:NSizes.sm,left:NSizes.sm,),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: NSizes.xs,),
-                 NProductTitleText(maxLines: 1,title:similarProduct.name  ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  //Pricing
-                   Flexible(child: NProductPriceText(price: similarProduct.price)),
+        // //Details
+        // SizedBox(
+        //   width: 132,
+        //   child: Padding(
+        //         padding: const EdgeInsets.only(top:NSizes.sm,left:NSizes.sm,),
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         const SizedBox(height: NSizes.xs,),
+        //          NProductTitleText(maxLines: 1,title:similarProduct.name  ),
+        //       Row(
+        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //         children: [
+        //           //Pricing
+        //            Flexible(child: NProductPriceText(price: similarProduct.price)),
             
-                  //Add to Cart
-                       Container(
+        //           //Add to Cart
+        //                Container(
                    
-                    decoration: const BoxDecoration(
-                       color: NColors.dark,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(NSizes.cardRadiusMd),
-                        bottomRight: Radius.circular(NSizes.productImageRadius))
-                    ),
-                    child:  const SizedBox(
-                      width: NSizes.iconLg*1.2,
-                      height: NSizes.iconLg*1.2,
-                      child: Center(child: Icon(Iconsax.add,color: NColors.white,))),
-                  ),
+        //             decoration: const BoxDecoration(
+        //                color: NColors.dark,
+        //               borderRadius: BorderRadius.only(
+        //                 topLeft: Radius.circular(NSizes.cardRadiusMd),
+        //                 bottomRight: Radius.circular(NSizes.productImageRadius))
+        //             ),
+        //             child:  const SizedBox(
+        //               width: NSizes.iconLg*1.2,
+        //               height: NSizes.iconLg*1.2,
+        //               child: Center(child: Icon(Iconsax.add,color: NColors.white,))),
+        //           ),
              
-                ],
-              )
-              ],
-            ),
-          ),
-        ),
+        //         ],
+        //       )
+        //       ],
+        //     ),
+        //   ),
+        // ),
+       
+       
         ],
       ),
     );

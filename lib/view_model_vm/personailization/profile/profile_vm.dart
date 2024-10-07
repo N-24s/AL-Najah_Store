@@ -6,6 +6,7 @@ import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
+import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
@@ -21,7 +22,7 @@ class ProfileVM extends GetxController {
 
   var userProfile = {}.obs;  
   var imagePath=''.obs;
-StorageHelper storageHelper=StorageHelper.instance;
+final localStorage=NLocalStorage.instance();
   @override
   void onInit() {
     super.onInit();
@@ -33,7 +34,7 @@ StorageHelper storageHelper=StorageHelper.instance;
   Future<String> getProfile()async{
    try{
      HttpHelpers http=HttpHelpers.instance;
-       String? token = storageHelper.readKey('accessToken');
+       String? token = localStorage.readData('accessToken');
 
 
        if(token!=null){
@@ -82,7 +83,7 @@ StorageHelper storageHelper=StorageHelper.instance;
   }) async {
     try {
            HttpHelpers http=HttpHelpers.instance;
-       String? token = storageHelper.readKey('accessToken');
+       String? token = localStorage.readData('accessToken');
 
       if (token != null) {
         Dio dio = Dio();

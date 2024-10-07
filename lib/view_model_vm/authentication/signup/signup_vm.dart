@@ -54,7 +54,6 @@ Future<void> register()async{
 
 try{
   // Start Loading
-  //Replace logo to animation
    NFullScreenLoader.openLoadingDialog("We are processing your information...", NImages.logo);
  
   //Check Internet Connectivity 
@@ -108,7 +107,6 @@ checkRegister({required String x}){
       title: x,
       message: x,
       );
-      StorageHelper storageHelper=StorageHelper.instance;
 
       Get.offNamed('/nav');
  

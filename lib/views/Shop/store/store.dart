@@ -10,6 +10,7 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
 import 'package:al_najah_store/views/Shop/cart/cart.dart';
 import 'package:al_najah_store/views/Shop/store/category_tab.dart';
@@ -19,7 +20,8 @@ import 'package:iconsax/iconsax.dart';
 
 
 class StoreScreen extends StatelessWidget {
-  
+      final brandVM=BrandVm.instance;
+
      final List<Tab> myTabs = List.generate(3, (index) {
     return Tab(text: 'Tab ${index + 1}');
   });
@@ -80,14 +82,17 @@ class StoreScreen extends StatelessWidget {
                       onPressed: (){}),
                       const SizedBox(height: NSizes.spaceBtwItems/1.5,),
       // Brand Grid
-                    NGridLayout(
-                      itemCount: 1,
-                      mainAxisExtent: 80, 
-                      itemBuilder: (_,index){
-                      return  NBrandCard(
-                        image:NImages.logo,
-                        showBorder: false,);
-                    })
+                    Obx(
+                      ()=> NGridLayout(
+                        itemCount: brandVM.featuredBrand.length,
+                        mainAxisExtent: 80, 
+                        itemBuilder: (_,index){
+                        return  NBrandCard(
+                      
+                          brand: brandVM.featuredBrand[index],
+                          showBorder: false,);
+                      }),
+                    )
       
       
       
@@ -104,16 +109,18 @@ class StoreScreen extends StatelessWidget {
           ];
         },
         //Body
-         body:  TabBarView(
-          children:  categoryVm.categories.map((category) {
-                return NCategoryTab(categoryId: category.id);
-              }).toList(),
-          
-       
+         body:  Expanded(
+           child: TabBarView(
+            children:  categoryVm.categories.map((category) {
+                  return NCategoryTab(categoryId: category.id);
+                }).toList(),
             
-        
-
-
+                  
+              
+                   
+           
+           
+           ),
          )),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:al_najah_store/common/widgets/image_text_widget/vertical_image_text.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_vertical_image_text_shimmer.dart';
 import 'package:al_najah_store/models/shop/category.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
@@ -17,7 +18,17 @@ class NHomeCategories extends StatelessWidget {
     return Obx(
       (){
           if (categoryVm.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return SizedBox(
+        height: 80,
+        child: ListView.builder(
+          scrollDirection:Axis.horizontal ,
+          shrinkWrap: true,
+          itemCount:6,
+          itemBuilder: (_,index)
+        {
+        return NVerticalImageTextShimmer();
+        }                    ),
+      ); ;
         }
 
         if (categoryVm.errorMessage.isNotEmpty) {
@@ -36,7 +47,8 @@ class NHomeCategories extends StatelessWidget {
           image:"${categoryVm.categories[index].image?? NImages.logo}", 
           title: "${categoryVm.categories[index].name}",onTap: ()=>(){},);
         }                    ),
-      );}
+      );
+      }
     );
 
   }

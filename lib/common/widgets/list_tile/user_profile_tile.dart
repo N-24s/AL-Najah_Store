@@ -27,7 +27,7 @@ final String? image;
       onTap: onPressed,
       child: ListTile(
         leading: NCircularImage(
-          imageUrl: image!,
+          imageUrl: image,
           width: 50,
           height: 50,
           padding: 0,

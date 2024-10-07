@@ -2,6 +2,7 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/views/authentication/login/login.dart';
+import 'package:al_najah_store/views/authentication/signup/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
@@ -15,7 +16,7 @@ class  OnboardingScreen extends StatelessWidget {
 
         headerBackgroundColor: Colors.white,
         finishButtonText: 'Register',
-        
+        onFinish: ()=>Get.offAll(()=>const SignupScreen()),
         finishButtonTextStyle: const TextStyle(color: NColors.orangeColor,fontSize: 20),
         finishButtonStyle: const FinishButtonStyle(
           backgroundColor: NColors.primaryColor,

@@ -7,8 +7,8 @@ import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
 import 'package:get/get.dart';
 
-class CartController extends GetxController{
-static CartController get instance=>Get.find<CartController>();
+class CartVM extends GetxController{
+static CartVM get instance=>Get.find<CartVM>();
 
 // varible 
 
@@ -16,7 +16,6 @@ Rx<int> noOfCartItems=0.obs;
 RxDouble totalCartPrice=0.0.obs;
 Rx<int> productQuantityInCart=0.obs;
 RxList<CartItem>  cartItems=<CartItem>[].obs;
-// final variationController=variationController.instance;
 
 CartController(){
   loadCartItems();

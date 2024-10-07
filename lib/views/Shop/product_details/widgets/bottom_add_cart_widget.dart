@@ -18,7 +18,7 @@ class NBottomAddCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller= CartController.instance;
+    final controller= CartVM.instance;
   
     controller.updateAlreadyAddedProductCount(product);
     print(controller.productQuantityInCart.value.toString());

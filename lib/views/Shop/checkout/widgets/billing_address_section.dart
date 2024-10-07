@@ -28,50 +28,54 @@ class NBillingAddressSection extends StatelessWidget {
       children: [
              NSectionHeading(title: "Shipping Address" ,buttonTitle:"Change",onPressed: (){ 
             addressVM.selectedNewAddressPopup(context);}),
-        Obx((){
-          if(addressVM.selectedAddress.value.selectedAddress==false)
-          return Text("Select Address");
-          return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                               Row(
-                                children: [
-                                  const Icon(Icons.person,color: Colors.grey ,size: 16),
-                    const SizedBox(width: NSizes.spaceBtwItems),
 
-               Text(addressVM.selectedAddress.value.name??'Null',overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyLarge),
+        // Obx((){
+        //   if(addressVM.selectedAddress.value.selectedAddress==false)
+        //   return Text("Select Address");
+        //   return Column(
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //                        Row(
+        //                         children: [
+        //                           const Icon(Icons.person,color: Colors.grey ,size: 16),
+        //             const SizedBox(width: NSizes.spaceBtwItems),
+
+        //        Text(addressVM.selectedAddress.value.name??'Null',overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyLarge),
               
-                                ],
-                               ),
-                                  const SizedBox(width: NSizes.spaceBtwItems/2),
+        //                         ],
+        //                        ),
+        //                           const SizedBox(width: NSizes.spaceBtwItems/2),
 
-                  Row(
+        //           Row(
                   
-                  children: [
-                    const Icon(Icons.phone,color: Colors.grey ,size: 16),
-                    const SizedBox(width: NSizes.spaceBtwItems,),
-              Text(addressVM.selectedAddress.value.phone??'Null',overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyMedium)
+        //           children: [
+        //             const Icon(Icons.phone,color: Colors.grey ,size: 16),
+        //             const SizedBox(width: NSizes.spaceBtwItems,),
+        //       Text(addressVM.selectedAddress.value.phone??'Null',overflow: TextOverflow.ellipsis,style: Theme.of(context).textTheme.bodyMedium)
              
               
-                  ],
-                 ),
-                           const SizedBox(height: NSizes.spaceBtwItems/2),
+        //           ],
+        //          ),
+        //                    const SizedBox(height: NSizes.spaceBtwItems/2),
               
               
-                  Row(
-                  children: [
-                    const Icon(Icons.location_on,color: Colors.grey ,size: 16),
-                    const SizedBox(width: NSizes.spaceBtwItems,),
+        //           Row(
+        //           children: [
+        //             const Icon(Icons.location_on,color: Colors.grey ,size: 16),
+        //             const SizedBox(width: NSizes.spaceBtwItems,),
            
-          Text("${addressVM.selectedAddress.value.address+'x,jfnc,sv'?? 'Null'}",style: Theme.of(context).textTheme.bodyMedium, softWrap: true,overflow: TextOverflow.ellipsis,),
-                    const SizedBox(height: NSizes.spaceBtwItems,),
+        //   Text("${addressVM.selectedAddress.value.address+'x,jfnc,sv'?? 'Null'}",style: Theme.of(context).textTheme.bodyMedium, softWrap: true,overflow: TextOverflow.ellipsis,),
+        //             const SizedBox(height: NSizes.spaceBtwItems,),
               
-                  ],
-                 ),
-              ],
+        //           ],
+        //          ),
+        //       ],
                   
-          );
-        })]);
+        //   );
+     
+     
+        // })
+        ]);
   
   
 }
