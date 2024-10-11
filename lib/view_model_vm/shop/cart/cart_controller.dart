@@ -17,6 +17,7 @@ RxDouble totalCartPrice=0.0.obs;
 Rx<int> productQuantityInCart=0.obs;
 RxList<CartItem>  cartItems=<CartItem>[].obs;
 
+
 CartController(){
   loadCartItems();
   
@@ -97,6 +98,7 @@ Get.defaultDialog(
 );
 }
 
+
 // //Already Add
 void updateAlreadyAddedProductCount(Product product){
   for (int i=0; i<cartItems.length; i++) {
@@ -171,11 +173,14 @@ int getProductQuantityInCart(String productId){
   return foundItem;
 }
 
-// cart 23:55
 
 void clearCart(){
   productQuantityInCart.value = 0;
   cartItems.clear();
   updateCart();
 }
+
+
+
+
 }

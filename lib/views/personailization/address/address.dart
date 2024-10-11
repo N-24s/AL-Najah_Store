@@ -14,7 +14,7 @@ import 'package:iconsax/iconsax.dart';
 
 class UserAddressScreen extends StatelessWidget {
   UserAddressScreen({super.key});
-  final AddressVm addressVM = AddressVm.instance;
+  final  addressVM = AddressVm.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class UserAddressScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (addressVM.addresses.isEmpty) {
+          if (addressVM.allAddress.isNotEmpty) {
             return const Center(child: Text("No addresses found"));
           }
 
@@ -44,13 +44,13 @@ class UserAddressScreen extends StatelessWidget {
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(), 
                 shrinkWrap: true, 
-                itemCount: addressVM.addresses.length,
+                itemCount: addressVM.allAddress.length,
                 itemBuilder: (context, index) {
                   return NSingleAddress(
-                    selectedAddress: false,
-                    address: addressVM.addresses[index],
+                    // selectedAddress: false,
+                    address: addressVM.allAddress[index],
                     onTap: () {
-                      Address address = Address.fromJson(addressVM.addresses[index]);
+                      Map<String,dynamic> address = addressVM.allAddress[index];
                     },
                   );
                 },

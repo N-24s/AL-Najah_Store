@@ -1,31 +1,20 @@
-import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
-import 'package:al_najah_store/common/widgets/image_text_widget/vertical_image_text.dart';
-import 'package:al_najah_store/common/widgets/images/n_rounded_image.dart';
-import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
+
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_details_shimmer.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_image_slider_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_horizontal.dart';
-import 'package:al_najah_store/common/widgets/products/product_cards/product_card_rectangles.dart';
-import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
+
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
-import 'package:al_najah_store/models/shop/product.dart';
-import 'package:al_najah_store/utilis/constants/colors.dart';
-import 'package:al_najah_store/utilis/constants/image_strings.dart';
+
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
-import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
-import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/Shop/checkout/checkout.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/bottom_add_cart_widget.dart';
-import 'package:al_najah_store/views/Shop/product_details/widgets/product_attributes.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_detail_image_slider.dart';
 import 'package:al_najah_store/views/Shop/product_details/widgets/product_meta_data.dart';
-import 'package:al_najah_store/views/Shop/product_details/widgets/rating_share_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:provider/provider.dart';
+
 import 'package:readmore/readmore.dart';
 
 
@@ -47,35 +36,25 @@ class ProductDetail extends StatelessWidget {
 
     final dark=NHelperFunctions.isDarkMode(context);
    
-    return Scaffold(
-      
-      bottomNavigationBar:       Obx(
+    return     Obx(
           (){
           if (productVm.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
+            return const NProductDetailsShimmer();
           }
           
           if (productVm.errorMessage.isNotEmpty) {
           
             return Center(child: Text(productVm.errorMessage.value));
-          }
-           return        NBottomAddCart(product: productVm.producDetails.value,);
+          } return Scaffold(
+      
+      bottomNavigationBar:    NBottomAddCart(product: productVm.producDetails.value,),
 
           
-                }
+                
                  
                    
-        ),
-      body:      Obx(
-          (){
-          if (productVm.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          
-          if (productVm.errorMessage.isNotEmpty) {
-          
-            return Center(child: Text(productVm.errorMessage.value));
-          } return SingleChildScrollView(
+        
+      body:      SingleChildScrollView(
         child: Column(
           //Product Images Silder
         children: [
@@ -164,12 +143,12 @@ class ProductDetail extends StatelessWidget {
 
                 ],
               ),
-            );}
+            )
         
 
 
 
-        ),
+        );}
         
         );
       

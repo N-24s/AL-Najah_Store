@@ -1,3 +1,4 @@
+import 'package:al_najah_store/models/authentication/login/user.dart';
 import 'package:get_storage/get_storage.dart';
 
 class NLocalStorage {
@@ -58,6 +59,30 @@ Future<void> clearAll<T>()async{
 }
 
 
+  //Save User to get storage
+
+ saveUser(User u){
+
+try{
+      final localStorage=NLocalStorage.instance();
+    localStorage.writeData("name", u.name!);
+    localStorage.writeData("accessToken", u.token!);
+    localStorage.writeData("email", u.email!);
+    localStorage.writeData("avatar", u.avatar);
+    localStorage.writeData("bio", u.bio??'null');
+    localStorage.writeData("city", u.city??'null');
+    localStorage.writeData("phone", u.phone??'null');
+    localStorage.writeData("role", u.role??'null');
+
+}catch (e){
+  print( "Save Users in Loacl Storage $e");
+}
+
+
+
+
+
+  }
 
 
 

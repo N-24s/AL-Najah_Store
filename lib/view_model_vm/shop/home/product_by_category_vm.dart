@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'package:al_najah_store/main.dart';
-import 'package:al_najah_store/models/shop/category.dart';
+
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
@@ -14,8 +13,11 @@ class ProductByCategoryVm extends GetxController {
         
         
          var productByCategory = <Product>[].obs;
+                  // var productByBrand = <Product>[].obs;
+
           var isLoading = false.obs; 
         var errorMessage = ''.obs;
+          
        
 
 
@@ -44,9 +46,52 @@ class ProductByCategoryVm extends GetxController {
       if (response.statusCode == 200) {
         
         var jsonData = response.data;
+        Products p=Products.fromJson(jsonData);
+        print("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG${p}");
            List<dynamic> productData = jsonData['data'];
         productByCategory.value = productData.map((categoryJson) => Product.fromJson(categoryJson)).toList();
        
+
+      }
+    } on DioException catch (d) {
+      ApiException.handleException(d); 
+    } catch (e) {
+      errorMessage('Error: $e'); 
+    } finally {
+      isLoading(false); 
+    }
+  }
+ 
+
+
+// BY Brand
+
+
+    Future<void> fetchProductsByBrand(String brandId) async {
+    try {
+      isLoading(true); 
+      errorMessage(''); 
+      HttpHelpers http = HttpHelpers.instance;
+      final response = await http.getRequest(url:"https://store.actnow-ye.com/api/products_by_brand/2");
+
+      if (response.statusCode == 200) {
+
+        Map<String, dynamic> jsonData = response.data;
+        print("jsonData.runtimeType : ${jsonData.runtimeType}");
+        // ResponsModel r=ResponsModel.fromJson(jsonData);
+        // print(r.products[0].name);
+      //              List<Map<String,dynamic>> productData = r.products;
+
+      // List<Product1> f=  r.products;
+      // List<Product1>.from(r.p.map((x) => Product1.fromJson(x))).toList()
+          //  List<Map<String,dynamic>> productData = jsonData['data'];
+// print("LLLLLLLLLLLLLL${f[0].name}");
+
+        // productByBrand.value = f.map((categoryJson) => Product1.fromJson(categoryJson)).toList();
+
+      //  print("Product BY Brnad 0 : ${ productByBrand[0]}");
+                        //  print(jsonData['data']);
+
 
       }
     } on DioException catch (d) {

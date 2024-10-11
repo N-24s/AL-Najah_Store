@@ -1,4 +1,5 @@
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/text_field/text_form_field.dart';
 import 'package:al_najah_store/models/personailization/address.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -16,6 +17,7 @@ class AddNewAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return  Scaffold(
       appBar: const NAppBar(title: Text("Add New Address"),),
       body: SingleChildScrollView(
@@ -50,15 +52,18 @@ class AddNewAddressScreen extends StatelessWidget {
                 const SizedBox(height: NSizes.spaceBtwSections),
                   
                  SizedBox(width: double.infinity,child: ElevatedButton(
-                  onPressed: ()async{
+                  onPressed:() async{
                       if(!addressVm.addressFormKey.currentState!.validate()) return;
-                      Data a=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,createdAt:DateTime.now(),updatedAt: DateTime.now(),id: 1,latitude: '',longitude: '');
-                     await addressVm.addAddress(a);
-                     print("//////////////////////////////////////////////////////////////////////////////////////////////////");
+                      Data address=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,createdAt:DateTime.now(),updatedAt: DateTime.now(),id: 1,latitude: '',longitude: '');
+                     await addressVm.addAddress(address);
+                     NLoaders.customToast(message: "Added Address");
+                     addressVm.desController.clear();
+                     addressVm.phoneController.clear();
+                     addressVm.titleController.clear();
                     await addressVm.getAllAddress();
+                
 
-
-                  }, 
+                  },
                   child: const Text("Save")),)
 
              

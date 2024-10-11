@@ -50,6 +50,7 @@ final CartItem cartItem;
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+              
                 //  NBrandTitleWithVerifiedIcon(title: product.brand!,),
                  Flexible(child: NProductTitleText(title:cartItem.name?? '',maxLines: 1,)),
                Flexible(child: IconButton(onPressed: ()=>cartVM.removeOneFromCart(cartItem),icon: Icon

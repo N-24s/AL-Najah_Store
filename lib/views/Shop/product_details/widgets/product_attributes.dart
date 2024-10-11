@@ -81,12 +81,12 @@ class NProductAttributes extends StatelessWidget {
         const SizedBox(height: NSizes.spaceBtwItems,),
 
         // Attributes
-          Column(
+          const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            const NSectionHeading(title: "Colors"),
-            const SizedBox(height: NSizes.spaceBtwItems/2),
+            NSectionHeading(title: "Colors"),
+            SizedBox(height: NSizes.spaceBtwItems/2),
 
         //  Wrap(
         //   children: [

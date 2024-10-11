@@ -1,9 +1,12 @@
 import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
+import 'package:al_najah_store/view_model_vm/shop/order/order_vm.dart';
 import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_address_section.dart';
 import 'package:al_najah_store/views/Shop/checkout/widgets/billing_amount_section.dart';
@@ -17,7 +20,9 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addressVM=AddressVm.instance;
+    // final addressVM=AddressVm.instance;
+
+    final orderVM=OrderVM.instance;
 
 
     final dark=NHelperFunctions.isDarkMode(context);
@@ -82,7 +87,10 @@ class CheckoutScreen extends StatelessWidget {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(NSizes.defaultSpace),
           child: ElevatedButton(
-            onPressed: (){},
+            onPressed: ()async{
+             await orderVM.extractDataFromCart();
+             NLoaders.customToast(message: "Send Order!");
+            },
               // SuccessScreen(
               //   image: NImages.OnBoardingImage3,
               //   title: 'Payment Success!',

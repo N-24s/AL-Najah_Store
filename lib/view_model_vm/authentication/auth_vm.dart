@@ -1,18 +1,27 @@
-import 'dart:io';
-
 import 'package:al_najah_store/models/authentication/login/user.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
-import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/helpers/upload_image.dart';
 import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:dio/dio.dart';
 
-class UserVm {
-  
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-   Future<String> login(User user)async{
+
+class AuthVm extends GetxController{
+static AuthVm get instance=>Get.find<AuthVm>();
+
+NLocalStorage _nLocalStorage=NLocalStorage.instance();
+
+
+
+
+
+
+Future<String> login(User user)async{
    try{
      HttpHelpers http=HttpHelpers.instance;
 
@@ -22,10 +31,9 @@ class UserVm {
           'Accept':'application/json',
         },
       ), );
-       User u=User.fromJson(res.data['data']);
-       print(u.email);
-
-       saveUser(u);
+             User u=User.fromJson(res.data['data']);
+            _nLocalStorage.saveUser(u);
+ 
        return "Success";
        
     
@@ -36,15 +44,13 @@ class UserVm {
    }
   
    catch(e){
-     return "Admin for support$e";
+     return "Error is :$e";
    }
   }
 
 
 
-
-
-   Future<String> register(User user)async{
+Future<String> register(User user)async{
 
 
     
@@ -64,10 +70,8 @@ class UserVm {
           'Accept':'application/json',
         },
       ), );
-       User u=User.fromJson(res.data['data']);
-       print(u.email);
-
-       saveUser(u);
+        User u=User.fromJson(res.data['data']);
+            _nLocalStorage.saveUser(u);
        return "Success";
        
     
@@ -78,32 +82,13 @@ class UserVm {
    }
   
    catch(e){
-     return "Admin for support${e.toString()}";
+     return "Error is :${e.toString()}";
    }
   }
 
 
   
-  saveUser(User u){
-
-try{
-      final localStorage=NLocalStorage.instance();
-    localStorage.writeData("name", u.name!);
-    localStorage.writeData("accessToken", u.token!);
-    localStorage.writeData("email", u.email!);
-    localStorage.writeData("avatar", u.avatar);
-    localStorage.writeData("bio", u.bio??'null');
-    localStorage.writeData("city", u.city??'null');
-    localStorage.writeData("phone", u.phone??'null');
-    localStorage.writeData("role", u.role??'null');
-
-}catch (e){
-  print( "Save Users in Loacl Storage $e");
-}
 
 
 
-
-
-  }
 }

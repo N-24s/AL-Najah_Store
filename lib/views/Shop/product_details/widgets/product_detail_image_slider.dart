@@ -143,7 +143,6 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/image_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';

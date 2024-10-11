@@ -22,7 +22,11 @@ class HttpUrls {
     // static const getProductPopular='https://dummyjson.com/c/252f-a8f0-4c36-9cc2';
 
 // Brands
-    static const getStore='https://store.actnow-ye.com/api/store';
+    static const getStore_Url='https://store.actnow-ye.com/api/store';
+    
+    static const getProductByBrand_Url='https://store.actnow-ye.com/api/products_by_brand/';
+    static const getAllBrands_Url='https://store.actnow-ye.com/api/brands';
+
 
 
 
@@ -44,6 +48,10 @@ static const rootAddress='$root/addresses';
 // static const addAddress='https://store.actnow-ye.com/api/addresses';
 // static const updateAddress='https://store.actnow-ye.com/api/addresses/';
 // static const deleteAddress='https://store.actnow-ye.com/api/addresses/';
+
+//Orders
+static const order_Url='https://store.actnow-ye.com/api/orders';
+
 
 
 

@@ -1,4 +1,6 @@
 import 'package:al_najah_store/app.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_vm.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_validation.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
@@ -7,7 +9,7 @@ import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/home_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
-import 'package:al_najah_store/view_model_vm/shop/image_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/order/order_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +24,12 @@ Future<void> main()async{
   await GetStorage.init();
 
 
+
+// Auth
+  Get.lazyPut<AuthVm>(() => AuthVm(),fenix: true);
+    Get.lazyPut<AuthValidation>(() => AuthValidation(),fenix: true);
+
+
 // Home
   Get.lazyPut<HomeController>(() => HomeController(),fenix: true);
 
@@ -32,7 +40,6 @@ Future<void> main()async{
   //Products
   Get.lazyPut<ProductVM>(() => ProductVM(),fenix: true);
   Get.lazyPut<ProductPopularVm>(() => ProductPopularVm(),fenix: true);
-  // Get.lazyPut<ProductImageVM>(() => ProductImageVM(),fenix: true);
 
   // Profile
   Get.lazyPut<ProfileVM>(() => ProfileVM(),fenix: true);
@@ -45,6 +52,9 @@ Future<void> main()async{
 
  // Brands
   Get.lazyPut<BrandVm>(()=>BrandVm(),fenix: true);
+
+//Order   
+Get.lazyPut<OrderVM>(()=>OrderVM(),fenix: true);
 
 
 

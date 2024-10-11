@@ -31,31 +31,32 @@ final localStorage=NLocalStorage.instance();
 final http=HttpHelpers.instance;
 
 final DatabaseHelper dbHelper = DatabaseHelper();
-  final RxList<Map<String, dynamic>> addresses = <Map<String, dynamic>>[].obs;
   final titleController = TextEditingController();
   final desController = TextEditingController();
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
-  final addressController = TextEditingController();
 
 GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
 
 RxBool refreshData=true.obs;
-// final RxList<Address> selectedAddress=false.obs;
-final RxList<Address> allAddress=<Address>[].obs;
+ final selectedAddress=<String,dynamic>{}.obs;
+final RxList<dynamic> allAddress=<dynamic>[].obs;
 
   var isLoading = false.obs; 
   var errorMessage = ''.obs;
 
 AddressVm(){
-  // loadAddresses();
   getAllAddress();
 }
 
+
+// Get  All Address
  Future<String> getAllAddress()async{
    try{
 
-       String? token = localStorage.readData('accessToken');
+    isLoading(true); 
+    errorMessage('');       
+     String? token = localStorage.readData('accessToken');
        if(token!=null){
         
      Response response=await http.getRequest(url: HttpUrls.rootAddress,options: Options(
@@ -63,38 +64,36 @@ AddressVm(){
           'Authorization' : 'Bearer $token',
           'Content-Type': 'application/json',
           'Accept':'application/json',
-        },
-        
-        
+        }
       ), );
+      
+        if (response.statusCode == 200) {
 
-      var jsonData = response.data;
-
-      print("GET ALL Address: ${jsonData}");
-    return "Success";
-
-
-       }
-       else{
-        return "Token not found, please login again.";
+            var jsonData = response.data;
+             allAddress.value= jsonData['data'];
 
 
-       }
+        }
+        }
+        else{
+          return 'Token is not found';
+        }
 
-       
-    
+           return "Success";
+
    
-   }on DioException catch(x){
-  return ApiException.handleException(x);
- 
-   }
-  
-   catch(e){
-     return "Error $e";
-   }
+   
+   
+  } on DioException catch (d) {
+   return ApiException.handleException(d); 
+  } catch (e) {
+    return errorMessage('Error: $e'); 
+  } finally {
+    isLoading(false); 
   }
+}
 
-
+// Delete Address
  Future<String> deleteAddress(String id)async{
    try{
 
@@ -113,10 +112,10 @@ AddressVm(){
         
       ), );
 
-      var jsonData = response.data;
+        getAllAddress();
+        isLoading.value=false;
 
-      print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa${jsonData}");
-         print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd${jsonData}");
+
     return "Success";
 
 
@@ -141,7 +140,7 @@ AddressVm(){
   }
 
 
-
+// Add Address
  Future<String> addAddress(Data address)async{
 
 
@@ -163,8 +162,7 @@ AddressVm(){
           'Accept':'application/json',
         },
       ), );
-      //  Address u=Address.fromJson(res.data['data']);
-       print("ADD Address : ${res.data}");
+      
 
        return "Success";
        }
@@ -187,7 +185,7 @@ AddressVm(){
    }
   }
 
-
+// Update Address
  Future<String> updateddress(Data address,String id)async{
 
 
@@ -195,7 +193,6 @@ AddressVm(){
    try{
      HttpHelpers http=HttpHelpers.instance;
    String? token = localStorage.readData('accessToken');
-   print("$token");
    
 
 
@@ -209,12 +206,10 @@ AddressVm(){
           'Accept':'application/json',
         },
       ), );
-       print("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE4${res.data}");
-
+      getAllAddress();
        return "Success";
        }
         else{
-        print("Token not found, please login again.");
         return 'Token not found, please login again.';
 
 
@@ -241,82 +236,24 @@ AddressVm(){
 
 
 
-// Sqflite
-//   Future<void> loadAddresses() async {
+  Future<dynamic> selectAddress(Map<String,dynamic> newSelectedAddress)async{
+  try{
+    Get.defaultDialog(
+      title: '',
+      onWillPop: ()async {return false;},
+      barrierDismissible: false,
+      backgroundColor: Colors.transparent,content: CircularProgressIndicator(),
+    );
+    // newSelectedAddress.selectedAddress=true;
+    selectedAddress.value=newSelectedAddress;
 
-//     try{
-
-//       isLoading(true); 
-//       errorMessage(''); 
-//       final addresse = await dbHelper.getAddresses();
-   
-//       addresses.clear();
-//       addresses.addAll(addresse);
-//     }on DioException catch(e){
-//       ApiException.handleException(e);
-//     }catch (e){
-//       errorMessage('$e');
-//     }finally{
-//       isLoading(false);
-//     }
-    
-
-//   }
-
-
-//   Future<void> addAddressf() async {
-//     await dbHelper.insertAddress({
-//       'name': nameController.text,
-//       'address': addressController.text,
-//       'phone': phoneController.text,
-//     });
-//     loadAddresses();
-//     clearControllers();
-//   }
-
-
-//   // Future<void> updateAddress(int id) async {
-//   //   await dbHelper.updateAddress({
-//   //     'id': id,
-//   //     'name': nameController.text,
-//   //     'address': addressController.text,
-//   //     'phone': phoneController.text,
-//   //   });
-//   //   loadAddresses();
-//   //   clearControllers();
-//   // }
-
-//   // Future<void> deleteAddress(int id) async {
-//   //   await dbHelper.deleteAddress(id);
-//   //   loadAddresses();
-//   // }
-
-//   void clearControllers() {
-//     nameController.clear();
-//     addressController.clear();
-//     phoneController.clear();
-//   }
-
-
-// //   Future<dynamic> selectAddress(Address newSelectedAddress)async{
-// //   try{
-// //     Get.defaultDialog(
-// //       title: '',
-// //       onWillPop: ()async {return false;},
-// //       barrierDismissible: false,
-// //       backgroundColor: Colors.transparent,content: CircularProgressIndicator(),
-// //     );
-// //     newSelectedAddress.selectedAddress=true;
-// //     selectedAddress.value=newSelectedAddress;
-
-// //       await newSelectedAddress;
-// //       Get.back();
+      Get.back();
   
-// //   }catch (e){
-// //     print("ADddressssssssssss$e");
-// //   }
+  }catch (e){
+    print("ADddressssssssssss$e");
+  }
 
-// // }
+}
 
 
 Future<dynamic> selectedNewAddressPopup(BuildContext context) {
@@ -332,17 +269,15 @@ final dark =NHelperFunctions.isDarkMode(context);
           NSectionHeading(title: "Select Address", showActionButton: false),
           Expanded( 
             child: ListView.builder(
-              itemCount:addresses.length,
+              itemCount:allAddress.length,
               itemBuilder: (context, index) {
                 return NSingleAddress(
-                  address:addresses[index],
+                  address:allAddress[index],
                   onTap: () async{
-                    
-                    Address address = Address.fromJson(addresses[index]);
-                    // await selectAddress(address);
+                    await selectAddress( allAddress[index]);
                     Get.back();
                   },
-                 selectedAddress: false, 
+                //  selectedAddress: false, 
 
                 );
               },

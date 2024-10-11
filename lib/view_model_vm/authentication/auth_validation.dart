@@ -1,27 +1,30 @@
-import 'dart:ffi';
-import 'dart:io';
 
 import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/models/authentication/login/user.dart';
-import 'package:al_najah_store/navigation_menu.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
-import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
+import 'package:al_najah_store/utilis/helpers/upload_image.dart';
+import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:al_najah_store/utilis/popups/full_screen_loader.dart';
-import 'package:al_najah_store/view_model_vm/authentication/login/user_vm.dart';
-import 'package:al_najah_store/views/authentication/splash/splash.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../utilis/constants/image_strings.dart';
+import '../../utilis/constants/image_strings.dart';
 
-class SignUpVm extends GetxController{
-UserVm uvm=UserVm();
+class AuthValidation extends GetxController{
+static AuthValidation get instance=> Get.find<AuthValidation>();
+
+NLocalStorage _nLocalStorage=NLocalStorage.instance();
 
   // static LoginVm get instance => Get.find();
   // final httpHelpers=HttpHelpers.instance;
@@ -40,12 +43,11 @@ final name=TextEditingController();
 final password=TextEditingController();
 final password_confirmation=TextEditingController();
 
-
-
-
-
+GlobalKey<FormState> loginFormKey=GlobalKey<FormState>();
 GlobalKey<FormState> signUpFormKey=GlobalKey<FormState>();
 
+
+final auth=AuthVm.instance;
 
 
 // SignUp
@@ -56,11 +58,7 @@ try{
   // Start Loading
    NFullScreenLoader.openLoadingDialog("We are processing your information...", NImages.logo);
  
-  //Check Internet Connectivity 
-  // final  isConnected=await NetworkManager.instance.isConnectedh;
-  // !isConnected
-  // if(isConnected == false) return;
-      
+ 
   //Form Validation
   if(!signUpFormKey.currentState!.validate()) return;
   
@@ -75,9 +73,56 @@ try{
   }
   
      User user= User(email: email.text,password: password.text,name: name.text,password_confirmation: password_confirmation.text,avatar: imagePath.value);
-      print(user.avatar);
-      uvm.register(user).then((x){
-        checkRegister(x: x);
+      auth.register(user).then((x){
+        checkAuth(x: x);
+    });
+           
+  
+
+
+
+
+
+}catch(e){
+  //Show some Generic Error to the user
+  NLoaders.errorSnackBar(title: "Oh Snap!", message: e.toString());
+
+
+
+}finally{
+//Remove Loader
+NFullScreenLoader.stopLoading();
+}
+
+}
+
+
+
+// Login validation
+Future<void> login()async{
+
+
+try{
+  // Start Loading
+   NFullScreenLoader.openLoadingDialog("We are processing your information...", NImages.logo);
+ 
+ 
+  //Form Validation
+  if(!loginFormKey.currentState!.validate()) return;
+  
+
+  // Privacy Policy Check 
+  if(!rememberMe.value){
+    NLoaders.warningSnackBar(
+      title: "Accept Privacy Policy",
+      message: "In order to create account, you must have to read accept the Privacy Policy & Terms of Use."
+      );
+      return;
+  }
+  
+     User user= User(email: email.text,password: password.text);
+      auth.login(user).then((x){
+        checkAuth(x: x);
         });
            
   
@@ -100,7 +145,9 @@ NFullScreenLoader.stopLoading();
 
 }
 
-checkRegister({required String x}){
+
+// Check Auth
+checkAuth({required String x}){
    if(x=="Success"){
 
      NLoaders.successSnackBar(
@@ -118,8 +165,8 @@ checkRegister({required String x}){
       }
 }
 
-
-  Future<void> pickImage(ImageSource source) async {
+//Pick Iamge
+Future<void> pickImage(ImageSource source) async {
     ImagePicker _picker = ImagePicker();
     XFile? image = await _picker.pickImage(source: source);
 

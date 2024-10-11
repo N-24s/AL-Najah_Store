@@ -2,20 +2,19 @@ import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
-import 'package:al_najah_store/view_model_vm/authentication/signup/signup_vm.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
 class NTermsAndConditionsCheckbox extends StatelessWidget {
-  const NTermsAndConditionsCheckbox({
+   NTermsAndConditionsCheckbox({
     super.key,
   });
 
-
+final authValidation =AuthValidation.instance;
   @override
   Widget build(BuildContext context) {
-    SignUpVm controller =SignUpVm();
 
 
         final dark=NHelperFunctions.isDarkMode(context);
@@ -23,7 +22,7 @@ class NTermsAndConditionsCheckbox extends StatelessWidget {
     return Row(
       children: [
         SizedBox(height: 24,width: 24,  child: 
-              Obx(()=> Checkbox(value: controller.privacyPolicy.value, onChanged: (value)=>controller.privacyPolicy.value=!controller.privacyPolicy.value)),),     
+              Obx(()=> Checkbox(value: authValidation.privacyPolicy.value, onChanged: (value)=>authValidation.privacyPolicy.value=!authValidation.privacyPolicy.value)),),     
                 const SizedBox(height: NSizes.spaceBtwItems),
         Text.rich(TextSpan(
         children: [

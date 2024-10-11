@@ -8,8 +8,11 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
+import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/order/order_vm.dart';
 import 'package:al_najah_store/views/Shop/cart/cart.dart';
+import 'package:al_najah_store/views/Shop/order/order.dart';
 import 'package:al_najah_store/views/authentication/login/login.dart';
 import 'package:al_najah_store/views/personailization/address/address.dart';
 import 'package:al_najah_store/views/personailization/settings/profile/profile.dart';
@@ -29,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+AddressVm a=AddressVm();
 
     final localStorage=NLocalStorage.instance();
     return Scaffold(
@@ -60,9 +63,14 @@ class SettingsScreen extends StatelessWidget {
                   //Account Setting
                   const NSectionHeading(title: "Account Setting",showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
-                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: ()=>Get.to(()=> UserAddressScreen()),),
+                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: (){
+                                    a.getAllAddress();
+
+                  Get.to(()=>UserAddressScreen());
+                  }),
                  NSettingMenuTile(title: "My Cart", subTitle: "vnkl;mlk", icon: Iconsax.shopping_cart,onTap: ()=>Get.to(()=> const CartScreen())),
-                 NSettingMenuTile(title: "My Orders", subTitle: "vnkl;mlk", icon: Iconsax.bag_tick,onTap: (){},),
+                 NSettingMenuTile(title: "My Orders", subTitle: "vnkl;mlk", icon: Iconsax.bag_tick,onTap: () async { Get.to(()=>const OrderScreen());
+                 }),
                  NSettingMenuTile(title: "Notifiactions", subTitle: "vnkl;mlk", icon: Iconsax.notification,onTap: (){},),
 
                  //App Settings

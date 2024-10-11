@@ -3,8 +3,11 @@ import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/appbar/tabbar.dart';
 import 'package:al_najah_store/common/widgets/brands/brand_card.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_brand_card_shimmer.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/store_screen_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
+import 'package:al_najah_store/models/shop/brand/brand.dart';
 import 'package:al_najah_store/models/shop/category.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
@@ -12,7 +15,10 @@ import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
+import 'package:al_najah_store/views/Shop/brands/all_brands.dart';
+import 'package:al_najah_store/views/Shop/brands/all_products_brands.dart';
 import 'package:al_najah_store/views/Shop/cart/cart.dart';
+import 'package:al_najah_store/views/Shop/home/home.dart';
 import 'package:al_najah_store/views/Shop/store/category_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,9 +42,12 @@ class StoreScreen extends StatelessWidget {
               body: 
  Obx(() {
         if (categoryVm.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+                                    return Center(child: CircularProgressIndicator(),);
+
+          // return const StoreScreenShimmer();
         }
-    return DefaultTabController(
+    return
+     DefaultTabController(
       length: categoryVm.categories.length,
       child: Scaffold(
       
@@ -78,21 +87,30 @@ class StoreScreen extends StatelessWidget {
       
                      //Featured Brands
                      NSectionHeading(
-                      title: 'Featured Brands', 
-                      onPressed: (){}),
+                      title: 'Featured Brands',
+                   
+                      onPressed: ()=>Get.to(()=> const AllBrandsScreen())),
+                      
                       const SizedBox(height: NSizes.spaceBtwItems/1.5,),
       // Brand Grid
                     Obx(
-                      ()=> NGridLayout(
+                      (){ 
+                        if(brandVM.isLoading.value){
+                          return Center(child: CircularProgressIndicator(),);
+                        //  return const NBrandCardShimmer();
+                        }
+                        
+                        
+                       return NGridLayout(
                         itemCount: brandVM.featuredBrand.length,
                         mainAxisExtent: 80, 
                         itemBuilder: (_,index){
                         return  NBrandCard(
-                      
+                            onTap: ()=>Get.to(()=> AllProductsByBrandScreen(brandId:brandVM.featuredBrand[index].id)),
                           brand: brandVM.featuredBrand[index],
                           showBorder: false,);
-                      }),
-                    )
+                      });
+        })
       
       
       
@@ -109,23 +127,22 @@ class StoreScreen extends StatelessWidget {
           ];
         },
         //Body
-         body:  Expanded(
-           child: TabBarView(
-            children:  categoryVm.categories.map((category) {
-                  return NCategoryTab(categoryId: category.id);
-                }).toList(),
+         body:  TabBarView(
+          children:  categoryVm.categories.map((category) {
+                return
+                 NCategoryTab(categoryId: category.id);
+              }).toList(),
+          
+                
             
-                  
-              
-                   
-           
-           
-           ),
+                 
+         
+         
          )),
       ),
     );
   }),
-             );
+              );
              
 
   }

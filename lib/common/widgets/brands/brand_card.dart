@@ -1,6 +1,7 @@
 import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
 import 'package:al_najah_store/common/widgets/images/n_circular_image.dart';
 import 'package:al_najah_store/common/widgets/texts/n_brand_title_text_with_verified_icon.dart';
+import 'package:al_najah_store/models/shop/brand/brand.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/enums.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
@@ -19,11 +20,11 @@ class NBrandCard extends StatelessWidget {
   });
   final bool showBorder;
   final void Function()? onTap;
-  final Map<String,dynamic> brand;
+  final Brand brand;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
     onTap: onTap,
      child: NRoundedContainer(
       padding: const EdgeInsets.all(NSizes.sm),
@@ -61,7 +62,7 @@ class NBrandCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           
-          NBrandTitleWithVerifiedIcon(title: brand['name'], brandTextSize: TextSize.large,),
+          NBrandTitleWithVerifiedIcon(title: brand.name!, brandTextSize: TextSize.large,),
           Text(
             '256 Produtcs',
             overflow: TextOverflow.ellipsis,

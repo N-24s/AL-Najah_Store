@@ -1,20 +1,22 @@
+import 'package:al_najah_store/models/shop/category.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/utilis/helpers/images_helpers.dart';
 import 'package:flutter/material.dart';
 
 
 class NVerticalImageText extends StatelessWidget {
   const NVerticalImageText({
     super.key, 
-    required this.image, 
-    required this.title,  
+ 
     this.textColor=NColors.white, 
     this.backgroundColor, 
-    this.onTap,
+    this.onTap, 
+    required this.category,
   });
 
-final String image,title;
+final CategoryModel category;
 final Color textColor;
 final Color? backgroundColor;
 final void Function()? onTap;
@@ -37,17 +39,19 @@ final void Function()? onTap;
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: Center(
-                  child: Image.asset(
-                    image,fit: BoxFit.cover,
-                    //  color:dark?NColors.light:NColors.dark 
-                    ),
+                  child: ImageHandler(imageSource: category.image,fit: BoxFit.cover,)
+                  
+                  // Image.asset(
+                  //  category.image!,fit: BoxFit.cover,
+                  //   //  color:dark?NColors.light:NColors.dark 
+                  //   ),
                 ),
               ),
                   const SizedBox( height: NSizes.spaceBtwItems/2,),
         
               SizedBox(
                 width: 55,
-                child: Text(title, style: Theme.of(context).textTheme.labelMedium!.apply(color: textColor),
+                child: Text(category.name, style: Theme.of(context).textTheme.labelMedium!.apply(color: textColor),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 ),

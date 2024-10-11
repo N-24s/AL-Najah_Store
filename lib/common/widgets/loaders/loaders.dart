@@ -74,4 +74,9 @@ static errorSnackBar({required title, message=""}){
      icon: const Icon(Iconsax.warning_2,color: NColors.white),
      );
 }
+
+
+
+
+
 }

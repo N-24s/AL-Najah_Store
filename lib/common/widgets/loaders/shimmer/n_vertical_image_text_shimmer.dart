@@ -13,7 +13,15 @@ class NVerticalImageTextShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = NHelperFunctions.isDarkMode(context);
     
-    return Padding(
+   
+     return SizedBox(
+        height: 80,
+        child: ListView.builder(
+          scrollDirection:Axis.horizontal ,
+          shrinkWrap: true,
+          itemCount:6,
+          itemBuilder: (_,index)
+        {return Padding(
       padding: const EdgeInsets.only(right: NSizes.spaceBtwItems),
       child: Column(
         children: [
@@ -43,8 +51,8 @@ class NVerticalImageTextShimmer extends StatelessWidget {
         
          
         ],
-      ),
-    );
+        ));
+  }));
   }
 }
 

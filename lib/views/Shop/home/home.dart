@@ -1,6 +1,7 @@
 import 'package:al_najah_store/common/custom_shapes/containers/primary_header_container.dart';
 import 'package:al_najah_store/common/custom_shapes/containers/search_container.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_promo_slider_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
@@ -8,6 +9,8 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
+import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
 import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_card_shimmer.dart';
 
@@ -25,8 +28,10 @@ class HomeScreen extends StatelessWidget {
 final ProductVM productVm=Get.find<ProductVM>();
 
     final productPopularVm = Get.find<ProductPopularVm>();
-        final brandVM=BrandVm.instance;
+        // final brandVM=BrandVm.instance;
         final  a=AddressVm.instance;
+        final p=ProductByCategoryVm();
+        
      
 
     
@@ -34,7 +39,9 @@ final ProductVM productVm=Get.find<ProductVM>();
   @override
   Widget build(BuildContext context) {
 
-   brandVM.fetchFeaturedBrands();
+  //  brandVM.fetchFeaturedBrands();
+  //  p.fetchProductsByBrand("2");
+
    
 
     return Scaffold(
@@ -44,7 +51,7 @@ final ProductVM productVm=Get.find<ProductVM>();
         child: Column(
           children: [
             //Header
-                const NPrimaryHeaderContainer(
+                 const NPrimaryHeaderContainer(
               child: Column(
                 children: [
                   //AppBar
@@ -72,7 +79,7 @@ final ProductVM productVm=Get.find<ProductVM>();
                   Padding(padding: EdgeInsets.only(left: NSizes.defaultSpace),
                   child: Column(
                     children: [
-                      NSectionHeading(title: 'Popular Categories',showActionButton: false, textColor: NColors.white,),
+                      NSectionHeading(title: 'Popular Categories',showActionButton:false, textColor: NColors.white,),
                    SizedBox( height: NSizes.spaceBtwItems,),
 
                   //Categories
@@ -96,7 +103,7 @@ final ProductVM productVm=Get.find<ProductVM>();
                     //Promo Slider
                     Obx(() {
         if (productVm.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const NPromoSliderShimmer();
         }
 
     

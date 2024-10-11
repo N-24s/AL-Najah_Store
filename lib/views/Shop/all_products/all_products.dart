@@ -1,6 +1,7 @@
 
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
+import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_card_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/common/widgets/sortable/sortable_products.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -28,7 +29,7 @@ class AllProductsScreen extends StatelessWidget {
             children: [
               Obx(() {
                 if (productController.isLoading.value) {
-                  return const Center(child: CircularProgressIndicator());
+                  return NProductCardShimmer();
                 }
 
                 if (productController.errorMessage.isNotEmpty) {
@@ -101,6 +102,8 @@ class AllProductsScreen extends StatelessWidget {
                      
                         ],
                       ),
+                
+                
                   ],
                 );
               }),

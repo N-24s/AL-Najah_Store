@@ -1,4 +1,5 @@
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/text_field/text_form_field.dart';
 import 'package:al_najah_store/models/personailization/address.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -10,9 +11,9 @@ import 'package:iconsax/iconsax.dart';
 
 
 class UpdateAddressScreen extends StatelessWidget {
-  UpdateAddressScreen({super.key});
+  UpdateAddressScreen({super.key, required this.addressId});
   final addressVm=AddressVm.instance;
-
+final int addressId;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -52,7 +53,9 @@ class UpdateAddressScreen extends StatelessWidget {
                   onPressed: ()async{
                       if(!addressVm.addressFormKey.currentState!.validate()) return;
                       Data a=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,id: 1,latitude: '',longitude: '');
-                     await addressVm.updateddress(a,'8');
+                     await addressVm.updateddress(a,addressId.toString());
+                     NLoaders.customToast(message: "Update Successful!");
+                     Get.back();
 
                   }, 
                   child: const Text("Save")),)

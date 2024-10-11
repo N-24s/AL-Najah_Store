@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 
-import 'package:get/get_connect/http/src/multipart/form_data.dart';
 
 Users usersFromJson(String str) => Users.fromJson(json.decode(str));
 

@@ -6,7 +6,8 @@ import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/validators/validation.dart';
-import 'package:al_najah_store/view_model_vm/authentication/signup/signup_vm.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_vm.dart';
+import 'package:al_najah_store/view_model_vm/authentication/auth_validation.dart';
 import 'package:al_najah_store/views/authentication/login/widgets/login_form.dart';
 import 'package:al_najah_store/views/authentication/signup/widgets/terms_conditions_checkbox.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 
 class NSignupForm extends StatelessWidget {
-  SignUpVm controller =SignUpVm();
+  final auth=AuthVm.instance;
+  final authValidation=AuthValidation();
 
    NSignupForm({
     super.key,
@@ -27,14 +29,14 @@ class NSignupForm extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Form(
-      key: controller.signUpFormKey,
+      key: authValidation.signUpFormKey,
       child: Column(
       children: [
      
         
         // Name
         NTextFormField(
-          controller: controller.name,
+          controller: authValidation.name,
           validator: (value) => NValidator.validateEmptyText("Name", value),
           prefixIcon: Iconsax.user,
           labelText: NTexts.Name,   
@@ -46,7 +48,7 @@ class NSignupForm extends StatelessWidget {
       //Email
      NTextFormField(
       validator: (value) => NValidator.validateEmail(value),
-      controller: controller.email,
+      controller: authValidation.email,
       labelText:  NTexts.email,
       prefixIcon: Iconsax.direct,
               ),
@@ -57,13 +59,13 @@ class NSignupForm extends StatelessWidget {
          Obx(
       () =>  NTextFormField(
              validator: (value) => NValidator.validatePassword(value),
-                 controller: controller.password,
-                 obscureText: controller.hidePassword.value, 
+                 controller: authValidation.password,
+                 obscureText: authValidation.hidePassword.value, 
             prefixIcon: Iconsax.password_check,
             labelText: NTexts.password,   
               suffixIcon:IconButton(
-                      onPressed: () => controller.hidePassword.value= !controller.hidePassword.value, 
-                      icon: Icon(controller.hidePassword.value? Iconsax.eye_slash:Iconsax.eye)),
+                      onPressed: () =>authValidation.hidePassword.value= !authValidation.hidePassword.value, 
+                      icon: Icon(authValidation.hidePassword.value? Iconsax.eye_slash:Iconsax.eye)),
                
                   
             )   ),
@@ -73,13 +75,13 @@ class NSignupForm extends StatelessWidget {
         Obx(
       () =>  NTextFormField(
              validator: (value) => NValidator.validatePassword(value),
-                 controller: controller.password_confirmation,
-                 obscureText: controller.hidePasswordConfirmation.value, 
+                 controller: authValidation.password_confirmation,
+                 obscureText: authValidation.hidePasswordConfirmation.value, 
             prefixIcon: Iconsax.password_check,
             labelText: NTexts.password_confirmation,   
               suffixIcon:IconButton(
-                      onPressed: () => controller.hidePasswordConfirmation.value= !controller.hidePasswordConfirmation.value, 
-                      icon: Icon(controller.hidePasswordConfirmation.value? Iconsax.eye_slash:Iconsax.eye)),
+                      onPressed: () => authValidation.hidePasswordConfirmation.value= !authValidation.hidePasswordConfirmation.value, 
+                      icon: Icon(authValidation.hidePasswordConfirmation.value? Iconsax.eye_slash:Iconsax.eye)),
                
                   
               )),
@@ -104,7 +106,7 @@ class NSignupForm extends StatelessWidget {
                            
                                      )),
                                       const SizedBox(width: 10,),
-                 Obx(()=> Text(controller.imagePath.value.split('/').last)),
+                 Obx(()=> Text(authValidation.imagePath.value.split('/').last)),
                    ],
                  ),
                
@@ -114,7 +116,7 @@ class NSignupForm extends StatelessWidget {
     
     
           //terms&Conditions Checkbox
-          const NTermsAndConditionsCheckbox() ,
+           NTermsAndConditionsCheckbox() ,
               const SizedBox(height: NSizes.spaceBtwSections),
     
           // Sing Up Button
@@ -122,7 +124,7 @@ class NSignupForm extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: (){
-                  controller.register();},
+                  authValidation.register();},
                child: const Text(NTexts.createAccount)),
             )
       ],
@@ -130,7 +132,7 @@ class NSignupForm extends StatelessWidget {
   }
 
      Future<void> _pickImage(ImageSource source) async {
-    await controller.pickImage(source);
+    await authValidation.pickImage(source);
     // Get.back();  
   }
 }
