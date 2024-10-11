@@ -14,7 +14,9 @@ class AllBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brandVM=BrandVm.instance;
+        final brandVM=BrandVm.instance;
+
+
     return  Scaffold(
       appBar: const NAppBar(title: Text("Brand"), showBackArrow: true,),
       body: SingleChildScrollView(
@@ -28,16 +30,29 @@ class AllBrandsScreen extends StatelessWidget {
 
 
               //Brands
-              NGridLayout(
-                itemCount: brandVM.allBrands.length, 
-                mainAxisExtent: 80,
+              Obx(
+               (){
+                if(brandVM.isLoading==true){
+                  return Center(child:  CircularProgressIndicator(
+
+                  ),);
+                }
                 
-                
-                itemBuilder: (cxt,index)=>NBrandCard(
-                   
-                  showBorder: true,
-   onTap: ()=>Get.to(()=> AllProductsByBrandScreen(brandId:brandVM.allBrands[index].id)),
-                  brand: brandVM.allBrands[index])),
+                return  NGridLayout(
+                  itemCount: brandVM.allBrands.length, 
+                  mainAxisExtent: 80,
+                  
+                  
+                  itemBuilder: (cxt,index)=>NBrandCard(
+                     
+                    showBorder: true,
+                   onTap: (){Get.to(()=> AllProductsByBrandScreen(brandId:brandVM.allBrands[index].id));
+                      brandVM.fetchProductByBrands(brandVM.allBrands[index].id.toString());
+
+                   },
+                    brand: brandVM.allBrands[index])
+                    );
+  }),
 
             ],
           ), 

@@ -65,7 +65,7 @@ final authValidation =AuthValidation.instance;
             ],),
 
             // Forget PassWord
-            TextButton(onPressed: ()=> Get.to((){}), child: const Text(NTexts.forgetPassword)),
+            // TextButton(onPressed: ()=> Get.to((){}), child: const Text(NTexts.forgetPassword)),
           ],),
             const SizedBox(height: NSizes.spaceBtwSections,),
         
@@ -82,7 +82,7 @@ final authValidation =AuthValidation.instance;
           
            const SizedBox(height: NSizes.spaceBtwItems,),
         
-            SizedBox(width: double.infinity, child: OutlinedButton(onPressed: ()=> Get.to(const SignupScreen()), 
+            SizedBox(width: double.infinity, child: OutlinedButton(onPressed: ()=> Get.off(const SignupScreen()), 
             child: const Text(NTexts.createAccount))),
         
         ],

@@ -210,13 +210,13 @@ class NProductImageSlider extends StatelessWidget {
                           const SizedBox(width:  NSizes.spaceBtwItems,),
                     ListView.separated(
                       separatorBuilder: (_, __) => const SizedBox( width: NSizes.spaceBtwItems,),
-                      itemCount:product.subImages.length,
+                      itemCount:product.subImages!.length,
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       physics: const AlwaysScrollableScrollPhysics(),
                       itemBuilder: (cxt,index){
                       return   GestureDetector(
-                        onTap: ()=> selectedImage.value=product.subImages[index],
+                        onTap: ()=> selectedImage.value=product.subImages![index],
                         child: Obx(
                           ()=> NRoundedImage(
                             isNetworkImage: true,
@@ -224,12 +224,12 @@ class NProductImageSlider extends StatelessWidget {
                           width: 80,
                           backgroundColor: dark? NColors.dark:NColors.white,
                           border: Border.all(
-                                  color: selectedImage.value == product.subImages[index] 
+                                  color: selectedImage.value == product.subImages![index] 
                                       ? NColors.primaryColor
                                       : Colors.transparent,
                                 ),
                           padding: const EdgeInsets.all(NSizes.sm),
-                          imageUrl:product.subImages[index]),
+                          imageUrl:product.subImages![index]),
                                               
                                               
                         ),

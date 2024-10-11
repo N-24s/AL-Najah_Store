@@ -1,7 +1,9 @@
+import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/login_signup/form_divider.dart';
 import 'package:al_najah_store/common/widgets/login_signup/social_button.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/constants/text_strings.dart';
+import 'package:al_najah_store/views/authentication/login/login.dart';
 import 'package:al_najah_store/views/authentication/signup/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,9 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: NAppBar(
+        showBackArrow: true,
+        leadingOnPressed: () => Get.off(()=>const LoginScreen()),
 
       ),
       body: SingleChildScrollView(

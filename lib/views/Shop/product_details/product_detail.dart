@@ -98,17 +98,17 @@ class ProductDetail extends StatelessWidget {
 
        
                ReadMoreText(
-              productVm.producDetails.value.description,
+              productVm.producDetails.value.description!,
                     trimLines: 1,
                     trimCollapsedText: 'Show more',
                     trimMode: TrimMode.Line,
                     trimExpandedText: 'Less',
-                    moreStyle: TextStyle(fontSize: 14,fontWeight:  FontWeight.w800),
-                    lessStyle: TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
+                    moreStyle: const TextStyle(fontSize: 14,fontWeight:  FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
                     ),
               
                        //Like Products
-                  Divider(),
+                  const Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
                     NSectionHeading(title: "Similar Products",showActionButton: true,onPressed:(){} ,),
                           SizedBox(

@@ -89,7 +89,8 @@ class StoreScreen extends StatelessWidget {
                      NSectionHeading(
                       title: 'Featured Brands',
                    
-                      onPressed: ()=>Get.to(()=> const AllBrandsScreen())),
+                      onPressed: (){Get.to(()=> const AllBrandsScreen());
+                      }),
                       
                       const SizedBox(height: NSizes.spaceBtwItems/1.5,),
       // Brand Grid

@@ -21,7 +21,7 @@ final VoidCallback? leadingOnPressed;
       child: AppBar(
         automaticallyImplyLeading: false,
         leading:showBackArrow 
-        ? IconButton(onPressed: ()=>Get.back(), 
+        ? IconButton(onPressed: leadingOnPressed??()=>Get.back(), 
         icon: Icon(Iconsax.arrow_left,color: dark?NColors.white:NColors.dark,))
         :leadingIcon !=null
         ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon)):null ,

@@ -32,7 +32,6 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-AddressVm a=AddressVm();
 
     final localStorage=NLocalStorage.instance();
     return Scaffold(
@@ -64,7 +63,7 @@ AddressVm a=AddressVm();
                   const NSectionHeading(title: "Account Setting",showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
                  NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: (){
-                                    a.getAllAddress();
+                                    
 
                   Get.to(()=>UserAddressScreen());
                   }),

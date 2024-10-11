@@ -10,14 +10,14 @@ ResponsModel responsModelFromJson(String str) => ResponsModel.fromJson(json.deco
 String responsModelToJson(ResponsModel data) => json.encode(data.toJson());
 
 class ResponsModel {
-    int code;
-    String message;
-    List<Product>products;
+    int? code;
+    String? message;
+    List<Product>?products;
 
     ResponsModel({
-        required this.code,
-        required this.message,
-        required this.products,
+         this.code,
+         this.message,
+         this.products,
     });
 
     factory ResponsModel.fromJson(Map<String, dynamic> json) => ResponsModel(
@@ -30,7 +30,7 @@ class ResponsModel {
     Map<String, dynamic> toJson() => {
         "code": code,
         "message": message,
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
+        "products": List<dynamic>.from(products!.map((x) => x.toJson())),
     };
 }
 

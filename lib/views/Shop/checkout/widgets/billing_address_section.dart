@@ -32,8 +32,9 @@ class NBillingAddressSection extends StatelessWidget {
             addressVM.selectedNewAddressPopup(context);}),
 
         Obx((){
-          if(addressVM.selectedAddress.isEmpty)
-          return const Text("Select Address");
+          if(addressVM.selectedAddress.isEmpty) {
+            return const Text("Select Address");
+          }
           return Column(
               children: [
                                Row(

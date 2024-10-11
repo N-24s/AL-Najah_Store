@@ -70,6 +70,7 @@ AddressVm(){
         if (response.statusCode == 200) {
 
             var jsonData = response.data;
+            print("AAAAAAAAAAAAAAAAAAAAAaa${jsonData}");
              allAddress.value= jsonData['data'];
 
 

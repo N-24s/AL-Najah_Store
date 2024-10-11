@@ -1,9 +1,8 @@
 
 // import 'package:al_najah_store/common/custom_shapes/containers/rounded_container.dart';
 // import 'package:al_najah_store/common/widgets/brands/brand_card.dart';
-// import 'package:al_najah_store/models/shop/product.dart';
+// import 'package:al_najah_store/models/shop/brand/brand.dart';
 // import 'package:al_najah_store/utilis/constants/colors.dart';
-// import 'package:al_najah_store/utilis/constants/image_strings.dart';
 // import 'package:al_najah_store/utilis/constants/size.dart';
 // import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 // import 'package:al_najah_store/utilis/helpers/images_helpers.dart';
@@ -18,7 +17,7 @@
 //     super.key, required this.brand,
 //   });
 
-//   final Map<String, dynamic> brand;
+//   final Brand brand;
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@
 
 //           // Brand Top 3 Product Images
 //           Row(
-//             children: (brand['products'] as List<dynamic>)
+//             children: (brand.id as List<dynamic>)
 //     .map((product) => brandTopProductImageWidget(product, context)).take(3)
 //     .toList(),
 

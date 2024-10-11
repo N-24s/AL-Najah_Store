@@ -28,8 +28,8 @@ final Map<String,dynamic> address;
       child: Obx(
      ()   { 
 
-      if(a.isLoading==true){
-        return Center(child: CircularProgressIndicator(),);
+      if(a.isLoading.value){
+        return const Center(child: CircularProgressIndicator(),);
       }
           return NRoundedContainer(
           padding: const EdgeInsets.all(NSizes.md),

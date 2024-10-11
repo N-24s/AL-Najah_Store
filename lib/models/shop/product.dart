@@ -106,19 +106,19 @@ class Product {
   int id;
   String name;
   String price;
-  String description;
-  int brandId;
-  int categoryId;
+  String? description;
+  int? brandId;
+  int? categoryId;
   String image;
-  List<dynamic> subImages;
-  int discountPercentage;
-  int isActive;
-  int viewsCount;
-  DateTime createdAt;
-  DateTime updatedAt;
-  Brand category;
-  Brand brand;
-  bool isFavorited;
+  List<dynamic>? subImages;
+  int? discountPercentage;
+  int? isActive;
+  int? viewsCount;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  Brand? category;
+  Brand? brand;
+  bool? isFavorited;
 
  Product.empty()
       : id = 0,
@@ -143,18 +143,18 @@ class Product {
     required this.id,
     required this.name,
     required this.price,
-    required this.description,
-    required this.brandId,
-    required this.categoryId,
+     this.description,
+     this.brandId,
+     this.categoryId,
     required this.image,
-    required this.subImages,
-    required this.discountPercentage,
-    required this.isActive,
-    required this.viewsCount,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.category,
-    required this.brand,
+     this.subImages,
+     this.discountPercentage,
+     this.isActive,
+     this.viewsCount,
+     this.createdAt,
+     this.updatedAt,
+     this.category,
+     this.brand,
     this.isFavorited = false,
   });
  
@@ -189,10 +189,10 @@ class Product {
         "discount_percentage": discountPercentage,
         "isActive": isActive,
         "views_count": viewsCount,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-        "category": category.toJson(),
-        "brand": brand.toJson(),
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
+        "category": category!.toJson(),
+        "brand": brand!.toJson(),
       };
 }
 

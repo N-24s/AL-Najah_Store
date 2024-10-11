@@ -2,6 +2,7 @@ import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
 import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_card_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/models/shop/category.dart';
+import 'package:al_najah_store/models/shop/prodcuct_by_brand.dart' as c;
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
@@ -22,12 +23,9 @@ final CategoryModel? category;
   Widget build(BuildContext context) {
         final categoryVm = Get.find<CategoryVM>(); 
         final productByCategoryVm = ProductByCategoryVm();
-        final productVm=ProductVM.instance;
         CategoryModel? selectedCategory=category;
-        var products=[].obs;
         if (selectedCategory!=null){
-           productByCategoryVm.fetchProductsByCategory(selectedCategory.id.toString());
-           products.value =   productByCategoryVm.productByCategory;
+           productByCategoryVm.fetchProductsByCategory(category!.id.toString());
 
         }
    
@@ -48,10 +46,8 @@ final CategoryModel? category;
           
 
           onChanged: (value) { 
-
 selectedCategory=value!;
- productByCategoryVm.fetchProductsByCategory(selectedCategory!.id.toString());
-products=productByCategoryVm.productByCategory;
+ productByCategoryVm.fetchProductsByCategory(value.id.toString());
                           
 
           },
@@ -78,8 +74,10 @@ products=productByCategoryVm.productByCategory;
                      children: [
                        NGridLayout(
                               
-                                itemCount: products.length, 
-                                itemBuilder: (_,index)=> NProductCardVertical(product: products[index],)),
+                                itemCount: productByCategoryVm.productByCategory.length, 
+                                itemBuilder: (_,index){ 
+                                 return NProductCardVertical(product: Product(id:    productByCategoryVm.productByCategory[index]['id'], name: productByCategoryVm.productByCategory[index]["name"], price: productByCategoryVm.productByCategory[index]["price"], image: productByCategoryVm.productByCategory[index]["image"],),
+                                );}),
                     
                      ],
                    );

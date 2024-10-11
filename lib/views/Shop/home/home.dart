@@ -28,9 +28,7 @@ class HomeScreen extends StatelessWidget {
 final ProductVM productVm=Get.find<ProductVM>();
 
     final productPopularVm = Get.find<ProductPopularVm>();
-        // final brandVM=BrandVm.instance;
-        final  a=AddressVm.instance;
-        final p=ProductByCategoryVm();
+       
         
      
 

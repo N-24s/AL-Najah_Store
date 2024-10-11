@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:al_najah_store/models/shop/brand/brand.dart' as brand;
+import 'package:al_najah_store/models/shop/prodcuct_by_brand.dart' as product;
 import 'package:al_najah_store/models/shop/store/store.dart';
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
@@ -23,7 +24,7 @@ class BrandVm extends GetxController {
   var errorMessage = ''.obs;
   var featuredBrand =<brand.Brand> [].obs;
   var brandByCategory = <dynamic>[].obs;
-  var productByBrand = <brand.Brand>[].obs;
+  var productByBrand = <product.Product>[].obs;
   var allBrands = <brand.Brand>[].obs;
 
     
@@ -98,10 +99,9 @@ Future<void> fetchFeaturedBrands() async {
 
       if (response.statusCode == 200) {
         var jsonData = response.data;
-        print("7777777777777777777777777777777777${jsonData}");
-        brand.ResponsModel res=brand.ResponsModel.fromJson(jsonData);
-        print("555555555555555555555555555555${res}");
-            productByBrand.value= jsonData['data'];
+     product.ResponsModel res=product.ResponsModel.fromJson(jsonData);
+            productByBrand.value= res.products!;
+            print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH${productByBrand}");
             
      
     

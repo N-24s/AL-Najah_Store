@@ -34,17 +34,18 @@ class UserAddressScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          if (addressVM.allAddress.isNotEmpty) {
-            return const Center(child: Text("No addresses found"));
-          }
+          // if (addressVM.allAddress.isNotEmpty) {
+          //   return const Center(child: Text("No addresses found"));
+          // }
 
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(NSizes.defaultSpace),
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(), 
+                physics: const NeverScrollableScrollPhysics(), 
                 shrinkWrap: true, 
                 itemCount: addressVM.allAddress.length,
+              
                 itemBuilder: (context, index) {
                   return NSingleAddress(
                     // selectedAddress: false,

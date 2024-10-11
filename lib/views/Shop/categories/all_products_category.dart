@@ -1,8 +1,10 @@
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/sortable/sortable_products.dart';
 import 'package:al_najah_store/models/shop/category.dart';
+import 'package:al_najah_store/navigation_menu.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class AllProductsByCategoryScreen extends StatelessWidget {
@@ -12,7 +14,7 @@ class AllProductsByCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
-      appBar: const NAppBar(title: Text("Products By Categories"),showBackArrow: true,),
+      appBar: NAppBar(title: const Text("Products By Categories"),showBackArrow: true,leadingOnPressed:()=> Get.off(()=>NavigationMenu()),),
 
       body: SingleChildScrollView(
         child: Padding(

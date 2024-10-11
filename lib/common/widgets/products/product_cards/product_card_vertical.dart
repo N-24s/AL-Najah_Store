@@ -2,11 +2,9 @@ import 'package:al_najah_store/common/custom_shapes/containers/rounded_container
 import 'package:al_najah_store/common/styles/shadows.dart';
 import 'package:al_najah_store/common/widgets/icons/n_circular_icon.dart';
 import 'package:al_najah_store/common/widgets/images/n_rounded_image.dart';
-import 'package:al_najah_store/common/widgets/texts/n_brand_title_text.dart';
 import 'package:al_najah_store/common/widgets/texts/n_brand_title_text_with_verified_icon.dart';
 import 'package:al_najah_store/common/widgets/texts/n_price_text.dart';
 import 'package:al_najah_store/common/widgets/texts/product_title_text.dart';
-import 'package:al_najah_store/models/shop/cart/cart_item.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
@@ -26,12 +24,14 @@ class NProductCardVertical extends StatelessWidget {
    NProductCardVertical({super.key, required this.product});
         final productVm = Get.find<ProductVM>();
 
+
   @override
   Widget build(BuildContext context) {
+
     final dark=NHelperFunctions.isDarkMode(context);
     final String image= product.image;
     final String name=product.name;
-    final String? brand=product.brand.name;
+    final String? brand=product.brand?.name;
     final String price=product.price.toString();
      final String discountPercentage=product.discountPercentage.toString();
          final favoritesVM = FavoritesVM.instance;

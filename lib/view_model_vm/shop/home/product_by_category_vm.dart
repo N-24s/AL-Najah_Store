@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:al_najah_store/models/shop/product.dart';
+import 'package:al_najah_store/models/shop/product_by_categories.dart' as product;
 import 'package:al_najah_store/utilis/constants/http_url.dart';
 import 'package:al_najah_store/utilis/helpers/api_exception.dart';
 import 'package:al_najah_store/utilis/helpers/http_helper.dart';
@@ -12,7 +13,7 @@ class ProductByCategoryVm extends GetxController {
     // static ProductByCategoryVm getinstance(String categoryId) => Get.put<ProductByCategoryVm>(ProductByCategoryVm()); 
         
         
-         var productByCategory = <Product>[].obs;
+         var productByCategory = <dynamic>[].obs;
                   // var productByBrand = <Product>[].obs;
 
           var isLoading = false.obs; 
@@ -46,11 +47,10 @@ class ProductByCategoryVm extends GetxController {
       if (response.statusCode == 200) {
         
         var jsonData = response.data;
-        Products p=Products.fromJson(jsonData);
-        print("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG${p}");
-           List<dynamic> productData = jsonData['data'];
-        productByCategory.value = productData.map((categoryJson) => Product.fromJson(categoryJson)).toList();
-       
+
+       productByCategory.value=jsonData["data"];
+       print("::::::::::::::::::::::::::::::::${productByCategory}");
+                   
 
       }
     } on DioException catch (d) {

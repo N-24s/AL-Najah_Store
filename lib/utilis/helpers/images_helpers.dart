@@ -40,7 +40,7 @@ class ImageHandler extends StatelessWidget {
           // placeholder: (context, url) => _loadingPlaceholder(context),
           errorWidget: (context, url, error) => _errorWidget(context, error, null),
         );
-      } else {
+      } else if(_isAssetsUrl(imageSource)) {
         return Image.asset(
           imageSource,
           width: width,
@@ -48,6 +48,10 @@ class ImageHandler extends StatelessWidget {
           fit: fit,
           errorBuilder: _errorWidget,
         );
+      }
+      else{
+              return _errorWidget(context, null, null);
+
       }
     } else if (imageSource is Uint8List) {
       return Image.memory(
@@ -65,6 +69,12 @@ class ImageHandler extends StatelessWidget {
   bool _isNetworkUrl(String url) {
     return url.startsWith('http') || url.startsWith('https');
   }
+
+  
+  bool _isAssetsUrl(String url) {
+    return url.startsWith('assets');
+  }
+
 
   Widget _loadingPlaceholder(BuildContext context) {
     return Container(
