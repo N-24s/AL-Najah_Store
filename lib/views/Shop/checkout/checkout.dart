@@ -88,11 +88,8 @@ class CheckoutScreen extends StatelessWidget {
           padding: const EdgeInsets.all(NSizes.defaultSpace),
           child: ElevatedButton(
             onPressed: ()async{
-           if(  await orderVM.extractDataFromCart().isNotEmpty){
-             NLoaders.customToast(message: "Send Order!");
-
-           }
-                        NLoaders.customToast(message: "Can't Send Order becuse no items!");
+            await orderVM.extractDataFromCart();
+             
 
             },
               // SuccessScreen(

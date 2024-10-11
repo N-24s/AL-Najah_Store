@@ -1,3 +1,4 @@
+import 'package:al_najah_store/common/widgets/brands/brand_show_case.dart';
 import 'package:al_najah_store/common/widgets/layouts/grid_layout.dart';
 import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_card_shimmer.dart';
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
@@ -49,29 +50,29 @@ class NCategoryTab extends StatelessWidget {
         child: Column(
           children: [
             // // --Brand 
-            // Obx(() {
-            //   if (brandVM.isLoading.value) {
-            //                               return Center(child: CircularProgressIndicator(),);
+            Obx(() {
+              if (brandVM.isLoading.value) {
+                                          return Center(child: CircularProgressIndicator(),);
 
-            //     // return const NBrandShowcaseShimmer();
+                // return const NBrandShowcaseShimmer();
               
-            //   }
+              }
 
-            //   if (brandVM.errorMessage.isNotEmpty) {
-            //     return Center(child: Text(brandVM.errorMessage.value));
-            //   }
+              if (brandVM.errorMessage.isNotEmpty) {
+                return Center(child: Text(brandVM.errorMessage.value));
+              }
 
-            //   return Column( 
-            //     children: List.generate(
-            //       filteredBrands.length,
-            //       (index) => NBrandShowcase(
+              return Column( 
+                children: List.generate(
+                  filteredBrands.length,
+                  (index) => NBrandShowcase(
                   
-            //         brand:filteredBrands[index],
+                    brand:filteredBrands[index],
                   
-            //       ),
-            //     ),
-            //   );
-            // }),
+                  ),
+                ),
+              );
+            }),
 
 
         const SizedBox(height: NSizes.spaceBtwItems),
@@ -86,7 +87,6 @@ class NCategoryTab extends StatelessWidget {
 
             Obx(() {
               if (productByCategoryVm.isLoading.value) {
-                                          // return Center(child: CircularProgressIndicator(),);
 
                 return NProductCardShimmer();
               }
@@ -98,7 +98,7 @@ class NCategoryTab extends StatelessWidget {
               return NGridLayout(
                 itemCount: productByCategoryVm.productByCategory.length,
                 itemBuilder: (_, index) {return  NProductCardVertical(
-product: Product(id:  productByCategoryVm.productByCategory[index].id, name:  productByCategoryVm.productByCategory[index].name, price:  productByCategoryVm.productByCategory[index].price.toString(), image:  productByCategoryVm.productByCategory[index].image),
+                product: Product(id:  productByCategoryVm.productByCategory[index]['id'], name:  productByCategoryVm.productByCategory[index]["name"], price:  productByCategoryVm.productByCategory[index]["price"].toString(), image:  productByCategoryVm.productByCategory[index]["image"]),
                 );}
               );
             }),

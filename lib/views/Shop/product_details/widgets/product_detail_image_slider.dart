@@ -140,8 +140,10 @@ import 'package:al_najah_store/common/widgets/icons/n_circular_icon.dart';
 import 'package:al_najah_store/common/widgets/images/n_rounded_image.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
+import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/utilis/helpers/images_helpers.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/favorite_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -162,11 +164,10 @@ class NProductImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-                 final favoritesVM = FavoritesVM.instance;
-  //  final imageVM = Get.find<ProductImageVM>();
+  final favoritesVM = FavoritesVM.instance;
   var selectedImage = ''.obs;
-
   selectedImage.value=product.image;
+  
 
     final dark =NHelperFunctions.isDarkMode(context);
     return NCurvedEdgeWidget(
@@ -177,7 +178,7 @@ class NProductImageSlider extends StatelessWidget {
             // Main Large Image
              SizedBox(height: 400, child: Padding(
               padding: const EdgeInsets.all(NSizes.productImageRadius*2),
-              child: Center(child: Obx(()=> Image(image: NetworkImage(selectedImage.value)))),
+              child: Obx(()=> Center(child:ImageHandler(imageSource: selectedImage.value) )),
             ),
             ),
     
@@ -208,9 +209,9 @@ class NProductImageSlider extends StatelessWidget {
                       ),
                     ),
                           const SizedBox(width:  NSizes.spaceBtwItems,),
-                    ListView.separated(
+               ListView.separated(
                       separatorBuilder: (_, __) => const SizedBox( width: NSizes.spaceBtwItems,),
-                      itemCount:product.subImages!.length,
+                      itemCount: product.subImages !=null?product.subImages!.length:0,
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -247,6 +248,7 @@ class NProductImageSlider extends StatelessWidget {
     
              NAppBar(
               showBackArrow: true,
+              
               
               actions: [
 

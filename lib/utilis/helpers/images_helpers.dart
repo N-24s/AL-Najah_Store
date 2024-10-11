@@ -37,8 +37,9 @@ class ImageHandler extends StatelessWidget {
           width: width,
           height: height,
           fit: fit,
-          // placeholder: (context, url) => _loadingPlaceholder(context),
+          placeholder: (context, url) => _loadingPlaceholder(context),
           errorWidget: (context, url, error) => _errorWidget(context, error, null),
+        
         );
       } else if(_isAssetsUrl(imageSource)) {
         return Image.asset(
@@ -49,6 +50,7 @@ class ImageHandler extends StatelessWidget {
           errorBuilder: _errorWidget,
         );
       }
+      
       else{
               return _errorWidget(context, null, null);
 

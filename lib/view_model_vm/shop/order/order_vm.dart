@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/login_signup/social_button.dart';
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/models/personailization/address.dart';
@@ -69,6 +70,7 @@ OrderVM(){
 
             var jsonData = response.data;
              allOrders.value= jsonData['data'];
+             
 
 
         }
@@ -146,7 +148,6 @@ OrderVM(){
       "user_id": userId,  
       "products": products, 
     };
-print("Data : ${data}");
 
        if(token!=null){
         
@@ -176,78 +177,47 @@ print("Data : ${data}");
    }
   
    catch(e){
-     return "Admin for support${e.toString()}";
+     return "Error is : ${e.toString()}";
    }
   }
 
 
-//  Future<String> updateOrder(Data address,String id)async{
 
-
-    
-//    try{
-//      HttpHelpers http=HttpHelpers.instance;
-//    String? token = localStorage.readData('accessToken');
-   
-
-
-//        if(token!=null){
-        
-
-//      Response res=await http.putRequest(url: '${HttpUrls.rootAddress}/$id', data:address.updateAddressData(),options: Options(
-//           headers: {
-//           'Authorization' : 'Bearer $token',
-//           'Content-Type': 'application/json',
-//           'Accept':'application/json',
-//         },
-//       ), );
-//       isLoading.value=false;
-//        return "Success";
-//        }
-//         else{
-//         return 'Token not found, please login again.';
-
-
-//        }
-       
-    
-   
-//    }on DioException catch(x){
-//   return ApiException.handleException(x);
- 
-//    }
-  
-//    catch(e){
-//      return "Admin for support${e.toString()}";
-//    }
-//   }
-
-
-
-
-
-List<Map<String, dynamic>> extractDataFromCart(){
+String? extractDataFromCart(){
   List<Map<String, dynamic>> extractedProducts = [];
 
+try{
+
     for (var product in cartVM.cartItems) {
-    // Extract id and quantity
     String id = product.id;
     int quantity = product.quantity;
 
-    // Store the extracted data into the new list
     extractedProducts.add({
       "id": id,
       "quantity": quantity,
     });
   }
 
-  // Print the new list with extracted id and quantity
-profileVM.userProfile['id'];
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%${profileVM.userProfile['id']}");
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%${extractedProducts}");
 
+if(extractedProducts.isNotEmpty){
   addOrder(profileVM.userProfile['id'], extractedProducts);
-  return extractedProducts;
+    NLoaders.customToast(message: "Send Order!");
+  return "Successful!";
+
+}
+else {
+                        NLoaders.customToast(message: "Can't Send Order becuse no items!");
+
+}
+}on DioException catch(e){
+  return ApiException.handleException(e);
+}
+
+catch(e){
+  return 'Error is :${e}';
+
+}
+
 }
 
 
