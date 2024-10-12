@@ -66,8 +66,8 @@ try{
   // Privacy Policy Check 
   if(!privacyPolicy.value){
     NLoaders.warningSnackBar(
-      title: "Accept Privacy Policy",
-      message: "In order to create account, you must have to read accept the Privacy Policy & Terms of Use."
+      title: "قبول سياسة الخصوصية",
+      message: "لإنشاء حساب، يجب عليك قراءة وقبول سياسة الخصوصية وشروط الاستخدام"
       );
       return;
   }
@@ -151,15 +151,15 @@ checkAuth({required String x}){
    if(x=="Success"){
 
      NLoaders.successSnackBar(
-      title: x,
-      message: x,
+      title: "",
+      message: "تم تسجيل الدخول بنجاح",
       );
 
       Get.offNamed('/nav');
  
       }else{
           NLoaders.errorSnackBar(
-      title: "Error",
+      title: "",
       message: x,
       );
       }

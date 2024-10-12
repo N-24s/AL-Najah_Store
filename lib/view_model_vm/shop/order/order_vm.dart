@@ -137,7 +137,7 @@ OrderVM(){
 
 
 
- Future<String> addOrder(int userId,List products)async{
+ Future<String> addOrder(int userId,List products,int address_id)async{
 
 
     
@@ -147,18 +147,34 @@ OrderVM(){
   final Map<String, dynamic> data = {
       "user_id": userId,  
       "products": products, 
+      "address_id":address_id
     };
 
-       if(token!=null){
-        
 
-     Response res=await http.postRequest(url: HttpUrls.order_Url, data:data,options: Options(
+       if(token!=null){
+        print("1111111111111111111111111111111111111111111111");
+print(data['user_id']);
+print(data['products']);
+print(data['address_id']);
+        print("1111111111111111111111111111111111111111111111");
+
+
+   try{
+      Response res=await http.postRequest(url: HttpUrls.order_Url, data:data,options: Options(
           headers: {
           'Authorization' : 'Bearer $token',
           'Content-Type': 'application/json',
           'Accept':'application/json',
         },
       ), );
+  
+            print("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR$res");
+
+      
+   }catch(e){
+    print("ERROR IS ORDERSSSSSS${e}");
+   }
+
       
 
        return "Success";
@@ -183,7 +199,7 @@ OrderVM(){
 
 
 
-String? extractDataFromCart(){
+String? extractDataFromCart(int address_id){
   List<Map<String, dynamic>> extractedProducts = [];
 
 try{
@@ -199,14 +215,14 @@ try{
   }
 
 
-if(extractedProducts.isNotEmpty){
-  addOrder(profileVM.userProfile['id'], extractedProducts);
-    NLoaders.customToast(message: "Send Order!");
+if(extractedProducts.isNotEmpty && address_id !=null && profileVM.userProfile['id']!=null){
+  addOrder(profileVM.userProfile['id'], extractedProducts,address_id);
+    NLoaders.customToast(message: "تمت عملية الشراء");
   return "Successful!";
 
 }
 else {
-                        NLoaders.customToast(message: "Can't Send Order becuse no items!");
+                        NLoaders.customToast(message: "لا يمكن إرسال الطلب لأنه لا توجد عناصر");
 
 }
 }on DioException catch(e){
@@ -217,6 +233,7 @@ catch(e){
   return 'Error is :${e}';
 
 }
+return null;
 
 }
 

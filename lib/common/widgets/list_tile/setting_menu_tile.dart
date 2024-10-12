@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class NSettingMenuTile extends StatelessWidget {
   const NSettingMenuTile({super.key, 
   required this.title, 
-  required this.subTitle, 
+   this.subTitle, 
   required this.icon, 
   this.trailing, 
   this.onTap
   });
-  final String title,subTitle;
+  final String title;
+  final String? subTitle;
   final IconData icon;
   final Widget? trailing;
   final VoidCallback? onTap;
@@ -19,7 +20,7 @@ class NSettingMenuTile extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, size: 28,color: NColors.primaryColor,),
        title: Text(title,style: Theme.of(context).textTheme.titleMedium!),
-      subtitle: Text(subTitle,style: Theme.of(context).textTheme.labelMedium),
+      // subtitle: Text(subTitle!,style: Theme.of(context).textTheme.labelMedium),
       trailing:trailing,
       onTap: onTap,
     );

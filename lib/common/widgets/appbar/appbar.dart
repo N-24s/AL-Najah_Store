@@ -17,12 +17,12 @@ final VoidCallback? leadingOnPressed;
   Widget build(BuildContext context) {
     final dark=NHelperFunctions.isDarkMode(context);
     return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: NSizes.md),
+      padding: const EdgeInsets.symmetric(horizontal: NSizes.md),
       child: AppBar(
         automaticallyImplyLeading: false,
         leading:showBackArrow 
         ? IconButton(onPressed: leadingOnPressed??()=>Get.back(), 
-        icon: Icon(Iconsax.arrow_left,color: dark?NColors.white:NColors.dark,))
+        icon: Icon(Iconsax.arrow_right,color: dark?NColors.white:NColors.dark,))
         :leadingIcon !=null
         ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon)):null ,
         title: title,

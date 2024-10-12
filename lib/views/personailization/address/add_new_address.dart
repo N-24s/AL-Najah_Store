@@ -3,6 +3,7 @@ import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/text_field/text_form_field.dart';
 import 'package:al_najah_store/models/personailization/address.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/validators/validation.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class AddNewAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return  Scaffold(
-      appBar: const NAppBar(title: Text("Add New Address"),),
+      appBar: const NAppBar(title: Text("أضافة عنوان جديد"),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(NSizes.defaultSpace),
@@ -28,8 +29,8 @@ class AddNewAddressScreen extends StatelessWidget {
             child: Column(
               children: [
                 NTextFormField(
-            validator: (value) => NValidator.validateEmptyText('name',value),
-                  labelText: 'Name',
+            validator: (value) => NValidator.validateEmptyText(NTexts.Name,value),
+                  labelText: NTexts.Name,
                   controller: addressVm.titleController,
                   prefixIcon: Iconsax.user,
                 ),
@@ -39,15 +40,15 @@ class AddNewAddressScreen extends StatelessWidget {
                  validator: (value) => NValidator.validatePhoneNumber(value),
 
                   prefixIcon: Iconsax.mobile,
-                  labelText: 'Phone Number'
+                  labelText: NTexts.phoneNumber,
                 ),
                 const SizedBox(height: NSizes.spaceBtwInputFieldss),   
                 NTextFormField(
                   controller: addressVm.desController,
-                              validator: (value) => NValidator.validateEmptyText('address',value),
+                              validator: (value) => NValidator.validateEmptyText(NTexts.Addresses,value),
 
                   prefixIcon: Iconsax.building_31,
-                  labelText: 'address'
+                  labelText: NTexts.Addresses,
                 ),
                 const SizedBox(height: NSizes.spaceBtwSections),
                   
@@ -56,7 +57,7 @@ class AddNewAddressScreen extends StatelessWidget {
                       if(!addressVm.addressFormKey.currentState!.validate()) return;
                       Data address=Data(title: addressVm.titleController.text,phone: addressVm.phoneController.text,description: addressVm.desController.text,isActive: true,createdAt:DateTime.now(),updatedAt: DateTime.now(),id: 1,latitude: '',longitude: '');
                      await addressVm.addAddress(address);
-                     NLoaders.customToast(message: "Added Address");
+                     NLoaders.customToast(message: "تمت الاضافة");
                      addressVm.desController.clear();
                      addressVm.phoneController.clear();
                      addressVm.titleController.clear();
@@ -64,7 +65,7 @@ class AddNewAddressScreen extends StatelessWidget {
                 
 
                   },
-                  child: const Text("Save")),)
+                  child: const Text(NTexts.save)),)
 
              
               ],

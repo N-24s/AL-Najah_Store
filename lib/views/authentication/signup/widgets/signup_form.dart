@@ -37,7 +37,7 @@ class NSignupForm extends StatelessWidget {
         // Name
         NTextFormField(
           controller: authValidation.name,
-          validator: (value) => NValidator.validateEmptyText("Name", value),
+          validator: (value) => NValidator.validateEmptyText(NTexts.Name, value),
           prefixIcon: Iconsax.user,
           labelText: NTexts.Name,   
              
@@ -100,7 +100,7 @@ class NSignupForm extends StatelessWidget {
                       ),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Center(child: Text("Choice File")),
+                        child: Center(child: Text(NTexts.choiceFile)),
                       ),
                            
                            
@@ -125,7 +125,7 @@ class NSignupForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: (){
                   authValidation.register();},
-               child: const Text(NTexts.createAccount)),
+               child:  const Text(NTexts.createAccount)),
             )
       ],
     ));

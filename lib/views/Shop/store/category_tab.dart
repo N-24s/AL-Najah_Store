@@ -6,6 +6,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/models/shop/product_by_categories.dart' as productbycate;
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_by_category_vm.dart';
 import 'package:al_najah_store/views/Shop/all_products/all_products.dart';
@@ -80,7 +81,7 @@ class NCategoryTab extends StatelessWidget {
             // // Products
 
             NSectionHeading(
-              title: 'Product Popular',
+              title:NTexts.popularProducts,
               onPressed: () => Get.to(() =>  AllProductsScreen()),
             ),
             const SizedBox(height: NSizes.spaceBtwItems),

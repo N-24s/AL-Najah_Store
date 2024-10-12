@@ -26,42 +26,18 @@ Product product;
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //Price & Sale Price
+          // Title & Brand
         Row(
-          children: [
-            // Sale Tag
-            NRoundedContainer(
-              radius: NSizes.sm,
-              backgroundColor: const Color.fromARGB(255, 246, 250, 28).withOpacity(0.8),
-              padding: const EdgeInsets.symmetric(horizontal: NSizes.sm,vertical: NSizes.xs),
-              child:  Text(
-                '$discountPercentage%',
-                style: Theme.of(context).textTheme.labelLarge!.apply(color: NColors.black),),
-          
-            ),
-            const SizedBox(width: NSizes.spaceBtwItems),
-            
-
-            // Price
-           
-             NProductPriceText(price: '$price',isLarge: true,),
-
-          ],
-        ),
-        const SizedBox(height: NSizes.spaceBtwItems/1.5),
-        // Title & Brand
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             
                 //Title
                 Expanded(
-                  flex: 2,
+                  flex: 0,
                   child: NProductTitleText(title: "$name")),
             
                 //Brand
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Row(
                     children: [
                       
@@ -85,8 +61,37 @@ Product product;
                 )
                 
           ],
-        )
+        ),
+        
+        //Price & Sale Price
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            
+         
+            
+
+            // Price
+           
+             NProductPriceText(price: '$price',isLarge: true,),
+            const SizedBox(width: NSizes.spaceBtwItems),
+
+                // Sale Tag
+            NRoundedContainer(
+              radius: NSizes.sm,
+              backgroundColor: const Color.fromARGB(255, 246, 250, 28).withOpacity(0.8),
+              padding: const EdgeInsets.symmetric(horizontal: NSizes.sm,vertical: NSizes.xs),
+              child:  Text(
+                '$discountPercentage%',
+                style: Theme.of(context).textTheme.labelLarge!.apply(color: NColors.black),),
           
+            ),
+          
+
+          ],
+        ),
+        const SizedBox(height: NSizes.spaceBtwItems/1.5),
+        
       ],
     );
   }

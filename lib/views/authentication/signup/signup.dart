@@ -27,7 +27,7 @@ class SignupScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //Title
-            Text(NTexts.siginTitle,style: Theme.of(context).textTheme.headlineMedium,),
+            Text(NTexts.loginTitle,style: Theme.of(context).textTheme.headlineMedium,),
             const SizedBox(height: NSizes.spaceBtwSections,),
             //Form
              NSignupForm(),

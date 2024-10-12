@@ -128,7 +128,7 @@ void fetchNextPage() {
   if (nextPageUrl != null && currentPage.value<3 ) {
     fetchProducts(page: currentPage.value + 1); 
   } else {
-    NLoaders.customToast(message: "NO Next Page");
+    NLoaders.customToast(message: "لا توجد صفحة");
   }
 }
 
@@ -136,7 +136,7 @@ void fetchPreviousPage() {
   if (prevPageUrl != null && currentPage.value > 1) {
     fetchProducts(page: currentPage.value - 1); 
   } else {
-NLoaders.customToast(message: "NO Previous Page") ;
+NLoaders.customToast(message: "لا توجد صفحة") ;
  }
 }
 

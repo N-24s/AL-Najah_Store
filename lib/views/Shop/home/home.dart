@@ -7,6 +7,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
@@ -61,7 +62,7 @@ final ProductVM productVm=Get.find<ProductVM>();
                     children: [
                       
        NSearchContainer(
-          text: "Search in Store",
+          text: NTexts.homrAppbarSearchBar,
           icon: Iconsax.search_normal,
         
         ),
@@ -74,10 +75,10 @@ final ProductVM productVm=Get.find<ProductVM>();
 
                   //Heading
 
-                  Padding(padding: EdgeInsets.only(left: NSizes.defaultSpace),
+                  Padding(padding: EdgeInsets.only(right: NSizes.defaultSpace),
                   child: Column(
                     children: [
-                      NSectionHeading(title: 'Popular Categories',showActionButton:false, textColor: NColors.white,),
+                      NSectionHeading(title: NTexts.popularCategories,showActionButton:false, textColor: NColors.white,),
                    SizedBox( height: NSizes.spaceBtwItems,),
 
                   //Categories
@@ -113,7 +114,7 @@ final ProductVM productVm=Get.find<ProductVM>();
             
                    const SizedBox( height: NSizes.spaceBtwSections,),
 // //Heading
-       NSectionHeading(title: "Popular Products",onPressed:()=>Get.to(()=>AllProductsScreen()),buttonTitle: 'View All',),
+       NSectionHeading(title: NTexts.popularProducts,onPressed:()=>Get.to(()=>AllProductsScreen()),),
        const SizedBox( height: NSizes.spaceBtwItems),
    // Popular Products
 Obx(() {

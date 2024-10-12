@@ -6,6 +6,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/utilis/local_storage/storage_utility.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
@@ -43,10 +44,10 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   //AppBar
-                  NAppBar(showBackArrow: false,title: Text("Account",style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
+                  NAppBar(showBackArrow: false,title: Text(NTexts.account,style: Theme.of(context).textTheme.headlineMedium!.apply(color: const Color.fromARGB(172, 255, 255, 255)),),),
 
                 //User Profile card
-                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: profileVM.userProfile['avater'],onPressed: ()=>Get.to(()=>ProfileScreen()))),
+                 Obx(()=> NUserProfileTile(title: profileVM.userProfile['name']??'null' ,subTitle: profileVM.userProfile['email']??'null',image: "https://store.actnow-ye.com/${profileVM.userProfile['avater']}",onPressed: ()=>Get.to(()=>ProfileScreen()))),
                      const SizedBox(height: NSizes.spaceBtwSections,),
 
                 ],
@@ -60,23 +61,23 @@ class SettingsScreen extends StatelessWidget {
                 children: [
 
                   //Account Setting
-                  const NSectionHeading(title: "Account Setting",showActionButton: false,),
+                  const NSectionHeading(title: NTexts.accountSetting,showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
-                 NSettingMenuTile(title: "My Addresses", subTitle: profileVM.userProfile['city']??'Null', icon: Iconsax.safe_home,onTap: (){
+                 NSettingMenuTile(title: NTexts.myAddresses, icon: Iconsax.safe_home,onTap: (){
                                     
 
                   Get.to(()=>UserAddressScreen());
                   }),
-                 NSettingMenuTile(title: "My Cart", subTitle: "vnkl;mlk", icon: Iconsax.shopping_cart,onTap: ()=>Get.to(()=> const CartScreen())),
-                 NSettingMenuTile(title: "My Orders", subTitle: "vnkl;mlk", icon: Iconsax.bag_tick,onTap: () async { Get.to(()=>const OrderScreen());
+                 NSettingMenuTile(title: NTexts.myCart,  icon: Iconsax.shopping_cart,onTap: ()=>Get.to(()=> const CartScreen())),
+                 NSettingMenuTile(title: NTexts.myOrder,  icon: Iconsax.bag_tick,onTap: () async { Get.to(()=>const OrderScreen());
                  }),
-                 NSettingMenuTile(title: "Notifiactions", subTitle: "vnkl;mlk", icon: Iconsax.notification,onTap: (){},),
+                 NSettingMenuTile(title: NTexts.notifiaction,  icon: Iconsax.notification,onTap: (){},),
 
                  //App Settings
                  const SizedBox(height: NSizes.spaceBtwSections,),
-                 const NSectionHeading(title: "App Settings", showActionButton: false,),
+                 const NSectionHeading(title: NTexts.appSettings, showActionButton: false,),
                  const SizedBox(height: NSizes.spaceBtwItems,),
-                 NSettingMenuTile(title: "Dark Mode", subTitle: "vnkl;mlk", icon: Iconsax.security_user,trailing: Switch(value: true, onChanged: (value){ })),
+                 NSettingMenuTile(title: NTexts.darkMode,  icon: Iconsax.security_user,trailing: Switch(value: true, onChanged: (value){ })),
 
                  //Logout Button
                  const SizedBox(height: NSizes.spaceBtwSections,),
@@ -89,7 +90,7 @@ class SettingsScreen extends StatelessWidget {
 localStorage.clearAll();
 Get.to(const LoginScreen());
 
-                  }, child: const Text("Logout")) ,
+                  }, child: const Text(NTexts.logout)) ,
                  ),
                 const SizedBox(height: NSizes.spaceBtwSections*2.5),
 

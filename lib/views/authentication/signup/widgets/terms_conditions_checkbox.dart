@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
+
 class NTermsAndConditionsCheckbox extends StatelessWidget {
    NTermsAndConditionsCheckbox({
     super.key,
@@ -26,15 +27,15 @@ final authValidation =AuthValidation.instance;
                 const SizedBox(height: NSizes.spaceBtwItems),
         Text.rich(TextSpan(
         children: [
-          TextSpan(text: '${NTexts.iAgreeTO}',style: Theme.of(context).textTheme.bodySmall),
-          TextSpan(text: '${NTexts.privacyPolicy}',style: Theme.of(context).textTheme.bodyMedium!.apply(
+          TextSpan(text: NTexts.iAgreeTO,style: Theme.of(context).textTheme.bodySmall),
+          TextSpan(text: NTexts.privacyPolicy,style: Theme.of(context).textTheme.bodyMedium!.apply(
             color: dark?NColors.white:NColors.primaryColor,
             decoration: TextDecoration.underline,
             decorationColor: dark?NColors.white:NColors.primaryColor,
           )),
         
-          TextSpan(text: ' and ',style: Theme.of(context).textTheme.bodySmall),
-          TextSpan(text: '${NTexts.termsOfUse}',style: Theme.of(context).textTheme.bodyMedium!.apply(
+          TextSpan(text: ' و ',style: Theme.of(context).textTheme.bodySmall),
+          TextSpan(text:NTexts.termsOfUse,style: Theme.of(context).textTheme.bodyMedium!.apply(
             color: dark?NColors.white:NColors.primaryColor,
             decoration: TextDecoration.underline,
             decorationColor: dark?NColors.white:NColors.primaryColor,

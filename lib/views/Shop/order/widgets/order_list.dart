@@ -75,13 +75,14 @@ final  Map<String,dynamic> order;
         final dark=NHelperFunctions.isDarkMode(context);
 
     return Obx((){
-        if(orderVM.isLoading==true){
+        if(orderVM.isLoading.value){
           
-          return const Center(child: CircularProgressIndicator());
+          return NOrderItemShimmer();
           
         }
         return NRoundedContainer(
       shawBorder: true,
+      
       padding: const EdgeInsets.all(NSizes.md),
       backgroundColor:dark?NColors.dark:NColors.light ,
       child:  Column(
@@ -102,7 +103,7 @@ final  Map<String,dynamic> order;
                   children: [
                     Text(
                       order['status'],
-                      style: Theme.of(context).textTheme.bodyLarge!.apply(color: NColors.primaryColor,fontWeightDelta: 1),
+                      style: Theme.of(context).textTheme.bodyLarge!.apply(color: NColors.primaryColor,fontWeightDelta: 2),
                       ),
                         Text(
                       "${order['created_at'].split('T')[0]}",
@@ -113,7 +114,7 @@ final  Map<String,dynamic> order;
               ),
       
               // Icon
-              IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_right_34,size: NSizes.iconSm,))
+              IconButton(onPressed: (){}, icon: const Icon(Iconsax.arrow_left_2,size: NSizes.iconSm,))
             ],
           ),
          const SizedBox(height: NSizes.spaceBtwItems,),
@@ -134,12 +135,12 @@ final  Map<String,dynamic> order;
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Order",
-                            style: Theme.of(context).textTheme.labelMedium,
+                            "رقم الطلب",
+                            style: Theme.of(context).textTheme.labelMedium!.apply(fontWeightDelta: 2),
                             ),
                               Text(
                             "[#${order['id']}]",
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context).textTheme.titleMedium!,
                             ),
                         ],
                       ),
@@ -163,8 +164,8 @@ final  Map<String,dynamic> order;
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Shipping Date",
-                            style: Theme.of(context).textTheme.labelMedium,
+                            "تاريخ الشحن",
+                            style: Theme.of(context).textTheme.labelMedium!.apply(fontWeightDelta: 2),
                             ),
                               Text(
                       "${order['updated_at'].split('T')[0]}",

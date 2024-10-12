@@ -1,4 +1,5 @@
 import 'package:al_najah_store/utilis/constants/colors.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/views/Shop/favourite/favourite.dart';
 import 'package:al_najah_store/views/Shop/home/home.dart';
@@ -28,10 +29,10 @@ class NavigationMenu extends StatelessWidget {
           backgroundColor: darkMode?NColors.black: NColors.white,
           indicatorColor:darkMode?NColors.white.withOpacity(0.1): NColors.black.withOpacity(0.1),
           destinations:const [
-        NavigationDestination(icon: Icon(Iconsax.home), label: "Home",)  ,
-        NavigationDestination(icon: Icon(Iconsax.shop), label: "Store")  ,
-        NavigationDestination(icon: Icon(Iconsax.heart), label: "Wishlist")  ,
-        NavigationDestination(icon: Icon(Iconsax.user), label: "Profile")  ,
+        NavigationDestination(icon: Icon(Iconsax.home), label: NTexts.home,)  ,
+        NavigationDestination(icon: Icon(Iconsax.shop), label: NTexts.store)  ,
+        NavigationDestination(icon: Icon(Iconsax.heart), label: NTexts.Wishlist)  ,
+        NavigationDestination(icon: Icon(Iconsax.user), label: NTexts.settings)  ,
         
         
         

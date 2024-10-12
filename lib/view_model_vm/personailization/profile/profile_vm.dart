@@ -109,15 +109,15 @@ final localStorage=NLocalStorage.instance();
       ) );
 
         if (response.statusCode == 200) {
-          NLoaders.successSnackBar(title: "Success",message: "Profile updated successfully!");
+          NLoaders.successSnackBar(title: "",message: "تم التعديل بنجاح");
         } else {
-          NLoaders.errorSnackBar(title: "Error",message:  "Failed to update profile: ${response.statusMessage}");
+          NLoaders.errorSnackBar(title: "",message:  "فشل تعديل الملف الشخصي: ${response.statusMessage}");
         }
       } else {
-        NLoaders.errorSnackBar(title: "Error",message:  "Token not found, please login again.");
+        NLoaders.errorSnackBar(title: "خطاء",message:  "التوكن غير موجود ، رجاءً حاول مره اخرى");
       }
     } catch (e) {
-      NLoaders.errorSnackBar(title: "Error",message: "An error occurred: $e");
+      NLoaders.errorSnackBar(title: "خطاء",message: "An error occurred: $e");
     }
   }
 

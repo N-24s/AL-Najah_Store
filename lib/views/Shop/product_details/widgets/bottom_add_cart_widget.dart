@@ -3,6 +3,7 @@ import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/models/shop/product.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:flutter/material.dart';
@@ -79,11 +80,11 @@ class NBottomAddCart extends StatelessWidget {
                   ? () => controller.addToCart(product)
                   : null,
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(NSizes.md),
+                padding: const EdgeInsets.all(NSizes.sm),
                 backgroundColor: NColors.black,
                 side: const BorderSide(color: NColors.black),
               ),
-              child: const Text("Add to Cart"),
+              child: const Text(NTexts.addToCart),
             ),
           )
         ],

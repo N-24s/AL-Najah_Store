@@ -27,9 +27,9 @@ class LoginScreen extends StatelessWidget {
             //Form
             const NLoginForm(),
               //Divider
-              NFormDivider(dividerText: NTexts.orSignInWith.capitalize!,),
+              NFormDivider(dividerText: NTexts.siginTitle.capitalize!,),
 
-                    const SizedBox(width: NSizes.spaceBtwSections,),
+          const SizedBox(height: NSizes.spaceBtwSections),
 
               //Footer
                const NSocialButtons(),

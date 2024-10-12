@@ -11,16 +11,17 @@ import 'package:al_najah_store/view_model_vm/shop/home/home_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/product_popular_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/order/order_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 
 Future<void> main()async{
+  
 
- WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
+//  WidgetsFlutterBinding.ensureInitialized();
+//   await EasyLocalization.ensureInitialized();
+  
 
 // Get Storage init
   await GetStorage.init();
@@ -57,7 +58,7 @@ Future<void> main()async{
 
 //Order   
 Get.lazyPut<OrderVM>(()=>OrderVM(),fenix: true);
-
+// 
 Get.lazyPut<GetMaterialController>(()=>GetMaterialController(),fenix: true);
 
 
@@ -77,12 +78,13 @@ Get.lazyPut<GetMaterialController>(()=>GetMaterialController(),fenix: true);
 
 
     //   ],
-     EasyLocalization(
-      supportedLocales: const [Locale('ar', 'AR'),],
-      path: 'assets/translations', 
-      fallbackLocale: const Locale('ar', 'AR'),
-      child: const App(),
-    ),
+    //  EasyLocalization(
+    //   supportedLocales: const [Locale('ar', 'AR'),Locale('en','US')],
+    //   path: 'assets/translations', 
+    //   fallbackLocale: const Locale('ar', 'AR'),
+    //   child: const App(),
+    // ),
+    App()
   );
 
 }

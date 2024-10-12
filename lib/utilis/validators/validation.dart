@@ -1,7 +1,7 @@
 class NValidator {
   static String? validateEmptyText(String? fieldName ,String? value){
     if(value==null || value.isEmpty){
-      return '$fieldName is required.';
+      return '$fieldName مطلوب.';
     }
     return null;
   }
@@ -9,23 +9,23 @@ class NValidator {
   
   static String? validateEmail(String? value){
     if(value==null || value.isEmpty){
-      return 'Email is required';
+      return 'البريد الإلكتروني مطلوب';
     }
 
     final emailRegExp=RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
     if(!emailRegExp.hasMatch(value)){
-      return 'Invalid email address';
+      return 'البريد الإلكتروني غير صحيح';
     }
     return null;
   }
 
   static String? validatePassword(String? value){
     if(value==null || value.isEmpty){
-      return 'Password is required';
+      return 'كلمة المرور مطلوبة';
     }
 
     if(value.length<8){
-      return 'Password must be at least 8 characters long.';
+      return 'كلمة المرور يجب أن تكون مكونة من 8 أحرف على الأقل';
     }
 
     // if(!value.contains(RegExp(r'[A-Z]'))){
@@ -44,12 +44,12 @@ return null;
 
     static String? validatePhoneNumber(String? value){
     if(value==null || value.isEmpty){
-      return 'Phone number is required';
+      return 'رقم الهاتف مطلوب';
     }
 
 final phoneRegEx=RegExp(r'^\d{9}$');
     if(!phoneRegEx.hasMatch(value)){
-      return 'Invalid  phone number format (9 digit required.';
+      return 'تنسيق رقم الهاتف غير صحيح (يجب أن يتكون من 9 أرقام)';
     }
 return null;
 

@@ -1,5 +1,6 @@
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:al_najah_store/views/personailization/address/add_new_address.dart';
@@ -17,23 +18,19 @@ class NBillingAddressSection extends StatelessWidget {
     final profileVM= ProfileVM.instance;
           final addressVM=AddressVm.instance;
 
-          // final addressSelect=SelecteAddresses.instance;
-
-
-    // addressVM.loadAddresses();
-      // Map<dynamic,dynamic> userAddress=   profileVM.userProfile();
+       
    
      
     return  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-             NSectionHeading(title: "Shipping Address" ,buttonTitle:"Change",onPressed: (){ 
+             NSectionHeading(title: NTexts.shippingAddress ,buttonTitle:NTexts.change,onPressed: (){ 
             addressVM.selectedNewAddressPopup(context);}),
 
         Obx((){
           if(addressVM.selectedAddress.isEmpty) {
-            return const Text("Select Address");
+            return const Text(NTexts.selectAddress);
           }
           return Column(
               children: [

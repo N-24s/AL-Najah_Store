@@ -86,7 +86,7 @@ Get.to(()=> const ProductDetail());
             radius: NSizes.sm,
             backgroundColor:Colors.yellow.withOpacity(0.8),
             padding: const EdgeInsets.symmetric(horizontal: NSizes.sm, vertical: NSizes.xs),
-            child: Text('$discountPercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: NColors.black),),
+            child:discountPercentage==null?Text(''): Text('$discountPercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: NColors.black),),
           ),
         ),
 
@@ -110,6 +110,8 @@ Get.to(()=> const ProductDetail());
    } ),
                   )
       
+   
+   
       ],
         ),
       ),
@@ -121,7 +123,7 @@ Get.to(()=> const ProductDetail());
         crossAxisAlignment: CrossAxisAlignment.start,
       
         children: [
-          NProductTitleText(title:  name ,smallSize: true),
+          NProductTitleText(title:  name ,),
           const SizedBox(height: NSizes.spaceBtwItems/2),
          brand!=null? NBrandTitleWithVerifiedIcon(title:brand!):Text(""),
                 
@@ -138,7 +140,7 @@ Get.to(()=> const ProductDetail());
                Expanded(
                 flex: 3,
                  child: Padding(
-                  padding: const EdgeInsets.only(left: NSizes.sm),
+                  padding: const EdgeInsets.only(right: NSizes.sm),
                   child: NProductPriceText(price: price),
                                ),
                ),
@@ -178,9 +180,9 @@ class ProductCardAddToCartButton extends StatelessWidget {
         return Container(
           decoration:  BoxDecoration(
              color:productQuantityInCart > 0? NColors.primaryColor:NColors.dark,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(NSizes.cardRadiusMd),
-              bottomRight: Radius.circular(NSizes.productImageRadius))
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(NSizes.cardRadiusMd),
+              bottomLeft: Radius.circular(NSizes.productImageRadius))
           ),
           child:  SizedBox(
             width: NSizes.iconLg*1.2,

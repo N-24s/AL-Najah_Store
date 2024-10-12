@@ -3,7 +3,9 @@ import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
+import 'package:al_najah_store/utilis/helpers/pricing_calculator.dart';
 import 'package:al_najah_store/view_model_vm/personailization/address_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/view_model_vm/shop/order/order_vm.dart';
@@ -21,15 +23,18 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final addressVM=AddressVm.instance;
+        final cartController=CartVM.instance;
+    final subTotal=cartController.totalCartPrice.value;
 
     final orderVM=OrderVM.instance;
+    final addressVM=AddressVm.instance;
 
 
     final dark=NHelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: NAppBar(
         showBackArrow: true,
-        title: Text("Order Review",style: Theme.of(context).textTheme.headlineSmall),
+        title: Text(NTexts.orderReview,style: Theme.of(context).textTheme.headlineSmall),
       ),
   body:   SingleChildScrollView(
     child: Padding(
@@ -88,8 +93,13 @@ class CheckoutScreen extends StatelessWidget {
           padding: const EdgeInsets.all(NSizes.defaultSpace),
           child: ElevatedButton(
             onPressed: ()async{
-            await orderVM.extractDataFromCart();
-             
+if(addressVM.selectedAddress.isNotEmpty){
+              await orderVM.extractDataFromCart(addressVM.selectedAddress['id']);
+
+}             
+else{
+  NLoaders.errorSnackBar(title: "مطلوب اضافة العنوان");
+}
 
             },
               // SuccessScreen(
@@ -98,7 +108,7 @@ class CheckoutScreen extends StatelessWidget {
               //   subTitle: "Your item will be shipping soon!",
               //   onPressed: ()=>Get.offAll(()=>const NavigationMenu()),
               // )), 
-              child: const Text("Checkout \$256.0")),
+              child:  Text("${NTexts.checkout}${NPricingCalculator.calculateTotalPrice(subTotal, "US")}\ر.ي")),
         ),
     );
   }

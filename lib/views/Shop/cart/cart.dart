@@ -4,6 +4,7 @@ import 'package:al_najah_store/models/shop/cart/cart_item.dart';
 import 'package:al_najah_store/navigation_menu.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/storage_helper.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:al_najah_store/views/Shop/cart/widgets/cart_items.dart';
@@ -21,15 +22,15 @@ final controller= CartVM.instance;
 
     return  Scaffold(
 
-        appBar: NAppBar(title: Text("Cart",style: Theme.of(context).textTheme.headlineSmall,),showBackArrow: true, ),
+        appBar: NAppBar(title: Text(NTexts.cart,style: Theme.of(context).textTheme.headlineSmall,),showBackArrow: true, ),
         body: Obx(
           (){ 
             final emptyWidget=NAnimationLoaderWidget(
-              text: "Cart is Empty.",
+              text: "السلة فارغة.",
               animation: NImages.logo,
-              showAction: true,
-              actionText: " Let\'s to Add",
-              onActionPressed: ()=> Get.off(()=> const NavigationMenu()),
+              // showAction: true,
+              // actionText: " Let\'s to Add",
+              // onActionPressed: ()=> Get.off(()=> const NavigationMenu()),
               );
             
             return controller.cartItems.isEmpty? emptyWidget: const SingleChildScrollView(
@@ -45,7 +46,7 @@ final controller= CartVM.instance;
 //Checkout Button
         bottomNavigationBar:controller.cartItems.isEmpty?const SizedBox(): Padding(
           padding: const EdgeInsets.all(NSizes.defaultSpace),
-          child: ElevatedButton(onPressed: ()=>Get.to(()=> CheckoutScreen()), child:  Obx(()=>Text("Checkout \$${controller.totalCartPrice.value}"))),
+          child: ElevatedButton(onPressed: ()=>Get.to(()=> CheckoutScreen()), child:  Obx(()=>Text("${NTexts.checkout}\$${controller.totalCartPrice.value}"))),
         ),
     );
   }

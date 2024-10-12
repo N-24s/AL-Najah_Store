@@ -6,6 +6,7 @@ import 'package:al_najah_store/common/widgets/products/product_cards/product_car
 import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:al_najah_store/views/Shop/checkout/checkout.dart';
@@ -88,21 +89,21 @@ class ProductDetail extends StatelessWidget {
 
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: ()=>Get.to(()=>CheckoutScreen()), child: const Text("Checkout"))),
+                    child: ElevatedButton(onPressed: ()=>Get.to(()=>CheckoutScreen()), child: const Text(NTexts.checkout))),
                   
                   const SizedBox(height: NSizes.spaceBtwSections),
                   
                   //Description
-                  const NSectionHeading(title: "Description",showActionButton: false,),
+                  const NSectionHeading(title: NTexts.description,showActionButton: false,),
                    const SizedBox(height: NSizes.spaceBtwItems),
 
        
                ReadMoreText(
               productVm.producDetails.value.description!,
                     trimLines: 1,
-                    trimCollapsedText: 'Show more',
+                    trimCollapsedText: 'المزيد',
                     trimMode: TrimMode.Line,
-                    trimExpandedText: 'Less',
+                    trimExpandedText: 'أقل',
                     moreStyle: const TextStyle(fontSize: 14,fontWeight:  FontWeight.w800),
                     lessStyle: const TextStyle(fontSize:14,fontWeight:  FontWeight.w800),
                     ),
@@ -110,7 +111,7 @@ class ProductDetail extends StatelessWidget {
                        //Like Products
                   const Divider(),
                     const SizedBox(height: NSizes.spaceBtwItems),
-                    NSectionHeading(title: "Similar Products",showActionButton: true,onPressed:(){} ,),
+                    NSectionHeading(title: NTexts.similar_products,showActionButton: true,onPressed:(){} ,),
                           SizedBox(
         height: 100,
         child: 

@@ -30,7 +30,7 @@ void addToCart(Product product){
 
   //Quantity Check
   if(productQuantityInCart.value < 1){
-    NLoaders.customToast(message: "Select Quantity");
+    NLoaders.customToast(message: "اختر الكمية");
     return;
   }
 
@@ -49,7 +49,7 @@ void addToCart(Product product){
   }
 
   updateCart();
-  NLoaders.customToast(message: "Your Product has been added to the Cart.");
+  NLoaders.customToast(message: "تم إضافة المنتج إلى عربة التسوق");
 
 }
 // add one to cart
@@ -83,14 +83,14 @@ void removeOneFromCart(CartItem item){
 // Dailog 
 void removeFromCartDialog(int index){
 Get.defaultDialog(
-  title: "Remove Product",
-  middleText: "Are you sure you want to remove this product ?",
+  title: "حذف منتج",
+  middleText: "هل انت متاكد من حذف المنتج ?",
   onConfirm: (){
     //Remove the item from the cart
     cartItems.removeAt(index);
      Get.back();
     updateCart();
-    NLoaders.errorSnackBar(title:'Remove' "Product $index removed from the Cart.");
+    NLoaders.errorSnackBar(title:" تم حذف   $index من السلة .");
   
   },
   
@@ -103,15 +103,12 @@ Get.defaultDialog(
 void updateAlreadyAddedProductCount(Product product){
   for (int i=0; i<cartItems.length; i++) {
     if(product.id==cartItems[i].id){
-      print("LLLLLLLL");
                   productQuantityInCart.value=0;
 
 
     }
     else{
-      print("KKKKKKKKKKKKKK");
         productQuantityInCart.value=getProductQuantityInCart(product.id.toString());
-        print("${productQuantityInCart.value}JJJJJJJJJJJJJJJJJJJj");
 
     }
     

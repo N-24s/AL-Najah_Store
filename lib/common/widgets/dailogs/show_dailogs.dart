@@ -8,12 +8,12 @@ class ShowDailogs {
   
 static removeFromCartDialog(var objects, String title){
 Get.defaultDialog(
-  title: "Remove $title",
-  middleText: "Are you sure you want to remove this $title ?",
+  title: "حذف $title",
+  middleText: "هل انت متاكد من حذف  $title ?",
   onConfirm: (){
     objects;
      Get.back();
-    NLoaders.errorSnackBar(title:"Removed Successful.");
+    NLoaders.errorSnackBar(title:"تم الحذف بنجاح");
   
   },
   

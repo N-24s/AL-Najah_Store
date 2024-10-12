@@ -4,7 +4,7 @@ class NProductPriceText extends StatelessWidget {
   const NProductPriceText({
     super.key, 
     this.maxLines=1, 
-    this.currencySign='\$', 
+    this.currencySign='', 
     required this.price, 
     this.isLarge=false, 
     this.lineThrough=false,
@@ -25,7 +25,7 @@ class NProductPriceText extends StatelessWidget {
       
       style:isLarge
       ? Theme.of(context).textTheme.headlineMedium!.apply(decoration:lineThrough?TextDecoration.lineThrough:null)
-      :Theme.of(context).textTheme.headlineMedium!.apply(decoration:lineThrough?TextDecoration.lineThrough:null)
+      :Theme.of(context).textTheme.headlineSmall!.apply(decoration:lineThrough?TextDecoration.lineThrough:null)
       
       );
   }

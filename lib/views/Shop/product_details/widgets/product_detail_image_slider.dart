@@ -185,7 +185,7 @@ class NProductImageSlider extends StatelessWidget {
             //Image Slider 
             Positioned(
               bottom: 30,
-              right: 0,
+              right: 8,
               left: NSizes.defaultSpace,
               child: SizedBox(
                 height: 80,

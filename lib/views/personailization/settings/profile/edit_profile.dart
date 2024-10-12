@@ -3,6 +3,7 @@ import 'package:al_najah_store/common/widgets/loaders/loaders.dart';
 import 'package:al_najah_store/common/widgets/text_field/text_field.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/view_model_vm/personailization/profile/profile_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Update Profile'),
+        title: const Text(NTexts.updateProfile),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,14 +44,14 @@ class EditProfileScreen extends StatelessWidget {
             NTextField(
               controller: cityController,
               prefixIcon: Iconsax.mobile,
-              labelText: 'Phone',
+              labelText: NTexts.phoneNumber,
             ),
                   const SizedBox(height: NSizes.spaceBtwInputFieldss,),
 //City
             NTextField(
               controller: phoneController,
               prefixIcon: Iconsax.location,
-              labelText: "City",
+              labelText: NTexts.city,
             ),
 
 
@@ -58,7 +59,7 @@ class EditProfileScreen extends StatelessWidget {
 //BIO
             NTextField(
               controller: bioController,
-              labelText: "Bio",
+              labelText: NTexts.bio,
               prefixIcon: Iconsax.personalcard,
             ),
 
@@ -79,13 +80,13 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Center(child: Text("Choice File")),
+                        child: Center(child: Text(NTexts.choiceFile)),
                       ),
                            
                            
                                      )),
                                       const SizedBox(width: 10,),
-               Text(avatarFile?.path.split('/').last??  'Not Path'),
+               Text(avatarFile?.path.split('/').last??  'لا يوجد مسار'),
                    ],
                  ),
                  const SizedBox(height: NSizes.spaceBtwSections,),
@@ -102,10 +103,10 @@ class EditProfileScreen extends StatelessWidget {
                       avatarFile: avatarFile!, 
                     );
                   } else {
-                    NLoaders.errorSnackBar(title: "Error", message: "Please pick an avatar image");
+                    NLoaders.errorSnackBar(title: "خطاء", message: "يرجاء اختيار ملف");
                   }
                 },
-                child: const Text('Update Profile'),
+                child: const Text(NTexts.updateProfile),
               ),
             ),
           ],

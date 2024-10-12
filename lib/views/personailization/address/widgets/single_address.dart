@@ -63,12 +63,12 @@ final Map<String,dynamic> address;
                       Spacer(),
                       IconButton(onPressed: (){
                         Get.defaultDialog(
-                      title: "Remove ",
-                      middleText: "Are you sure you want to remove this address ?",
+                      title: "حذف ",
+                      middleText: "هل انت متاكد من حذف العنوان ?",
                       onConfirm: (){
                         a.deleteAddress(address['id'].toString());
                         Get.back();
-                        NLoaders.errorSnackBar(title:"Removed Successful.");
+                        NLoaders.errorSnackBar(title:"تم الحذف بنجاح");
                       
   },
   

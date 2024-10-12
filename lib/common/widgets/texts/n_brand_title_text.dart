@@ -26,12 +26,12 @@ class NBrandTitleText extends StatelessWidget {
       textAlign: textAlign,
       //Check which brand size is required and set the style
       style:brandTextSize==TextSize.small
-      ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
+      ? Theme.of(context).textTheme.labelMedium!.apply(color: color,fontWeightDelta: 2)
       :brandTextSize==TextSize.medium
-      ?Theme.of(context).textTheme.bodyLarge!.apply(color: color)
+      ?Theme.of(context).textTheme.bodyLarge!.apply(color: color,fontWeightDelta: 2)
        :brandTextSize==TextSize.large
-      ?Theme.of(context).textTheme.titleLarge!.apply(color: color)
-      :Theme.of(context).textTheme.bodyMedium!.apply(color: color)
+      ?Theme.of(context).textTheme.titleLarge!.apply(color: color,fontWeightDelta: 2)
+      :Theme.of(context).textTheme.bodyMedium!.apply(color: color,fontWeightDelta: 2)
       );
   }
 }

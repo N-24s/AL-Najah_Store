@@ -12,6 +12,7 @@ import 'package:al_najah_store/models/shop/category.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:al_najah_store/view_model_vm/shop/brand/brand_vm.dart';
 import 'package:al_najah_store/view_model_vm/shop/home/category_vm.dart';
@@ -54,7 +55,7 @@ class StoreScreen extends StatelessWidget {
         //AppBar
         appBar: NAppBar(
           showBackArrow: false,
-          title:   Text("Store",style: Theme.of(context).textTheme.headlineMedium,),
+          title:   Text(NTexts.store,style: Theme.of(context).textTheme.headlineMedium,),
       
           actions: [
             NCartCounterIcon(onPressed: ()=>Get.to(()=>const CartScreen()))
@@ -82,12 +83,12 @@ class StoreScreen extends StatelessWidget {
                     const NSearchContainer(
                                 icon: Iconsax.search_normal,
 
-                      text: 'Search here', showBorder:  true,showBackground: false, padding: EdgeInsets.zero,),
+                      text: NTexts.SearchStore, showBorder:  true,showBackground: false, padding: EdgeInsets.zero,),
                      const SizedBox(height: NSizes.spaceBtwSections,),
       
                      //Featured Brands
                      NSectionHeading(
-                      title: 'Featured Brands',
+                      title: NTexts.featuredBrands,
                    
                       onPressed: (){Get.to(()=> const AllBrandsScreen());
                       }),

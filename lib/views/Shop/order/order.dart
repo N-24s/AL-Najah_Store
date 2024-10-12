@@ -1,5 +1,6 @@
 import 'package:al_najah_store/common/widgets/appbar/appbar.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/views/Shop/order/widgets/order_list.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NAppBar(
-        title: Text("My Orders", style: Theme.of(context).textTheme.headlineSmall,),
+        title: Text(NTexts.myOrder, style: Theme.of(context).textTheme.headlineSmall,),
       ),
       body: Padding(
         padding: const EdgeInsets.all(NSizes.defaultSpace),

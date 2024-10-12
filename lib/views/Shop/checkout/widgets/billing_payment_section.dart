@@ -5,6 +5,7 @@ import 'package:al_najah_store/common/widgets/texts/section_heading.dart';
 import 'package:al_najah_store/utilis/constants/colors.dart';
 import 'package:al_najah_store/utilis/constants/image_strings.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class NBillingPaymentSection extends StatelessWidget {
     final dark=NHelperFunctions.isDarkMode(context);
     return  Column(
       children: [
-        NSectionHeading(title: "Payment Method", buttonTitle: "Change",onPressed: (){},),
+        NSectionHeading(title: NTexts.paymentMethod, buttonTitle: NTexts.change,onPressed: (){},),
             const SizedBox(height: NSizes.spaceBtwItems/2),
 
    
@@ -32,7 +33,7 @@ class NBillingPaymentSection extends StatelessWidget {
               child: const Image(image: AssetImage(NImages.logo),fit: BoxFit.contain),
             ),
                 const SizedBox(height: NSizes.spaceBtwItems/2),
-                 Text("On Delivery", style: Theme.of(context).textTheme.bodyLarge),
+                 Text(NTexts.onDelivery, style: Theme.of(context).textTheme.bodyLarge),
 
        
             

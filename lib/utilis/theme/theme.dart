@@ -15,7 +15,7 @@ NAppTheme._();
 
 static ThemeData lightTheme=ThemeData(
   useMaterial3: true,
-  fontFamily: 'Poppins',
+  fontFamily: 'Tajawal',
   brightness: Brightness.light,
   primaryColor: NColors.primaryColor,
   chipTheme: NChipTheme.lightChipTheme,
@@ -31,7 +31,7 @@ static ThemeData lightTheme=ThemeData(
 );
 static ThemeData darkTheme=ThemeData(
     useMaterial3: true,
-  fontFamily: 'Poppins',
+  fontFamily: 'Tajawal',
   brightness: Brightness.dark,
   primaryColor: NColors.primaryColor,
   scaffoldBackgroundColor: Colors.black,

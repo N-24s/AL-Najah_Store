@@ -8,7 +8,7 @@ class NProfileMenu extends StatelessWidget {
     required this.title, 
     required this.value, 
     required this.onPressed, 
-    this.icon=Iconsax.arrow_right_34,
+    this.icon=Iconsax.arrow_left_2,
   });
 final String title,value;
 final VoidCallback onPressed;

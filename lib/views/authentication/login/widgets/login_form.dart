@@ -61,7 +61,7 @@ final authValidation =AuthValidation.instance;
               //Remember Me
             Row(children: [
               Obx(()=> Checkbox(value: authValidation.rememberMe.value, onChanged: (value)=>authValidation.rememberMe.value=!authValidation.rememberMe.value)),
-              const Text(NTexts.rememberMe),
+               Text(NTexts.rememberMe),
             ],),
 
             // Forget PassWord
@@ -76,14 +76,14 @@ final authValidation =AuthValidation.instance;
                 onPressed: (){
                   authValidation.login();},
                   
-               child:authValidation.isLoading.value?const CircularProgressIndicator():const Text(NTexts.signIn)
+               child:authValidation.isLoading.value?const CircularProgressIndicator(): const Text(NTexts.signIn)
                ),
             ),
           
            const SizedBox(height: NSizes.spaceBtwItems,),
         
             SizedBox(width: double.infinity, child: OutlinedButton(onPressed: ()=> Get.off(const SignupScreen()), 
-            child: const Text(NTexts.createAccount))),
+            child:  const Text(NTexts.createAccount))),
         
         ],
                     ),

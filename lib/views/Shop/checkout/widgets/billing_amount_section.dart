@@ -1,6 +1,7 @@
 
 
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/utilis/helpers/pricing_calculator.dart';
 import 'package:al_najah_store/view_model_vm/shop/cart/cart_controller.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,8 @@ class NBillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Subtotal",style: Theme.of(context).textTheme.bodyMedium),
-               Text("\$$subTotal",style: Theme.of(context).textTheme.bodyMedium)
+            Text(NTexts.subTotal,style: Theme.of(context).textTheme.bodyMedium),
+               Text("$subTotal\ر.ي",style: Theme.of(context).textTheme.bodyMedium)
             ],
         ),
         const SizedBox(height: NSizes.spaceBtwItems/2),
@@ -29,8 +30,8 @@ class NBillingAmountSection extends StatelessWidget {
          Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Shipping Fee",style: Theme.of(context).textTheme.bodyMedium),
-               Text("\$${NPricingCalculator.calculateShippingCost(subTotal, 'US')}",style: Theme.of(context).textTheme.labelLarge)
+            Text(NTexts.shippingFee,style: Theme.of(context).textTheme.bodyMedium),
+               Text("${NPricingCalculator.calculateShippingCost(subTotal, 'US')}\ر.ي",style: Theme.of(context).textTheme.labelLarge)
             ],
         ),
             const SizedBox(height: NSizes.spaceBtwItems/2),
@@ -39,8 +40,8 @@ class NBillingAmountSection extends StatelessWidget {
          Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Tax Fee",style: Theme.of(context).textTheme.bodyMedium),
-               Text("\$${NPricingCalculator.calculateTax(subTotal,'US')}",style: Theme.of(context).textTheme.labelLarge)
+            Text(NTexts.taxFee,style: Theme.of(context).textTheme.bodyMedium),
+               Text("${NPricingCalculator.calculateTax(subTotal,'US')}\ر.ي",style: Theme.of(context).textTheme.labelLarge)
             ],
         ),
             const SizedBox(height: NSizes.spaceBtwItems/2),
@@ -49,8 +50,8 @@ class NBillingAmountSection extends StatelessWidget {
          Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Order Total",style: Theme.of(context).textTheme.bodyMedium),
-               Text("\$${NPricingCalculator.calculateTotalPrice(subTotal, 'US')}",style: Theme.of(context).textTheme.titleMedium)
+            Text(NTexts.orderTotal,style: Theme.of(context).textTheme.bodyMedium),
+               Text("${NPricingCalculator.calculateTotalPrice(subTotal, 'US')}\ر.ي",style: Theme.of(context).textTheme.titleMedium)
             ],
         ),
       ],

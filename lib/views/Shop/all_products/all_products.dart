@@ -5,6 +5,7 @@ import 'package:al_najah_store/common/widgets/loaders/shimmer/n_product_card_shi
 import 'package:al_najah_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:al_najah_store/common/widgets/sortable/sortable_products.dart';
 import 'package:al_najah_store/utilis/constants/size.dart';
+import 'package:al_najah_store/utilis/constants/text_strings.dart';
 import 'package:al_najah_store/view_model_vm/shop/product_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class AllProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NAppBar(title: Text("All Products"), showBackArrow: true),
+      appBar: NAppBar(title: Text(NTexts.allProducs), showBackArrow: true),
 
       body: SingleChildScrollView(
         child: Padding(
@@ -56,14 +57,14 @@ class AllProductsScreen extends StatelessWidget {
                                     productController.fetchPreviousPage(); 
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    minimumSize: const Size(100, 20), 
+                                    minimumSize: const Size(100, 10), 
                                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), 
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5), 
+                                      borderRadius: BorderRadius.circular(10), 
                                     ),
                                   ),
                                   child: const Text(
-                                    'Previous',
+                                    'السابق',
                                     style: TextStyle(
                                       fontSize: 18, 
                                       fontWeight: FontWeight.bold,
@@ -75,14 +76,14 @@ class AllProductsScreen extends StatelessWidget {
                                     productController.fetchNextPage(); 
                                   }:null,
                                   style: ElevatedButton.styleFrom(
-                                    minimumSize: const Size(100, 20), 
+                                    minimumSize: const Size(100, 10), 
                                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), 
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5), 
+                                      borderRadius: BorderRadius.circular(10), 
                                     ),
                                   ),
                                   child: const Text(
-                                    'Next',
+                                    'التالي',
                                     style: TextStyle(
                                       fontSize: 18, 
                                       fontWeight: FontWeight.bold,
